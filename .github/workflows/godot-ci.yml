@@ -1,0 +1,77 @@
+name: "godot-ci export"
+on:
+  push:
+    branches:
+      - main
+
+env:
+  GODOT_VERSION: 4.2.2
+  PROJECT_PATH: godot_project
+  ITCHIO_USERNAME: ${{ vars.ITCHIO_USERNAME }}
+  ITCHIO_GAME: ${{ vars.ITCHIO_GAME }}
+  BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.2.2
+    strategy:
+      matrix: 
+        platform: 
+          - { name: windows, export: "game.exe", godot_preset: "Windows Desktop" }
+          - { name: linux, export: "game.x86_64", godot_preset: "Linux/X11" }
+          - { name: web, export: "index.html", godot_preset: "Web" }
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: Build
+        run: |
+          mkdir -v -p build/${{ matrix.platform.name }}
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "${{ matrix.platform.godot_preset }}" ../build/${{ matrix.platform.name }}/${{ matrix.platform.export }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.platform.name }}
+          path: build/${{ matrix.platform.name }}
+      - name: Deploy to itch.io 🚀
+        if: startsWith(github.event.ref, 'refs/tags/v')
+        run: |
+          butler push ./build/${{ matrix.platform.name }}  $ITCHIO_USERNAME/$ITCHIO_GAME:${{ matrix.platform.name }} --userversion ${{ github.ref_name }}
+      - name: COI Service Worker for Pages
+        if: matrix.platform.name == 'web'
+        run: |
+          cp deploy_help/coi-serviceworker.js build/${{ matrix.platform.name }}/
+      - name: GitHub Pages Artifact
+        if: matrix.platform.name == 'web'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/${{ matrix.platform.name }}
+
+  ghpages:
+    needs: export
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
