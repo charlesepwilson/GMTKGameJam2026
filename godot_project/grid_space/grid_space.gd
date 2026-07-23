@@ -10,6 +10,7 @@ func set_grid_space_scale(grid_space_size: Vector2):
 	scale = grid_space_size / texture_size
 
 func _ready():
+	$Sprite2D.set_instance_shader_parameter("random_seed", randf())
 	area2d.input_event.connect(_on_input_event)
 
 signal mouse_released(source: GridSpace, event: InputEvent)

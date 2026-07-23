@@ -26,10 +26,7 @@ func _ready() -> void:
 	number_label.text = str(card_number)
 	game_board = find_parent("GameBoard")
 	player_cards = game_board.find_child("PlayerCards")
-	await player_cards.ready
 	visible = false
-	player_cards.draw_pile.append(self)
-
 	clickable_area.input_event.connect(_clickable_area_input_event)
 
 func _randomise_sfx():
@@ -37,6 +34,8 @@ func _randomise_sfx():
 	sfx.volume_linear = rng.randfn(0.7, 0.15)
 
 func _clickable_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
+	if not game_board.player_can_interact:
+		return
 	if card_mode == CARD_MODE.HAND:
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 			if event.is_pressed():
@@ -48,6 +47,8 @@ func _clickable_area_input_event(_viewport: Node, event: InputEvent, _shape_idx:
 				release_control()
 
 func grid_space_input_event(source: GridSpace, event: InputEvent):
+	if not game_board.player_can_interact:
+		return
 	if card_mode != CARD_MODE.CONTROL:
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:

@@ -3,6 +3,9 @@ extends Node2D
 
 var player_can_interact: bool = true
 var gap_between_movements: float = 1.0
+@export var level_number: int = 0
+
+@onready var victory_popup: VictoryPopup = $VictoryPopup
 
 @export var total_grid_x_spaces: int = 5
 @export var total_grid_y_spaces: int = 5
@@ -13,17 +16,32 @@ var gap_between_movements: float = 1.0
 @onready var player_cards: PlayerCards = $PlayerCards
 var card_grid_spaces: Dictionary[Vector2i, Card] = {}
 
+signal player_interaction_stop()
+signal player_interaction_start()
+
 signal turn_end(card_number: int)
 signal card_played(card_number: int)
 
-func _global_on_card_play():
+func _on_player_interaction_stop():
 	player_can_interact = false
+	for button in find_children("*", "Button", false):
+		button.disabled = true
+
+func _on_player_interaction_start():
+	var victory: bool = perform_victory_check()
+	if not victory:
+		player_can_interact = true
+		for button in find_children("*", "Button", false):
+			button.disabled = false
+
+func _global_on_card_play():
+	player_interaction_stop.emit()
 	var numbers_present = _get_numbers_present(Card.EFFECT_TRIGGER.ON_CARD_PLAYED)
 	for card_number in range(level_max_number, 0, -1):
 		if card_number in numbers_present:
 			card_played.emit(card_number)
 			await get_tree().create_timer(gap_between_movements).timeout
-	player_can_interact = true
+	player_interaction_start.emit()
 
 func _on_move_button_pressed():
 	if not player_can_interact:
@@ -38,21 +56,27 @@ func _get_numbers_present(effect_filter: Card.EFFECT_TRIGGER) -> Array[int]:
 	return numbers_present
 
 func end_turn():
-	player_can_interact = false
+	player_interaction_stop.emit()
+
 	var numbers_present = _get_numbers_present(Card.EFFECT_TRIGGER.ON_TURN_END)
 	for card_number in range(level_max_number, 0, -1):
 		if card_number in numbers_present:
 			turn_end.emit(card_number)
 			await get_tree().create_timer(gap_between_movements).timeout
-	player_can_interact = true
+	player_interaction_start.emit()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	victory_popup.level_number = level_number
+	player_interaction_start.connect(_on_player_interaction_start)
+	player_interaction_stop.connect(_on_player_interaction_stop)
+
 	grid_visual.total_grid_x_spaces = total_grid_x_spaces
 	grid_visual.total_grid_y_spaces = total_grid_y_spaces
 	grid_visual.construct_grid()
 	player_cards.card_played.connect(_global_on_card_play)
+	player_cards.card_drawn.connect(_animate_door)
 
 	for card in player_cards.get_children():
 		if card is Card:
@@ -91,9 +115,10 @@ func move_multiple_simultaneously(move_requests: Dictionary[Card, Vector2i]):
 		card_grid_spaces.erase(card.current_grid_position)
 	var move_is_valid: bool = true
 	for card in move_requests:
-		if move_requests[card] in card_grid_spaces:
+		if not can_place_here(move_requests[card]):
 			move_is_valid = false
 			break
+
 	if not move_is_valid:
 		for card in move_requests:
 			card_grid_spaces[card.current_grid_position] = card
@@ -129,7 +154,7 @@ func _find_descending_chain(current_chain: Array[Card]):
 	return false
 
 
-func check_victory():  # return array of cards or false
+func _check_victory():  # return array of cards or false
 	var start_cards: Array[Card] = []
 	for grid_pos in card_grid_spaces:
 		var card: Card = card_grid_spaces[grid_pos]
@@ -141,6 +166,20 @@ func check_victory():  # return array of cards or false
 			return chain
 	return false
 
+func perform_victory_check() -> bool:
+	var victory = _check_victory()
+	if victory:
+		player_interaction_stop.emit()
+		victory_popup.visible = true
+		return true
+	else:
+		return false
 
-func _on_victory_check_pressed() -> void:
-	print(check_victory())
+@onready var open_door: Sprite2D = $Door/Open
+@onready var door_sfx: AudioStreamPlayer2D = $Door/AudioStreamPlayer2D
+
+func _animate_door():
+	door_sfx.play(0.18)
+	open_door.visible = true
+	await get_tree().create_timer(0.3).timeout
+	open_door.visible = false

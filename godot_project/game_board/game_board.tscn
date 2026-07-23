@@ -3,10 +3,13 @@
 [ext_resource type="Script" uid="uid://e5xtcj151x6a" path="res://game_board/game_board.gd" id="1_qlpbi"]
 [ext_resource type="Script" uid="uid://b2d2ofq0dtu0n" path="res://game_board/grid_visual.gd" id="2_rkty7"]
 [ext_resource type="AudioStream" uid="uid://bc1d8sm7lu8r" path="res://audio/642311__victor_natas__raising-heartbeats-mild-version.wav" id="2_wpyk7"]
+[ext_resource type="Texture2D" uid="uid://o3qwwpcd4pjw" path="res://card/Background2.png" id="3_c8wg2"]
+[ext_resource type="Texture2D" uid="uid://cicx7bpqf84ep" path="res://card/Door_Closed.png" id="4_38jxm"]
 [ext_resource type="Script" uid="uid://cgx7qf1xmwvtu" path="res://game_board/player_cards.gd" id="4_c8wg2"]
 [ext_resource type="Texture2D" uid="uid://du3tf7qds705a" path="res://icon.svg" id="5_6rgs4"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_g4v7s"]
+[ext_resource type="Texture2D" uid="uid://c4tht8hnca15f" path="res://card/Door_Open.png" id="5_dilif"]
+[ext_resource type="AudioStream" uid="uid://c3vvul5i1dqj1" path="res://audio/638391__ulrich_wehner__horror-stinger-12_vampire-nest.wav" id="6_dilif"]
+[ext_resource type="PackedScene" uid="uid://cekths2ejptic" path="res://victory_popup/victory_popup.tscn" id="6_wpyk7"]
 
 [node name="GameBoard" type="Node2D" unique_id=469077912]
 script = ExtResource("1_qlpbi")
@@ -17,12 +20,25 @@ autoplay = true
 bus = &"Music"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=235818796]
-position = Vector2(579, 293)
-scale = Vector2(1920, 1920)
-texture = SubResource("PlaceholderTexture2D_g4v7s")
+position = Vector2(960, 540)
+texture = ExtResource("3_c8wg2")
+
+[node name="Door" type="Node2D" parent="." unique_id=820867552]
+position = Vector2(62, 213)
+
+[node name="Closed" type="Sprite2D" parent="Door" unique_id=1950921698]
+texture = ExtResource("4_38jxm")
+
+[node name="Open" type="Sprite2D" parent="Door" unique_id=2112387181]
+visible = false
+position = Vector2(67, 1)
+texture = ExtResource("5_dilif")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Door" unique_id=1245343759]
+stream = ExtResource("6_dilif")
 
 [node name="GridVisual" type="Node2D" parent="." unique_id=1154572937]
-position = Vector2(400, 100)
+position = Vector2(717, 297)
 script = ExtResource("2_rkty7")
 
 [node name="GridSquares" type="Node2D" parent="GridVisual" unique_id=198607214]
@@ -33,28 +49,22 @@ script = ExtResource("2_rkty7")
 position = Vector2(98, 518)
 script = ExtResource("4_c8wg2")
 
+[node name="Timer" type="Timer" parent="PlayerCards" unique_id=1707955779]
+autostart = true
+
 [node name="MoveButton" type="Button" parent="." unique_id=1109891816]
-offset_left = 1141.0
-offset_top = 270.0
-offset_right = 1277.0
-offset_bottom = 406.0
+offset_left = 1665.0
+offset_top = 482.0
+offset_right = 1801.0
+offset_bottom = 618.0
 pivot_offset = Vector2(-2622, 44)
 icon = ExtResource("5_6rgs4")
 
-[node name="DrawButton" type="Button" parent="." unique_id=2095228830]
-offset_left = 1141.0
-offset_top = 416.0
-offset_right = 1277.0
-offset_bottom = 552.0
-icon = ExtResource("5_6rgs4")
-
-[node name="VictoryCheck" type="Button" parent="." unique_id=1913901116]
-offset_left = 1140.0
-offset_top = 560.0
-offset_right = 1276.0
-offset_bottom = 696.0
-icon = ExtResource("5_6rgs4")
+[node name="VictoryPopup" parent="." unique_id=842108949 instance=ExtResource("6_wpyk7")]
+visible = false
+offset_left = 804.0
+offset_top = 369.0
+offset_right = 804.0
+offset_bottom = 369.0
 
 [connection signal="pressed" from="MoveButton" to="." method="_on_move_button_pressed"]
-[connection signal="pressed" from="DrawButton" to="PlayerCards" method="draw_card"]
-[connection signal="pressed" from="VictoryCheck" to="." method="_on_victory_check_pressed"]
