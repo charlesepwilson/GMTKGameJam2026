@@ -1,19 +1,44 @@
 [gd_scene format=3 uid="uid://bvafqyefyi0ys"]
 
 [ext_resource type="Script" uid="uid://nvh4fnuxug1y" path="res://card/card.gd" id="1_fjcud"]
+[ext_resource type="Texture2D" uid="uid://dcxjlrrc0gcgy" path="res://card/Formal_Werewolf.png" id="2_ply2h"]
+[ext_resource type="FontFile" uid="uid://cogjgiysvpaha" path="res://fonts/AstoriaMedium.ttf" id="3_fdnr0"]
+[ext_resource type="AudioStream" uid="uid://brnxuwofgppke" path="res://audio/241258__deleted_user_4389770__wolf-whistle.wav" id="4_fdnr0"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_g4v7s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font = ExtResource("3_fdnr0")
+font_size = 40
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ply2h"]
+size = Vector2(187, 186)
 
 [node name="Card" type="Node2D" unique_id=1733592583]
 script = ExtResource("1_fjcud")
 
 [node name="Border" type="Sprite2D" parent="." unique_id=476875609]
-position = Vector2(50, 50)
-scale = Vector2(100, 100)
+scale = Vector2(170, 170)
 texture = SubResource("PlaceholderTexture2D_g4v7s")
 
 [node name="Artwork" type="Sprite2D" parent="." unique_id=1143494246]
+texture = ExtResource("2_ply2h")
 
 [node name="NumberLabel" type="Label" parent="." unique_id=1606790203]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -93.0
+offset_top = -92.0
+offset_right = -53.0
+offset_bottom = -69.0
+text = "10"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=306240035]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=633769741]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_ply2h")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=126853625]
+stream = ExtResource("4_fdnr0")
+bus = &"SFX"

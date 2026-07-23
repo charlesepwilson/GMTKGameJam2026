@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b6xepbauhso6y"]
+
+[ext_resource type="PackedScene" uid="uid://bbp243w8h3qxt" path="res://game_board/game_board.tscn" id="1_b84ys"]
+[ext_resource type="PackedScene" uid="uid://rnknawrnvutu" path="res://card/slider/slider.tscn" id="2_32mhh"]
+[ext_resource type="PackedScene" uid="uid://f0pkuexkm1cj" path="res://card/chucker/chucker.tscn" id="3_ohbkr"]
+[ext_resource type="PackedScene" uid="uid://bfi0yq0hhslqt" path="res://card/exploder/exploder.tscn" id="4_2j4y6"]
+[ext_resource type="PackedScene" uid="uid://csvssq1pgaoma" path="res://card/goomba/goomba.tscn" id="5_vi6ws"]
+[ext_resource type="PackedScene" uid="uid://dqceyp8knjyls" path="res://card/jumper/jumper.tscn" id="6_cr8f5"]
+[ext_resource type="PackedScene" uid="uid://q8nalskll5gi" path="res://card/spinner/spinner.tscn" id="7_gqfrg"]
+
+[node name="GameBoard" unique_id=469077912 instance=ExtResource("1_b84ys")]
+level_max_number = 6
+
+[node name="AudioStreamPlayer" parent="." index="0" unique_id=1797533170]
+autoplay = false
+
+[node name="Slider" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="0" unique_id=1733592583 instance=ExtResource("2_32mhh")]
+
+[node name="Chucker" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="1" unique_id=1249948641 instance=ExtResource("3_ohbkr")]
+card_number = 3
+
+[node name="Exploder" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="2" unique_id=2077779642 instance=ExtResource("4_2j4y6")]
+
+[node name="Goomba" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="3" unique_id=986120360 instance=ExtResource("5_vi6ws")]
+
+[node name="Jumper" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="4" unique_id=2100323791 instance=ExtResource("6_cr8f5")]
+
+[node name="Spinner" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="5" unique_id=1905277649 instance=ExtResource("7_gqfrg")]

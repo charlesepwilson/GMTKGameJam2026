@@ -1,4 +1,3 @@
-@abstract
 class_name Card
 extends Node2D
 
@@ -11,13 +10,19 @@ var game_board: GameBoard
 var player_cards: PlayerCards
 
 var max_move_speed: float = 800
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: Sprite2D = $Artwork
 
 var card_mode: CARD_MODE = CARD_MODE.DECK
 
 @onready var clickable_area: Area2D = $Area2D
+@onready var sfx = $AudioStreamPlayer2D
+@export var sfx_start: float = 0
+var rng = RandomNumberGenerator.new()
+
+var hovered_grid_spaces: int = 0
 
 func _ready() -> void:
+	_randomise_sfx()
 	number_label.text = str(card_number)
 	game_board = find_parent("GameBoard")
 	player_cards = game_board.find_child("PlayerCards")
@@ -27,13 +32,20 @@ func _ready() -> void:
 
 	clickable_area.input_event.connect(_clickable_area_input_event)
 
+func _randomise_sfx():
+	sfx.pitch_scale = rng.randfn(1.0, 0.15)
+	sfx.volume_linear = rng.randfn(0.7, 0.15)
+
 func _clickable_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
-	if card_mode != CARD_MODE.HAND:
-		return
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.is_pressed():
-			card_mode = CARD_MODE.CONTROL
-			reparent(game_board.grid_occupiers)
+	if card_mode == CARD_MODE.HAND:
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+			if event.is_pressed():
+				card_mode = CARD_MODE.CONTROL
+				reparent(game_board.grid_occupiers)
+	if card_mode == CARD_MODE.CONTROL:
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+			if event.is_released() and not hovered_grid_spaces:
+				release_control()
 
 func grid_space_input_event(source: GridSpace, event: InputEvent):
 	if card_mode != CARD_MODE.CONTROL:
@@ -43,6 +55,20 @@ func grid_space_input_event(source: GridSpace, event: InputEvent):
 			var grid_pos: Vector2i = source.grid_position
 			if game_board.can_place_here(grid_pos):
 				play_card(grid_pos)
+			else:
+				release_control()
+
+func grid_space_mouse_entered():
+	hovered_grid_spaces += 1
+
+func grid_space_mouse_exit():
+	hovered_grid_spaces -= 1
+
+func release_control():
+	if card_mode != CARD_MODE.CONTROL:
+		return
+	card_mode = CARD_MODE.HAND
+	reparent(player_cards)
 
 
 func add_to_hand():
@@ -72,10 +98,12 @@ func play_card(grid_position: Vector2i):
 			var texture_size: Vector2 = sprite.texture.get_size()
 			scale = min(grid_space_size.x, grid_space_size.y) / max(texture_size.x, texture_size.y) * Vector2.ONE
 			on_play_effect()
+			await get_tree().create_timer(0.5).timeout
+			player_cards.card_played.emit()
 		else:
-			print("WARNING: Attempted to play card that's not in hand ", self)
+			printerr("WARNING: Attempted to play card that's not in hand ", self)
 	else:
-		print("WARNING: Attempted to play card in invalid position ", grid_position)
+		printerr("WARNING: Attempted to play card in invalid position ", grid_position)
 
 func get_target_position() -> Vector2:
 	match card_mode:
@@ -88,21 +116,32 @@ func get_target_position() -> Vector2:
 		_:
 			return Vector2(-500, 0)
 
+
+func _get_move_speed() -> float:
+	match card_mode:
+		CARD_MODE.CONTROL:
+			return 10_000
+		CARD_MODE.HAND:
+			return 5000
+		_:
+			return 800
+
 func _process(delta: float) -> void:
 	position = position.move_toward(
 		get_target_position(),
-		delta * max_move_speed,
+		delta * _get_move_speed(),
 	)
 
 func set_grid_position(grid_position: Vector2i):
 	if game_board.can_place_here(grid_position):
-		game_board.card_grid_spaces.erase(current_grid_position)
+		if game_board.card_grid_spaces.get(current_grid_position) == self:
+			game_board.card_grid_spaces.erase(current_grid_position)
 		current_grid_position = grid_position
 		game_board.card_grid_spaces[current_grid_position] = self
 	else:
-		print("WARNING: Attempted to set card position to invalid place ", grid_position)
+		printerr("WARNING: Attempted to set card position to invalid place ", grid_position)
 
-func slide(direction: Vector2i):
+func push(direction: Vector2i):
 	var final_position = current_grid_position + direction
 	assert(direction.x == 0 or direction.y == 0)  # for now this keeps things simple
 	for step in int(direction.length()):
@@ -115,13 +154,52 @@ func slide(direction: Vector2i):
 			return
 		set_grid_position(next_position)
 
+func _play_sfx():
+	_randomise_sfx()
+	sfx.play(sfx_start)
 
+func do_card_effect():
+	pass
+
+enum EFFECT_TRIGGER {ON_PLAY, ON_CARD_PLAYED, ON_TURN_END, ON_MOVED}
+
+@export var effect_triggers: Array[EFFECT_TRIGGER] = [EFFECT_TRIGGER.ON_TURN_END]
+
+func _effect_should_play(_card_number: int) -> bool:
+	return card_mode == CARD_MODE.BOARD and _card_number == card_number
+
+func _animate():
+	var tween = get_tree().create_tween()
+	tween.tween_property($Artwork, "scale", Vector2.ONE * 1.3, 0.3).set_trans(
+		Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property($Artwork, "rotation", -0.5, 0.3).set_trans(
+		Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	tween.tween_property($Artwork, "rotation", 0.5, 0.3).set_trans(
+		Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property($Artwork, "rotation", 0, 0.3).set_trans(
+		Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property($Artwork, "scale", Vector2.ONE, 0.3).set_trans(
+		Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+func _do_card_effect(_card_number_trigger: int):
+	if _effect_should_play(_card_number_trigger):
+		_play_sfx()
+		_animate()
+		do_card_effect()
 
 func on_play_effect():
-	pass
+	if EFFECT_TRIGGER.ON_PLAY in effect_triggers:
+		_do_card_effect(card_number)
 
-func on_turn_end_effect():
-	pass
 
-func on_moved_effect():
-	pass
+func on_card_played_effect(_card_number_trigger: int):
+	if EFFECT_TRIGGER.ON_CARD_PLAYED in effect_triggers:
+		_do_card_effect(_card_number_trigger)
+
+func on_turn_end_effect(_card_number_trigger: int):
+	if EFFECT_TRIGGER.ON_TURN_END in effect_triggers:
+		_do_card_effect(_card_number_trigger)
+
+func on_moved_effect(_card_number_trigger: int):
+	if EFFECT_TRIGGER.ON_MOVED in effect_triggers:
+		_do_card_effect(_card_number_trigger)

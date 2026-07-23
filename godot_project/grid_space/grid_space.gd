@@ -3,13 +3,13 @@ extends Node2D
 
 var grid_position: Vector2i
 @onready var texture = $Sprite2D.texture
+@onready var area2d: Area2D = $Area2D
 
 func set_grid_space_scale(grid_space_size: Vector2):
 	var texture_size = texture.get_size()
 	scale = grid_space_size / texture_size
 
 func _ready():
-	var area2d: Area2D = $Area2D
 	area2d.input_event.connect(_on_input_event)
 
 signal mouse_released(source: GridSpace, event: InputEvent)

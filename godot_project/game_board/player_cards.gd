@@ -8,8 +8,9 @@ var discard_pile: Array[Card] = []
 
 signal failed_to_draw(message: String)
 
+signal card_played()
+
 func draw_card():
-	print("DRAW_CARD ", hand)
 	var top_card = draw_pile.pop_back()
 	if top_card != null:
 		top_card.add_to_hand()

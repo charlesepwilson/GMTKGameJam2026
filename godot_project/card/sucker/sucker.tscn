@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cu4fwstq5yv0w"]
+
+[ext_resource type="PackedScene" uid="uid://bvafqyefyi0ys" path="res://card/card.tscn" id="1_qx1va"]
+[ext_resource type="Script" uid="uid://cbdkew3gysxxe" path="res://card/sucker/sucker.gd" id="2_s3otb"]
+
+[node name="Sucker" unique_id=1733592583 instance=ExtResource("1_qx1va")]
+script = ExtResource("2_s3otb")
+suck_strength = 1
+suck_range = 2
+sfx_start = 0.85
+effect_triggers = Array[int]([1])

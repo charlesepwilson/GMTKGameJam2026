@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://cuwabxjqg68rp"]
+
+[ext_resource type="Theme" uid="uid://bcg08v88fsprf" path="res://ui_themes/menu_theme.tres" id="1_lhl1n"]
+[ext_resource type="Script" uid="uid://cfgrjlb0tawpt" path="res://level_select/level_select.gd" id="2_mtmfa"]
+[ext_resource type="Texture2D" uid="uid://d0b6yg4h5iq5m" path="res://main_menu/starry-night-sky-wallpaper-1.jpg" id="3_h56dn"]
+[ext_resource type="AudioStream" uid="uid://dc1nsn17hv55s" path="res://main_menu/46-ri9 (Night).mp3" id="4_ujs24"]
+[ext_resource type="Theme" uid="uid://dsb8c8f6k62cq" path="res://title_theme.tres" id="5_mqeaa"]
+
+[node name="LevelSelect" type="Control" unique_id=1569080553]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_lhl1n")
+script = ExtResource("2_mtmfa")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1962574804]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -704.0
+offset_top = -396.0
+offset_right = 704.0
+offset_bottom = 396.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_h56dn")
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="." unique_id=2135369535]
+stream = ExtResource("4_ujs24")
+autoplay = true
+bus = &"Music"
+
+[node name="MenuContainer" type="MarginContainer" parent="." unique_id=2120853395]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer" unique_id=1424495741]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/VBoxContainer" unique_id=1689806054]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MenuContainer/VBoxContainer/VBoxContainer" unique_id=1722981569]
+layout_mode = 2
+theme = ExtResource("5_mqeaa")
+text = "Level Select"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuContainer/VBoxContainer" unique_id=703970640]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/VBoxContainer/HBoxContainer" unique_id=2131661661]
+layout_mode = 2
+
+[node name="Level1Button" type="Button" parent="MenuContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1825748366]
+layout_mode = 2
+text = "Level 1"
+
+[node name="Level2Button" type="Button" parent="MenuContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=324214482]
+layout_mode = 2
+text = "Level 2"
+
+[node name="GoBackButton" type="Button" parent="MenuContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=326257001]
+layout_mode = 2
+text = "Go Back"

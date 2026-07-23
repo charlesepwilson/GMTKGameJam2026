@@ -2,18 +2,19 @@
 
 [ext_resource type="Script" uid="uid://e5xtcj151x6a" path="res://game_board/game_board.gd" id="1_qlpbi"]
 [ext_resource type="Script" uid="uid://b2d2ofq0dtu0n" path="res://game_board/grid_visual.gd" id="2_rkty7"]
+[ext_resource type="AudioStream" uid="uid://bc1d8sm7lu8r" path="res://audio/642311__victor_natas__raising-heartbeats-mild-version.wav" id="2_wpyk7"]
 [ext_resource type="Script" uid="uid://cgx7qf1xmwvtu" path="res://game_board/player_cards.gd" id="4_c8wg2"]
 [ext_resource type="Texture2D" uid="uid://du3tf7qds705a" path="res://icon.svg" id="5_6rgs4"]
-[ext_resource type="Script" uid="uid://fqaj8645r6y1" path="res://card/horizontal_wanderer.gd" id="6_38jxm"]
-[ext_resource type="Texture2D" uid="uid://dcxjlrrc0gcgy" path="res://card/Formal_Werewolf.png" id="7_dilif"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_g4v7s"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
-size = Vector2(147, 190)
-
 [node name="GameBoard" type="Node2D" unique_id=469077912]
 script = ExtResource("1_qlpbi")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1797533170]
+stream = ExtResource("2_wpyk7")
+autoplay = true
+bus = &"Music"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=235818796]
 position = Vector2(579, 293)
@@ -28,111 +29,23 @@ script = ExtResource("2_rkty7")
 
 [node name="GridOccupiers" type="Node2D" parent="GridVisual" unique_id=1695326612]
 
-[node name="MoveButton" type="Button" parent="." unique_id=1109891816]
-offset_right = 136.0
-offset_bottom = 136.0
-pivot_offset = Vector2(-2622, 44)
-icon = ExtResource("5_6rgs4")
-
 [node name="PlayerCards" type="Node2D" parent="." unique_id=592926577]
 position = Vector2(98, 518)
 script = ExtResource("4_c8wg2")
 
-[node name="testcard3" type="Node2D" parent="PlayerCards" unique_id=175776632]
-script = ExtResource("6_38jxm")
-card_number = 3
-current_grid_position = Vector2i(4, 3)
-
-[node name="Sprite2D" type="Sprite2D" parent="PlayerCards/testcard3" unique_id=1879538706]
-texture = ExtResource("7_dilif")
-
-[node name="NumberLabel" type="Label" parent="PlayerCards/testcard3" unique_id=1703831289]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="Area2D" type="Area2D" parent="PlayerCards/testcard3" unique_id=1044230568]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCards/testcard3/Area2D" unique_id=478163412]
-position = Vector2(1.5, 2)
-shape = SubResource("RectangleShape2D_g4v7s")
-
-[node name="testcard4" type="Node2D" parent="PlayerCards" unique_id=303423405]
-script = ExtResource("6_38jxm")
-card_number = 4
-current_grid_position = Vector2i(4, 3)
-
-[node name="Sprite2D" type="Sprite2D" parent="PlayerCards/testcard4" unique_id=1216032912]
-texture = ExtResource("7_dilif")
-
-[node name="NumberLabel" type="Label" parent="PlayerCards/testcard4" unique_id=2070899212]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="Area2D" type="Area2D" parent="PlayerCards/testcard4" unique_id=175256149]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCards/testcard4/Area2D" unique_id=30633738]
-position = Vector2(1.5, 2)
-shape = SubResource("RectangleShape2D_g4v7s")
-
-[node name="testcard5" type="Node2D" parent="PlayerCards" unique_id=1527534981]
-script = ExtResource("6_38jxm")
-card_number = 5
-current_grid_position = Vector2i(4, 3)
-
-[node name="Sprite2D" type="Sprite2D" parent="PlayerCards/testcard5" unique_id=570810466]
-texture = ExtResource("7_dilif")
-
-[node name="NumberLabel" type="Label" parent="PlayerCards/testcard5" unique_id=743954282]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="Area2D" type="Area2D" parent="PlayerCards/testcard5" unique_id=353203488]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCards/testcard5/Area2D" unique_id=1544868693]
-position = Vector2(1.5, 2)
-shape = SubResource("RectangleShape2D_g4v7s")
-
-[node name="testcard" type="Node2D" parent="PlayerCards" unique_id=879230594]
-position = Vector2(302, -418)
-script = ExtResource("6_38jxm")
-
-[node name="Sprite2D" type="Sprite2D" parent="PlayerCards/testcard" unique_id=2106857885]
-texture = ExtResource("7_dilif")
-
-[node name="NumberLabel" type="Label" parent="PlayerCards/testcard" unique_id=1801557969]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="Area2D" type="Area2D" parent="PlayerCards/testcard" unique_id=1148380772]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCards/testcard/Area2D" unique_id=463425439]
-position = Vector2(1.5, 2)
-shape = SubResource("RectangleShape2D_g4v7s")
-
-[node name="testcard2" type="Node2D" parent="PlayerCards" unique_id=1727882194]
-position = Vector2(302, -418)
-script = ExtResource("6_38jxm")
-card_number = 2
-current_grid_position = Vector2i(4, 3)
-
-[node name="Sprite2D" type="Sprite2D" parent="PlayerCards/testcard2" unique_id=934781248]
-texture = ExtResource("7_dilif")
-
-[node name="NumberLabel" type="Label" parent="PlayerCards/testcard2" unique_id=332677836]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="Area2D" type="Area2D" parent="PlayerCards/testcard2" unique_id=871319514]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCards/testcard2/Area2D" unique_id=683933926]
-position = Vector2(1.5, 2)
-shape = SubResource("RectangleShape2D_g4v7s")
+[node name="MoveButton" type="Button" parent="." unique_id=1109891816]
+offset_left = 1141.0
+offset_top = 270.0
+offset_right = 1277.0
+offset_bottom = 406.0
+pivot_offset = Vector2(-2622, 44)
+icon = ExtResource("5_6rgs4")
 
 [node name="DrawButton" type="Button" parent="." unique_id=2095228830]
-offset_left = -3.0
-offset_top = 156.0
-offset_right = 133.0
-offset_bottom = 292.0
+offset_left = 1141.0
+offset_top = 416.0
+offset_right = 1277.0
+offset_bottom = 552.0
 icon = ExtResource("5_6rgs4")
 
 [node name="VictoryCheck" type="Button" parent="." unique_id=1913901116]

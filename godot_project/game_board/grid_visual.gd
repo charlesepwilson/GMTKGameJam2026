@@ -37,8 +37,8 @@ func get_grid_space_size() -> Vector2:
 	return Vector2(grid_space_x_size, grid_space_y_size)
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	construct_grid()
+# func _ready() -> void:
+# 	construct_grid()
 
 func destroy_grid():
 	for child in grid_squares.get_children():

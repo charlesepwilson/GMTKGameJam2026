@@ -1,36 +1,69 @@
 class_name GameBoard
 extends Node2D
 
-var total_grid_x_spaces: int = 5
-var total_grid_y_spaces: int = 5
+var player_can_interact: bool = true
+var gap_between_movements: float = 1.0
+
+@export var total_grid_x_spaces: int = 5
+@export var total_grid_y_spaces: int = 5
+@export var level_max_number: int = 6
 
 @onready var grid_visual = $GridVisual
 @onready var grid_occupiers = $GridVisual/GridOccupiers
 @onready var player_cards: PlayerCards = $PlayerCards
 var card_grid_spaces: Dictionary[Vector2i, Card] = {}
-var level_max_number: int = 5
 
-signal turn_end()
+signal turn_end(card_number: int)
+signal card_played(card_number: int)
+
+func _global_on_card_play():
+	player_can_interact = false
+	var numbers_present = _get_numbers_present(Card.EFFECT_TRIGGER.ON_CARD_PLAYED)
+	for card_number in range(level_max_number, 0, -1):
+		if card_number in numbers_present:
+			card_played.emit(card_number)
+			await get_tree().create_timer(gap_between_movements).timeout
+	player_can_interact = true
 
 func _on_move_button_pressed():
+	if not player_can_interact:
+		return
 	end_turn()
 
+func _get_numbers_present(effect_filter: Card.EFFECT_TRIGGER) -> Array[int]:
+	var numbers_present: Array[int] = []
+	for card in card_grid_spaces.values():
+		if effect_filter in card.effect_triggers:
+			numbers_present.append(card.card_number)
+	return numbers_present
+
 func end_turn():
-	turn_end.emit()
+	player_can_interact = false
+	var numbers_present = _get_numbers_present(Card.EFFECT_TRIGGER.ON_TURN_END)
+	for card_number in range(level_max_number, 0, -1):
+		if card_number in numbers_present:
+			turn_end.emit(card_number)
+			await get_tree().create_timer(gap_between_movements).timeout
+	player_can_interact = true
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# grid_visual.total_grid_x_spaces = total_grid_x_spaces
-	# grid_visual.total_grid_y_spaces = total_grid_y_spaces
-	# todo single definition of grid size
-
+	grid_visual.total_grid_x_spaces = total_grid_x_spaces
+	grid_visual.total_grid_y_spaces = total_grid_y_spaces
+	grid_visual.construct_grid()
+	player_cards.card_played.connect(_global_on_card_play)
 
 	for card in player_cards.get_children():
 		if card is Card:
 			turn_end.connect(card.on_turn_end_effect)
+			card_played.connect(card.on_card_played_effect)
 			for grid_square in grid_visual.grid_squares.get_children():
 				if grid_square is GridSpace:
 					grid_square.mouse_released.connect(card.grid_space_input_event)
+					grid_square.area2d.mouse_entered.connect(card.grid_space_mouse_entered)
+					grid_square.area2d.mouse_exited.connect(card.grid_space_mouse_exit)
+
 
 func get_physical_position(grid_position: Vector2i) -> Vector2:
 	return grid_visual.get_physical_position(grid_position)
@@ -43,6 +76,30 @@ func can_place_here(grid_position: Vector2i) -> bool:
 
 func physical_position_to_grid_position(physical_position: Vector2) -> Vector2i:
 	return grid_visual.physical_position_to_grid_position(physical_position)
+
+
+func move_multiple_simultaneously(move_requests: Dictionary[Card, Vector2i]):
+	var all_targets = move_requests.values()
+	var target_set = {}
+	for t in all_targets:
+		target_set[t] = true
+	if len(target_set) < len(move_requests):
+		# multiple requests to move to same place
+		return
+
+	for card in move_requests:
+		card_grid_spaces.erase(card.current_grid_position)
+	var move_is_valid: bool = true
+	for card in move_requests:
+		if move_requests[card] in card_grid_spaces:
+			move_is_valid = false
+			break
+	if not move_is_valid:
+		for card in move_requests:
+			card_grid_spaces[card.current_grid_position] = card
+	else:
+		for card in move_requests:
+			card.set_grid_position(move_requests[card])
 
 func _find_next_number_options(card: Card) -> Array[Card]:
 	var options: Array[Card] = []
