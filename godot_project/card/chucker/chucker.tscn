@@ -2,19 +2,25 @@
 
 [ext_resource type="PackedScene" uid="uid://bvafqyefyi0ys" path="res://card/card.tscn" id="1_6mqju"]
 [ext_resource type="Script" uid="uid://icr55ta8ulnr" path="res://card/chucker/chucker.gd" id="2_acxs7"]
-[ext_resource type="Texture2D" uid="uid://disw3v1qyx8c8" path="res://card/Disco_Vampire.png" id="3_8sh14"]
 [ext_resource type="Texture2D" uid="uid://bjwd4vtl2b5xa" path="res://card/Switch.png" id="3_mfuxy"]
-[ext_resource type="AudioStream" uid="uid://c3vvul5i1dqj1" path="res://audio/638391__ulrich_wehner__horror-stinger-12_vampire-nest.wav" id="4_h2en8"]
+[ext_resource type="Texture2D" uid="uid://bnhoxxx43dr5c" path="res://card/On_DJ.png" id="3_voxdg"]
+[ext_resource type="AudioStream" uid="uid://r73g7hnhkhkc" path="res://audio/86099__donthemagicwon__yeah2.mp3" id="6_cbyao"]
+[ext_resource type="Texture2D" uid="uid://bdt543x701hmy" path="res://card/Disco_Vampire(1).png" id="6_tn7et"]
 
 [node name="Chucker" unique_id=1733592583 instance=ExtResource("1_6mqju")]
 script = ExtResource("2_acxs7")
 move_vector = Vector2i(1, 0)
+card_number = 3
+card_name = "Count Groove"
 
-[node name="EffectIcon" parent="." index="1" unique_id=2012726704]
+[node name="EffectIcon" parent="Border" parent_id_path=PackedInt32Array(476875609) index="0" unique_id=2012726704]
 texture = ExtResource("3_mfuxy")
 
-[node name="Artwork" parent="." index="2" unique_id=1143494246]
-texture = ExtResource("3_8sh14")
+[node name="TriggerIcon" parent="Border" parent_id_path=PackedInt32Array(476875609) index="1" unique_id=868693276]
+texture = ExtResource("3_voxdg")
 
-[node name="AudioStreamPlayer2D" parent="." index="5" unique_id=126853625]
-stream = ExtResource("4_h2en8")
+[node name="Artwork" parent="Border" parent_id_path=PackedInt32Array(476875609) index="3" unique_id=1143494246]
+texture = ExtResource("6_tn7et")
+
+[node name="AudioStreamPlayer2D" parent="." index="2" unique_id=126853625]
+stream = ExtResource("6_cbyao")

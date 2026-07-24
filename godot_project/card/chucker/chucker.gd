@@ -8,6 +8,7 @@ func move_and_chuck():
 		var next_position = current_grid_position + move_vector.sign()
 		if not game_board.is_inside_grid(next_position):
 			move_vector *= -1
+			set_icon_direction()
 			next_position = current_grid_position + move_vector.sign()
 			if not game_board.is_inside_grid(next_position):
 				return
@@ -32,4 +33,15 @@ func save_state() -> Dictionary:
 func load_state(state_dict: Dictionary):
 	super.load_state(state_dict)
 	move_vector = state_dict["move_vector"]
+	set_icon_direction()
 
+func _describe_effect() -> String:
+	return "Moves in a straight line, swapping places with anything in the way. Turns around if they can't go further."
+
+
+func set_icon_direction():
+	_set_icon_direction(move_vector)
+
+func _ready() -> void:
+	super._ready()
+	set_icon_direction()

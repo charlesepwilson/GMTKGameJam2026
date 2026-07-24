@@ -8,6 +8,7 @@ func goomb():
 		var next_position = current_grid_position + move_vector.sign()
 		if not game_board.can_place_here(next_position):
 			move_vector *= -1
+			set_icon_direction()
 			next_position = current_grid_position + move_vector.sign()
 			if not game_board.can_place_here(next_position):
 				return
@@ -25,3 +26,15 @@ func save_state() -> Dictionary:
 func load_state(state_dict: Dictionary):
 	super.load_state(state_dict)
 	move_vector = state_dict["move_vector"]
+	set_icon_direction()
+
+func _describe_effect() -> String:
+	return "Walks back and forth"
+
+
+func set_icon_direction():
+	_set_icon_direction(move_vector)
+
+func _ready() -> void:
+	super._ready()
+	set_icon_direction()

@@ -18,6 +18,6 @@ func _on_level_select_button_pressed():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$PanelContainer/MarginContainer/VBoxContainer/NextLevel.pressed.connect(_on_next_level_button_pressed)
-	$PanelContainer/MarginContainer/VBoxContainer/Retry.pressed.connect(_on_retry_button_pressed)
-	$PanelContainer/MarginContainer/VBoxContainer/LevelSelect.pressed.connect(_on_level_select_button_pressed)
+	%NextLevel.pressed.connect(_on_next_level_button_pressed)
+	%Retry.pressed.connect(_on_retry_button_pressed)
+	%LevelSelect.pressed.connect(_on_level_select_button_pressed)

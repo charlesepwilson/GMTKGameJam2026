@@ -15,3 +15,13 @@ func slide():
 
 func do_card_effect():
 	slide()
+
+func _describe_effect() -> String:
+	return "Moves along in a fixed direction. Refuses to turn around."
+
+func set_icon_direction():
+	_set_icon_direction(move_vector)
+
+func _ready() -> void:
+	super._ready()
+	set_icon_direction()

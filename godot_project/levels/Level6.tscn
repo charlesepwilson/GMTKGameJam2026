@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://qd8kx58g12bw"]
+
+[ext_resource type="PackedScene" uid="uid://bbp243w8h3qxt" path="res://game_board/game_board.tscn" id="1_vse3i"]
+[ext_resource type="PackedScene" uid="uid://rnknawrnvutu" path="res://card/slider/slider.tscn" id="2_nd10q"]
+[ext_resource type="PackedScene" uid="uid://f0pkuexkm1cj" path="res://card/chucker/chucker.tscn" id="3_ploog"]
+[ext_resource type="PackedScene" uid="uid://bfi0yq0hhslqt" path="res://card/exploder/exploder.tscn" id="4_j0nb6"]
+[ext_resource type="PackedScene" uid="uid://csvssq1pgaoma" path="res://card/goomba/goomba.tscn" id="5_vxlmw"]
+[ext_resource type="PackedScene" uid="uid://dqceyp8knjyls" path="res://card/jumper/jumper.tscn" id="6_8vy3l"]
+[ext_resource type="PackedScene" uid="uid://q8nalskll5gi" path="res://card/spinner/spinner.tscn" id="7_8uipk"]
+[ext_resource type="PackedScene" uid="uid://cu4fwstq5yv0w" path="res://card/sucker/sucker.tscn" id="8_f8yid"]
+[ext_resource type="Texture2D" uid="uid://qvxju0r63bn" path="res://card/Slowdown.png" id="9_epgce"]
+[ext_resource type="Texture2D" uid="uid://c43lih4akkxr2" path="res://card/Speed up.png" id="10_isatf"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_g4v7s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dkril"]
+font_size = 60
+
+[node name="GameBoard" unique_id=469077912 instance=ExtResource("1_vse3i")]
+
+[node name="GridPlaceholder" type="Sprite2D" parent="GridVisual" parent_id_path=PackedInt32Array(1154572937) index="2" unique_id=117335112]
+visible = false
+position = Vector2(242, 249)
+scale = Vector2(739.7935, 739.7935)
+texture = SubResource("PlaceholderTexture2D_g4v7s")
+
+[node name="PlayerCards" parent="." index="6" unique_id=592926577]
+position = Vector2(259, 265)
+
+[node name="Slider" parent="PlayerCards" index="0" unique_id=1733592583 instance=ExtResource("2_nd10q")]
+
+[node name="Chucker" parent="PlayerCards" index="1" unique_id=1249948641 instance=ExtResource("3_ploog")]
+
+[node name="Exploder" parent="PlayerCards" index="2" unique_id=2077779642 instance=ExtResource("4_j0nb6")]
+
+[node name="Goomba" parent="PlayerCards" index="3" unique_id=986120360 instance=ExtResource("5_vxlmw")]
+
+[node name="Jumper" parent="PlayerCards" index="4" unique_id=2100323791 instance=ExtResource("6_8vy3l")]
+
+[node name="Spinner" parent="PlayerCards" index="5" unique_id=1905277649 instance=ExtResource("7_8uipk")]
+
+[node name="Sucker" parent="PlayerCards" index="7" unique_id=2115771972 instance=ExtResource("8_f8yid")]
+
+[node name="HBoxContainer" parent="UI" parent_id_path=PackedInt32Array(875924731) index="2" unique_id=408569973]
+offset_left = 277.0
+offset_top = 2.0
+offset_right = 579.0
+offset_bottom = 105.0
+theme = null
+
+[node name="SpeedDown" parent="UI/HBoxContainer" index="0" unique_id=1623830718]
+icon = ExtResource("9_epgce")
+
+[node name="Label" parent="UI/HBoxContainer" index="1" unique_id=1212583471]
+label_settings = SubResource("LabelSettings_dkril")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpeedUp" parent="UI/HBoxContainer" index="2" unique_id=989080121]
+icon = ExtResource("10_isatf")

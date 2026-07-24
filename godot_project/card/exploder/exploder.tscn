@@ -10,18 +10,19 @@
 script = ExtResource("2_11q21")
 explode_strength = 1
 card_number = 5
+card_name = "Spotlight Sally"
 effect_triggers = Array[int]([1])
 
-[node name="EffectIcon" parent="." index="1" unique_id=2012726704]
+[node name="EffectIcon" parent="Border" parent_id_path=PackedInt32Array(476875609) index="0" unique_id=2012726704]
 position = Vector2(57, -58)
 rotation = -0.8089742
 scale = Vector2(1.481399, 1.481399)
 texture = ExtResource("3_fb2e3")
 
-[node name="Artwork" parent="." index="2" unique_id=1143494246]
+[node name="Artwork" parent="Border" parent_id_path=PackedInt32Array(476875609) index="3" unique_id=1143494246]
 position = Vector2(-4, 10)
 scale = Vector2(0.71999943, 0.71999943)
 texture = ExtResource("3_oyfqv")
 
-[node name="AudioStreamPlayer2D" parent="." index="5" unique_id=126853625]
+[node name="AudioStreamPlayer2D" parent="." index="2" unique_id=126853625]
 stream = ExtResource("4_3ekdj")

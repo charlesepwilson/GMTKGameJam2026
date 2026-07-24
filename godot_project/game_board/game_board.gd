@@ -5,16 +5,32 @@ var player_can_interact: bool = true
 var gap_between_movements: float = 1.0
 @export var level_number: int = 0
 
-@onready var victory_popup: VictoryPopup = $VictoryPopup
+@onready var victory_popup: VictoryPopup = %VictoryPopup
+@onready var failure_popup: VictoryPopup = %FailurePopup
 
 @export var total_grid_x_spaces: int = 5
 @export var total_grid_y_spaces: int = 5
-@export var level_max_number: int = 6
+var level_max_number: int
 
 @onready var grid_visual = $GridVisual
 @onready var grid_occupiers = $GridVisual/GridOccupiers
 @onready var player_cards: PlayerCards = $PlayerCards
 var card_grid_spaces: Dictionary[Vector2i, Card] = {}
+
+@onready var dj_countdown_sfx: AudioStreamPlayer = $DJDeck/DJCountDownSFX
+
+var dj_countdown_effect_files: Dictionary[int, AudioStream] = {
+	1: preload("res://audio/1.mp3"),
+	2: preload("res://audio/2.mp3"),
+	3: preload("res://audio/3.mp3"),
+	4: preload("res://audio/4.mp3"),
+	5: preload("res://audio/5.mp3"),
+	6: preload("res://audio/6.mp3"),
+	7: preload("res://audio/7.mp3"),
+	8: preload("res://audio/8.mp3"),
+	9: preload("res://audio/9.mp3"),
+	10: preload("res://audio/10.mp3"),
+}
 
 signal player_interaction_stop()
 signal player_interaction_start()
@@ -24,24 +40,27 @@ signal card_played(card_number: int)
 
 func _on_player_interaction_stop():
 	player_can_interact = false
-	for button in find_children("*", "Button", false):
+	for button in find_children("*", "Button"):
 		button.disabled = true
 
 func _on_player_interaction_start():
 	save_game_state()
-	var victory: bool = perform_victory_check()
-	if not victory:
-		player_can_interact = true
-		for button in find_children("*", "Button", false):
-			button.disabled = false
+	player_can_interact = true
+	for button in find_children("*", "Button"):
+		button.disabled = false
+
+func get_timer(t: float):
+	return get_tree().create_timer(t / Settings.game_speed)
 
 func _global_on_card_play():
 	player_interaction_stop.emit()
 	var numbers_present = _get_numbers_present(Card.EFFECT_TRIGGER.ON_CARD_PLAYED)
 	for card_number in range(level_max_number, 0, -1):
 		if card_number in numbers_present:
+			play_dj_number(card_number)
+			await get_timer(gap_between_movements).timeout
 			card_played.emit(card_number)
-			await get_tree().create_timer(gap_between_movements).timeout
+			await get_timer(gap_between_movements).timeout
 	player_interaction_start.emit()
 
 func _on_move_button_pressed():
@@ -62,14 +81,17 @@ func end_turn():
 	var numbers_present = _get_numbers_present(Card.EFFECT_TRIGGER.ON_TURN_END)
 	for card_number in range(level_max_number, 0, -1):
 		if card_number in numbers_present:
+			play_dj_number(card_number)
+			await get_timer(gap_between_movements).timeout
 			turn_end.emit(card_number)
-			await get_tree().create_timer(gap_between_movements).timeout
-	player_interaction_start.emit()
+			await get_timer(gap_between_movements).timeout
 
+	perform_victory_check()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	victory_popup.level_number = level_number
+	failure_popup.level_number = level_number
 	player_interaction_start.connect(_on_player_interaction_start)
 	player_interaction_stop.connect(_on_player_interaction_stop)
 
@@ -92,6 +114,10 @@ func _ready() -> void:
 					grid_square.area2d.mouse_exited.connect(card.grid_space_mouse_exit)
 	# save_game_state()
 	player_interaction_stop.emit()
+	var all_numbers: Array[int] = []
+	for card in player_cards.draw_pile:
+		all_numbers.append(card.card_number)
+	level_max_number = all_numbers.max()
 
 
 func get_physical_position(grid_position: Vector2i) -> Vector2:
@@ -171,14 +197,45 @@ func _check_victory():  # return array of cards or false
 			return chain
 	return false
 
-func perform_victory_check() -> bool:
+func play_dj_number(number: int):
+	dj_countdown_sfx.stream = dj_countdown_effect_files[number]
+	dj_countdown_sfx.pitch_scale = pow(Settings.game_speed / Settings.base_speed, 0.5)
+	dj_countdown_sfx.play()
+
+	_play_orch_hit(number)
+
+@onready var orchestra_hit_sfx: AudioStreamPlayer = $DJDeck/OrchestraHitSFX
+
+func _play_orch_hit(number: int):
+	orchestra_hit_sfx.stop()
+	var pitch_effect: AudioEffect = AudioServer.get_bus_effect(
+		AudioServer.get_bus_index("PitchShift"),
+		0
+	) as AudioEffectPitchShift
+	pitch_effect.pitch_scale = log(8.0 - (number/2.0))
+	orchestra_hit_sfx.play()
+
+
+func _animate_victory(victory_chain: Array[Card]):
+	for card in victory_chain:
+		play_dj_number(card.card_number)
+		card.animate()
+		await get_timer(gap_between_movements).timeout
+
+func _activate_popups(victory):
+	$UI/Control.visible = true
+	for button in $UI/Control.find_children("*", "Button"):
+		button.disabled = false
+	if victory:
+		victory_popup.visible = true
+	else:
+		failure_popup.visible = true
+
+func perform_victory_check():
 	var victory = _check_victory()
 	if victory:
-		player_interaction_stop.emit()
-		victory_popup.visible = true
-		return true
-	else:
-		return false
+		await _animate_victory(victory)
+	_activate_popups(victory)
 
 @onready var open_door: Sprite2D = $Door/Open
 @onready var door_sfx: AudioStreamPlayer2D = $Door/AudioStreamPlayer2D
@@ -186,7 +243,7 @@ func perform_victory_check() -> bool:
 func _animate_door():
 	door_sfx.play(0.18)
 	open_door.visible = true
-	await get_tree().create_timer(0.3).timeout
+	await get_timer(0.3).timeout
 	open_door.visible = false
 
 

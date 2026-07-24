@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://4jjqa10fjvqo"]
+
+[ext_resource type="Script" uid="uid://cejjpibmxdj2r" path="res://tooltip/multi_tooltip.gd" id="1_4ty5s"]
+[ext_resource type="Theme" uid="uid://bcg08v88fsprf" path="res://ui_themes/menu_theme.tres" id="1_icic2"]
+
+[node name="MultiTooltip" type="VBoxContainer" unique_id=799860034]
+z_index = 10
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_icic2")
+theme_override_constants/separation = 5
+script = ExtResource("1_4ty5s")

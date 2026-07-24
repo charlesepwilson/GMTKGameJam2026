@@ -17,3 +17,6 @@ func suck():
 
 func do_card_effect():
 	suck()
+
+func _describe_effect() -> String:
+	return "Pulls anything in range in a straight line towards them."

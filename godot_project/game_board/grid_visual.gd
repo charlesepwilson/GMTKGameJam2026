@@ -3,8 +3,8 @@ extends Node2D
 var total_grid_x_spaces: int = 5
 var total_grid_y_spaces: int = 5
 
-var grid_total_x_size: float = 650
-var grid_total_y_size: float = 650
+var grid_total_x_size: float = 800
+var grid_total_y_size: float = 800
 var grid_line_thickness: float = 5
 
 @onready var grid_squares = $GridSquares
@@ -36,10 +36,6 @@ func get_grid_space_size() -> Vector2:
 	var grid_space_y_size = (grid_total_y_size / total_grid_y_spaces)
 	return Vector2(grid_space_x_size, grid_space_y_size)
 
-# Called when the node enters the scene tree for the first time.
-# func _ready() -> void:
-# 	construct_grid()
-
 func destroy_grid():
 	for child in grid_squares.get_children():
 		remove_child(child)
@@ -61,8 +57,3 @@ func _make_grid_space(grid_position: Vector2i):
 	grid_space.position.x = grid_position.x * spacing.x
 	grid_space.position.y = grid_position.y * spacing.y
 	grid_space.set_grid_space_scale(get_grid_space_size())
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-# func _process(delta: float) -> void:
-# 	pass

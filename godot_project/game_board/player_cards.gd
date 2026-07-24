@@ -22,7 +22,7 @@ func _ready():
 		draw_pile.append(card)
 	if randomise_deck:
 		draw_pile.shuffle()
-	draw_timer.wait_time = 0.1
+	draw_timer.wait_time = 0.1 / Settings.game_speed
 	draw_timer.timeout.connect(draw_card)
 
 func _timer_draw():
@@ -41,7 +41,7 @@ func draw_card():
 		top_card.add_to_hand()
 		hand.push_front(top_card)
 		card_drawn.emit()
-		if len(hand) >= hand_limit:
+		if (len(hand) >= hand_limit) or not draw_pile:
 			if not initial_hand_filled:
 				initial_hand_filled = true
 				initial_hand_fill.emit()

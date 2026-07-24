@@ -56,3 +56,6 @@ func save_state() -> Dictionary:
 func load_state(state_dict: Dictionary):
 	super.load_state(state_dict)
 	_visits = state_dict["_visits"]
+
+func _describe_effect() -> String:
+	return "Jumps around in an 'L' shape. Tries to visit parts of the Dance Floor they've not been to yet."

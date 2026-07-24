@@ -4,13 +4,14 @@ extends Node2D
 enum CARD_MODE {DECK, HAND, CONTROL, BOARD, DISCARD}
 
 @export var card_number: int = 1
-@onready var number_label: Label = $NumberLabel
+@export var card_name: String = "Card Name"
+@onready var number_label: Sprite2D = $Border/Number
 @export var current_grid_position: Vector2i = Vector2i.DOWN * 3 + Vector2i.RIGHT
 var game_board: GameBoard
 var player_cards: PlayerCards
 
 var max_move_speed: float = 800
-@onready var sprite: Sprite2D = $Artwork
+@onready var sprite: Sprite2D = $Border/Artwork
 
 var card_mode: CARD_MODE = CARD_MODE.DECK
 
@@ -21,17 +22,33 @@ var rng = RandomNumberGenerator.new()
 
 var hovered_grid_spaces: int = 0
 
+var number_textures: Dictionary[int, Texture] = {
+	1: preload("res://_numbers/1.png"),
+	2: preload("res://_numbers/2.png"),
+	3: preload("res://_numbers/3.png"),
+	4: preload("res://_numbers/4.png"),
+	5: preload("res://_numbers/5.png"),
+	6: preload("res://_numbers/6.png"),
+	7: preload("res://_numbers/7.png"),
+	8: preload("res://_numbers/8.png"),
+	9: preload("res://_numbers/9.png"),
+	10: preload("res://_numbers/10.png"),
+}
+
 func _ready() -> void:
 	_randomise_sfx()
-	number_label.text = str(card_number)
+	number_label.texture = number_textures[card_number]
 	game_board = find_parent("GameBoard")
 	player_cards = game_board.find_child("PlayerCards")
 	visible = false
 	clickable_area.input_event.connect(_clickable_area_input_event)
+	build_tooltips()
+	clickable_area.mouse_entered.connect(show_tooltip)
+	clickable_area.mouse_exited.connect(hide_tooltip)
 
 func _randomise_sfx():
 	sfx.pitch_scale = rng.randfn(1.0, 0.15)
-	sfx.volume_linear = rng.randfn(0.7, 0.15)
+	sfx.volume_linear = rng.randfn(0.5, 0.15)
 
 func _clickable_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if not game_board.player_can_interact:
@@ -99,7 +116,7 @@ func play_card(grid_position: Vector2i):
 			var texture_size: Vector2 = sprite.texture.get_size()
 			scale = min(grid_space_size.x, grid_space_size.y) / max(texture_size.x, texture_size.y) * Vector2.ONE
 			on_play_effect()
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.5/Settings.game_speed).timeout
 			player_cards.card_played.emit()
 		else:
 			printerr("WARNING: Attempted to play card that's not in hand ", self)
@@ -119,13 +136,15 @@ func get_target_position() -> Vector2:
 
 
 func _get_move_speed() -> float:
+	var s: float
 	match card_mode:
 		CARD_MODE.CONTROL:
-			return 10_000
+			s = 10_000
 		CARD_MODE.HAND:
-			return 5000
+			s = 5000
 		_:
-			return 800
+			s = 800
+	return s * Settings.game_speed
 
 func _process(delta: float) -> void:
 	position = position.move_toward(
@@ -169,23 +188,27 @@ enum EFFECT_TRIGGER {ON_PLAY, ON_CARD_PLAYED, ON_TURN_END, ON_MOVED}
 func _effect_should_play(_card_number: int) -> bool:
 	return card_mode == CARD_MODE.BOARD and _card_number == card_number
 
-func _animate():
+@onready var artwork = $Border/Artwork
+
+@onready var base_artwork_scale: Vector2 = artwork.scale
+
+func animate():
 	var tween = get_tree().create_tween()
-	tween.tween_property($Artwork, "scale", Vector2.ONE * 1.3, 0.3).set_trans(
+	tween.tween_property(artwork, "scale", base_artwork_scale * 1.3, 0.3 / Settings.game_speed).set_trans(
 		Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property($Artwork, "rotation", -0.5, 0.3).set_trans(
+	tween.tween_property(artwork, "rotation", -0.5, 0.3 / Settings.game_speed).set_trans(
 		Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-	tween.tween_property($Artwork, "rotation", 0.5, 0.3).set_trans(
+	tween.tween_property(artwork, "rotation", 0.5, 0.3 / Settings.game_speed).set_trans(
 		Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property($Artwork, "rotation", 0, 0.3).set_trans(
+	tween.tween_property(artwork, "rotation", 0, 0.3 / Settings.game_speed).set_trans(
 		Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property($Artwork, "scale", Vector2.ONE, 0.3).set_trans(
+	tween.tween_property(artwork, "scale", base_artwork_scale, 0.3 / Settings.game_speed).set_trans(
 		Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 func _do_card_effect(_card_number_trigger: int):
 	if _effect_should_play(_card_number_trigger):
 		_play_sfx()
-		_animate()
+		animate()
 		do_card_effect()
 
 func on_play_effect():
@@ -222,3 +245,52 @@ func load_state(state_dict: Dictionary):
 	position = state_dict["position"]
 	scale = state_dict["scale"]
 	card_mode = state_dict["card_mode"]
+
+@onready var multitooltip: MultiTooltip = $TooltipHolder/MultiTooltip
+
+func _trigger_descriptions(trigger: EFFECT_TRIGGER) -> String:
+	match trigger:
+		EFFECT_TRIGGER.ON_CARD_PLAYED: return "Activates when anyone enters the Dance Floor"
+		EFFECT_TRIGGER.ON_TURN_END: return "Activates when the DJ is clicked"
+		_: return "Activates when ..."
+
+func _describe_effect() -> String:
+	return ""
+
+var tooltip_scene: PackedScene = preload("res://tooltip/tooltip.tscn")
+
+func build_tooltips():
+	var name_label: Tooltip = tooltip_scene.instantiate()
+	name_label.tooltip_description = card_name
+	multitooltip.add_child(name_label)
+
+	var tooltip_number_label: Tooltip = tooltip_scene.instantiate()
+	tooltip_number_label.tooltip_description = "Activates at number {n} in the countdown".format({"n": card_number})
+	multitooltip.add_child(tooltip_number_label)
+
+	for trigger in effect_triggers:
+		var trigger_tooltip: Tooltip = tooltip_scene.instantiate()
+		trigger_tooltip.tooltip_icon = $Border/TriggerIcon.texture
+		trigger_tooltip.tooltip_description = _trigger_descriptions(trigger)
+		multitooltip.add_child(trigger_tooltip)
+
+	var effect_tooltip: Tooltip = tooltip_scene.instantiate()
+	effect_tooltip.tooltip_icon = $Border/EffectIcon.texture
+	effect_tooltip.tooltip_description = _describe_effect()
+	multitooltip.add_child(effect_tooltip)
+
+func show_tooltip():
+	if card_mode in [CARD_MODE.HAND, CARD_MODE.BOARD]:
+		multitooltip.show_tooltip()
+
+func hide_tooltip():
+	multitooltip.hide_tooltip()
+
+@onready var effect_icon: Sprite2D = $Border/EffectIcon
+
+func _set_icon_direction(m_dir: Vector2i):
+	match m_dir.sign():
+		Vector2i.RIGHT: effect_icon.rotation_degrees = 0
+		Vector2i.DOWN: effect_icon.rotation_degrees = 90
+		Vector2i.LEFT: effect_icon.rotation_degrees = 180
+		Vector2i.UP: effect_icon.rotation_degrees = 270

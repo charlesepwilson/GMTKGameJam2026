@@ -32,3 +32,7 @@ func spin():
 
 func do_card_effect():
 	spin()
+
+
+func _describe_effect() -> String:
+	return "Rotates everything adjacent a quarter turn clockwise"

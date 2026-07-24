@@ -16,3 +16,6 @@ func explode():
 
 func do_card_effect():
 	explode()
+
+func _describe_effect() -> String:
+	return "Pushes everything adjacent away"
