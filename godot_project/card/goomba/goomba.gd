@@ -16,3 +16,12 @@ func goomb():
 
 func do_card_effect():
 	goomb()
+
+func save_state() -> Dictionary:
+	var dict = super.save_state()
+	dict["move_vector"] = move_vector
+	return dict
+
+func load_state(state_dict: Dictionary):
+	super.load_state(state_dict)
+	move_vector = state_dict["move_vector"]

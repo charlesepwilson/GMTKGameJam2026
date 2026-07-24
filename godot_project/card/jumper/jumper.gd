@@ -46,3 +46,13 @@ func jump():
 
 func do_card_effect():
 	jump()
+
+
+func save_state() -> Dictionary:
+	var dict = super.save_state()
+	dict["_visits"] = _visits.duplicate()
+	return dict
+
+func load_state(state_dict: Dictionary):
+	super.load_state(state_dict)
+	_visits = state_dict["_visits"]
