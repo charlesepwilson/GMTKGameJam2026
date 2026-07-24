@@ -204,3 +204,21 @@ func on_turn_end_effect(_card_number_trigger: int):
 func on_moved_effect(_card_number_trigger: int):
 	if EFFECT_TRIGGER.ON_MOVED in effect_triggers:
 		_do_card_effect(_card_number_trigger)
+
+func save_state() -> Dictionary:
+	return {
+		"grid_position": current_grid_position,
+		"parent": get_parent(),
+		"visible": visible,
+		"position": position,
+		"scale": scale,
+		"card_mode": card_mode,
+	}
+
+func load_state(state_dict: Dictionary):
+	current_grid_position = state_dict["grid_position"]
+	reparent(state_dict["parent"])
+	visible = state_dict["visible"]
+	position = state_dict["position"]
+	scale = state_dict["scale"]
+	card_mode = state_dict["card_mode"]

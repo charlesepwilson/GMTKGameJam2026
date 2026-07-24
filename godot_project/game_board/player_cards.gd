@@ -15,6 +15,7 @@ signal failed_to_draw(message: String)
 
 signal card_played()
 signal card_drawn()
+signal initial_hand_fill()
 
 func _ready():
 	for card in find_children("*", "Card", false):
@@ -24,9 +25,14 @@ func _ready():
 	draw_timer.wait_time = 0.1
 	draw_timer.timeout.connect(draw_card)
 
-func draw_card():
+func _timer_draw():
 	if initial_hand_filled:
-		draw_timer.wait_time = randfn(2, 0.7)
+		draw_timer.stop()
+	else:
+		draw_card()
+
+
+func draw_card():
 	if len(hand) >= hand_limit:
 		failed_to_draw.emit("Hand is full")
 		return
@@ -36,7 +42,9 @@ func draw_card():
 		hand.push_front(top_card)
 		card_drawn.emit()
 		if len(hand) >= hand_limit:
-			initial_hand_filled = true
+			if not initial_hand_filled:
+				initial_hand_filled = true
+				initial_hand_fill.emit()
 	else:
 		failed_to_draw.emit("No cards left")
 
@@ -46,5 +54,6 @@ func get_card_physical_position(card: Card) -> Vector2:
 func play_card(card: Card):
 	if card in hand:
 		hand.erase(card)
+		draw_card()
 		return true
 	return false

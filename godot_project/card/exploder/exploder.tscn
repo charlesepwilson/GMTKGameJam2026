@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bvafqyefyi0ys" path="res://card/card.tscn" id="1_ydsiv"]
 [ext_resource type="Script" uid="uid://sr1dvcip1khh" path="res://card/exploder/exploder.gd" id="2_11q21"]
+[ext_resource type="Texture2D" uid="uid://0q3b1m4rqsgu" path="res://card/Push.png" id="3_fb2e3"]
 [ext_resource type="Texture2D" uid="uid://gt8tp81bajhp" path="res://card/Formal_Ghost.png" id="3_oyfqv"]
 [ext_resource type="AudioStream" uid="uid://1w8bs1aglngt" path="res://audio/636726__ulrich_wehner__horror-stinger-5_harbingers-of-doom.wav" id="4_3ekdj"]
 
@@ -11,8 +12,16 @@ explode_strength = 1
 card_number = 5
 effect_triggers = Array[int]([1])
 
-[node name="Artwork" parent="." index="1" unique_id=1143494246]
+[node name="EffectIcon" parent="." index="1" unique_id=2012726704]
+position = Vector2(57, -58)
+rotation = -0.8089742
+scale = Vector2(1.481399, 1.481399)
+texture = ExtResource("3_fb2e3")
+
+[node name="Artwork" parent="." index="2" unique_id=1143494246]
+position = Vector2(-4, 10)
+scale = Vector2(0.71999943, 0.71999943)
 texture = ExtResource("3_oyfqv")
 
-[node name="AudioStreamPlayer2D" parent="." index="4" unique_id=126853625]
+[node name="AudioStreamPlayer2D" parent="." index="5" unique_id=126853625]
 stream = ExtResource("4_3ekdj")

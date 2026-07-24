@@ -2,9 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://bvafqyefyi0ys" path="res://card/card.tscn" id="1_52ib6"]
 [ext_resource type="Script" uid="uid://qk8oorf7nemu" path="res://card/jumper/jumper.gd" id="2_3eikw"]
+[ext_resource type="Texture2D" uid="uid://c4r3pxnhh1f4s" path="res://card/Horse.png" id="3_lyyan"]
 
 [node name="Jumper" unique_id=1733592583 instance=ExtResource("1_52ib6")]
 script = ExtResource("2_3eikw")
 jump_options = Array[Vector2i]([Vector2i(1, -2), Vector2i(2, -1), Vector2i(2, 1), Vector2i(1, 2), Vector2i(-1, 2), Vector2i(-2, 1), Vector2i(-2, -1), Vector2i(-1, -2)])
 card_number = 6
 sfx_start = 0.85
+
+[node name="EffectIcon" parent="." index="1" unique_id=2012726704]
+position = Vector2(59.000004, -54)
+texture = ExtResource("3_lyyan")

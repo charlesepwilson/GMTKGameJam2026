@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d2qd0eq0kwg1b" path="res://card/Card_Front.png" id="2_346uv"]
 [ext_resource type="Texture2D" uid="uid://dcxjlrrc0gcgy" path="res://card/Formal_Werewolf.png" id="2_ply2h"]
 [ext_resource type="FontFile" uid="uid://cogjgiysvpaha" path="res://fonts/AstoriaMedium.ttf" id="3_fdnr0"]
+[ext_resource type="Texture2D" uid="uid://bbxn13pgwkxpg" path="res://card/Move.png" id="3_i6okx"]
 [ext_resource type="AudioStream" uid="uid://brnxuwofgppke" path="res://audio/241258__deleted_user_4389770__wolf-whistle.wav" id="4_fdnr0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
@@ -18,6 +19,11 @@ script = ExtResource("1_fjcud")
 
 [node name="Border" type="Sprite2D" parent="." unique_id=476875609]
 texture = ExtResource("2_346uv")
+
+[node name="EffectIcon" type="Sprite2D" parent="." unique_id=2012726704]
+position = Vector2(57, -61)
+scale = Vector2(1.6800008, 1.6800008)
+texture = ExtResource("3_i6okx")
 
 [node name="Artwork" type="Sprite2D" parent="." unique_id=1143494246]
 texture = ExtResource("2_ply2h")

@@ -28,6 +28,7 @@ func _on_player_interaction_stop():
 		button.disabled = true
 
 func _on_player_interaction_start():
+	save_game_state()
 	var victory: bool = perform_victory_check()
 	if not victory:
 		player_can_interact = true
@@ -77,6 +78,8 @@ func _ready() -> void:
 	grid_visual.construct_grid()
 	player_cards.card_played.connect(_global_on_card_play)
 	player_cards.card_drawn.connect(_animate_door)
+	player_cards.initial_hand_fill.connect(func(): player_interaction_start.emit())
+	# player_cards.card_drawn.connect(save_game_state)
 
 	for card in player_cards.get_children():
 		if card is Card:
@@ -87,6 +90,8 @@ func _ready() -> void:
 					grid_square.mouse_released.connect(card.grid_space_input_event)
 					grid_square.area2d.mouse_entered.connect(card.grid_space_mouse_entered)
 					grid_square.area2d.mouse_exited.connect(card.grid_space_mouse_exit)
+	# save_game_state()
+	player_interaction_stop.emit()
 
 
 func get_physical_position(grid_position: Vector2i) -> Vector2:
@@ -183,3 +188,29 @@ func _animate_door():
 	open_door.visible = true
 	await get_tree().create_timer(0.3).timeout
 	open_door.visible = false
+
+
+var _game_state_history: Array[GameState] = []
+
+func save_game_state():
+	var state = GameState.save(self)
+	if _game_state_history:
+		var previous_state = _game_state_history[-1]
+		if previous_state.equals(state):
+			return
+	_game_state_history.append(state)
+
+func restore_game_state(state: GameState):
+	state.load(self)
+
+func undo():
+	if not _game_state_history:
+		return
+	var current_state: GameState = GameState.save(self)
+	var history_length: int = len(_game_state_history)
+	for i in history_length:
+		var last_state: GameState = _game_state_history.pop_back()
+		if not last_state.equals(current_state):
+			restore_game_state(last_state)
+			save_game_state()
+			return
