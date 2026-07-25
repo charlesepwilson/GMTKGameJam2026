@@ -26,13 +26,11 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=65063977]
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
-text = "Welcome to Count Conga's Disco!
+text = "Your job is to direct each guest to their starting position on the Dance Floor
 
-Your job is to direct each guest to their starting position on the Dance Floor
-There's a strict social etiquette at Vampire dances though:
-Everyone can only move when their number is called!
+There's a strict social etiquette at Vampire dances though: everyone can only move when their number is called!
 
-When you're ready, click the DJ to start the dancing.
+Place each dancer on the dance floor, then when you're ready click the DJ to start the dancing.
 
 Your goal is to make sure there's a connected line of descending numbered dancers at the end."
 horizontal_alignment = 1
