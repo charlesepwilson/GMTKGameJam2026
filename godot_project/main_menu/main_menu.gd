@@ -2,7 +2,6 @@ extends Control
 
 @onready var settings_page = $SettingsPage
 
-
 func _on_start_button_pressed():
 	get_tree().change_scene_to_file("res://level_select/level_select.tscn")
 

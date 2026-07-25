@@ -118,6 +118,7 @@ texture = ExtResource("4_5p067")
 stream = ExtResource("5_ht67x")
 volume_db = 2.0
 bus = &"Distort"
+playback_type = 1
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="DJDeck" unique_id=1179237612]
 occluder = SubResource("OccluderPolygon2D_57qmd")
@@ -126,6 +127,7 @@ occluder = SubResource("OccluderPolygon2D_57qmd")
 stream = ExtResource("6_td7mx")
 volume_db = -10.0
 bus = &"PitchShift"
+playback_type = 1
 
 [node name="MoveButton" type="Button" parent="." unique_id=1109891816]
 offset_left = 1864.0
@@ -359,6 +361,7 @@ script = ExtResource("18_o6dup")
 stream = ExtResource("19_ix640")
 volume_db = -16.0
 bus = &"SpeedUpPitch"
+playback_type = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI" unique_id=243899643]
 offset_left = 101.0

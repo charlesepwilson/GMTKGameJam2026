@@ -3,7 +3,6 @@ extends Node2D
 
 var player_can_interact: bool = true
 var gap_between_movements: float = 1.0
-@export var level_number: int = 0
 
 @onready var victory_popup: VictoryPopup = %VictoryPopup
 @onready var failure_popup: VictoryPopup = %FailurePopup
@@ -90,9 +89,7 @@ func end_turn():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	victory_popup.level_number = level_number
-	failure_popup.level_number = level_number
-	$UI/LevelNumber.text = "Level " + str(level_number)
+	$UI/LevelNumber.text = "Level " + str(Settings.current_level_number)
 	player_interaction_start.connect(_on_player_interaction_start)
 	player_interaction_stop.connect(_on_player_interaction_stop)
 

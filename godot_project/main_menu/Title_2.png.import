@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0b6yg4h5iq5m"
-path="res://.godot/imported/starry-night-sky-wallpaper-1.jpg-5190032e8a233cc2db556e02f2d41b74.ctex"
+uid="uid://4rc5p08vtnjx"
+path="res://.godot/imported/Title_2.png-4f93a4a272b94bab031c1c8d30fd0644.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main_menu/starry-night-sky-wallpaper-1.jpg"
-dest_files=["res://.godot/imported/starry-night-sky-wallpaper-1.jpg-5190032e8a233cc2db556e02f2d41b74.ctex"]
+source_file="res://main_menu/Title_2.png"
+dest_files=["res://.godot/imported/Title_2.png-4f93a4a272b94bab031c1c8d30fd0644.ctex"]
 
 [params]
 
