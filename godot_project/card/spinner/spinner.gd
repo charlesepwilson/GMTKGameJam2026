@@ -36,3 +36,38 @@ func do_card_effect():
 
 func _describe_effect() -> String:
 	return "Rotates everything adjacent a quarter turn clockwise"
+
+
+@onready var vfx: Sprite2D = $VFX
+var vfx_tween: Tween
+
+func _animate_vfx():
+	vfx.scale = 0.7 * Vector2.ONE
+	vfx.modulate = Color.TRANSPARENT
+	vfx.rotation_degrees = 0
+	vfx.show()
+	if vfx_tween:
+		vfx_tween.kill()
+	vfx_tween = get_tree().create_tween()
+	vfx_tween.tween_property(
+		vfx, "modulate", Color.WHITE, 0.1  / Settings.game_speed
+	)
+	var spin_time: float = 0.8
+	vfx_tween.tween_property(
+		vfx,"scale", 1.5 * Vector2.ONE, spin_time / Settings.game_speed
+	).set_ease(Tween.EASE_IN_OUT)
+	vfx_tween.parallel().tween_property(
+		vfx, "rotation_degrees", 90, spin_time / Settings.game_speed
+	).set_ease(Tween.EASE_IN)
+
+	vfx_tween.tween_property(
+		vfx, "scale", 0.7 * Vector2.ONE, spin_time / Settings.game_speed
+	).set_ease(Tween.EASE_IN_OUT)
+	vfx_tween.parallel().tween_property(
+		vfx, "rotation_degrees", 180, spin_time / Settings.game_speed
+	).set_ease(Tween.EASE_OUT)
+
+	vfx_tween.tween_property(
+		vfx, "modulate", Color.TRANSPARENT, 0.3  / Settings.game_speed
+	)
+	vfx_tween.tween_callback(vfx.hide)

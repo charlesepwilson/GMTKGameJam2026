@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cvb81m1dvhj73" path="res://card/Twisted_Ghost.png" id="3_5p6o3"]
 [ext_resource type="Texture2D" uid="uid://d30gn6cieycg8" path="res://card/Spin.png" id="3_6rb8o"]
 [ext_resource type="AudioStream" uid="uid://1w8bs1aglngt" path="res://audio/636726__ulrich_wehner__horror-stinger-5_harbingers-of-doom.wav" id="4_6rb8o"]
+[ext_resource type="Texture2D" uid="uid://d0xq6g4871alv" path="res://card/Spin_02.png" id="6_n2wkt"]
 
 [node name="Spinner" unique_id=1733592583 instance=ExtResource("1_8g4s4")]
 script = ExtResource("2_5p6o3")
@@ -23,3 +24,7 @@ texture = ExtResource("3_5p6o3")
 
 [node name="AudioStreamPlayer2D" parent="." index="2" unique_id=126853625]
 stream = ExtResource("4_6rb8o")
+
+[node name="VFX" type="Sprite2D" parent="." index="4" unique_id=1125181631]
+visible = false
+texture = ExtResource("6_n2wkt")

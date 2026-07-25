@@ -233,12 +233,16 @@ func animate():
 	tween.tween_property(artwork, "scale", base_artwork_scale, 0.3 / Settings.game_speed).set_trans(
 		Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
+func _animate_vfx():
+	pass
+
 func _do_card_effect(_card_number_trigger: int):
 	if effect_suppressed:
 		return
 	if _effect_should_play(_card_number_trigger):
 		_play_sfx()
 		animate()
+		_animate_vfx()
 		do_card_effect()
 
 func on_play_effect():
