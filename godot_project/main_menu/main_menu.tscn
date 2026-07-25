@@ -2,9 +2,17 @@
 
 [ext_resource type="Theme" uid="uid://bcg08v88fsprf" path="res://ui_themes/menu_theme.tres" id="1_7lpgg"]
 [ext_resource type="Script" uid="uid://ci4m71r03jpam" path="res://main_menu/main_menu.gd" id="1_bqyte"]
-[ext_resource type="Texture2D" uid="uid://cps41brh0lu05" path="res://main_menu/Title.png" id="3_3f7m4"]
+[ext_resource type="Texture2D" uid="uid://3fd0vvjbje5m" path="res://main_menu/Title_4.png" id="3_6tl50"]
+[ext_resource type="Texture2D" uid="uid://c17avhk85nism" path="res://main_menu/Title_5.png" id="4_t6bnd"]
 [ext_resource type="PackedScene" uid="uid://cks8af20ujok7" path="res://settings/settings_page.tscn" id="5_cjnax"]
 [ext_resource type="Theme" uid="uid://dsb8c8f6k62cq" path="res://title_theme.tres" id="5_hb8ih"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ewaa5"]
+frames = 2
+frame_0/texture = ExtResource("3_6tl50")
+frame_0/duration = 0.4
+frame_1/texture = ExtResource("4_t6bnd")
+frame_1/duration = 0.4
 
 [node name="MainMenu" type="Control" unique_id=1569080553]
 layout_mode = 3
@@ -23,8 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_3f7m4")
-stretch_mode = 5
+texture = SubResource("AnimatedTexture_ewaa5")
 
 [node name="MenuContainer" type="MarginContainer" parent="." unique_id=2120853395]
 layout_mode = 1

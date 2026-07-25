@@ -1,26 +1,22 @@
 extends Control
 
 @onready var button_box: GridContainer = %ButtonBox
-@export var total_levels: int = 12
 
-func _make_button(button_text: String, scene: String, _parent = button_box):
+func _make_level_button(level_number: int):
 	var button = Button.new()
-	button.text = button_text
-	_parent.add_child(button)
+	button.text = "Level " + str(level_number)
+	button_box.add_child(button)
 	button.pressed.connect(
-		func(): get_tree().change_scene_to_file(scene)
+		func(): Settings.load_level(level_number)
 	)
 
 func _ready():
-	for i in range(1, total_levels + 1):
-		_make_button(
-			"Level " + str(i),
-			"res://levels/Level{scene}.tscn".format(
-				{"scene": str(i)}
-			)
-		)
-	_make_button(
-		"Go Back",
-		"res://main_menu/main_menu.tscn",
-		$MenuContainer/VBoxContainer,
+	for i in len(Settings.levels):
+		_make_level_button(i + 1)
+
+	var button = Button.new()
+	button.text = "Go Back"
+	$MenuContainer/VBoxContainer.add_child(button)
+	button.pressed.connect(
+		func(): get_tree().change_scene_to_file("res://main_menu/main_menu.tscn")
 	)
