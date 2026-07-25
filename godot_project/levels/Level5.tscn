@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://83cspui41d8b"]
+
+[ext_resource type="PackedScene" uid="uid://bbp243w8h3qxt" path="res://game_board/game_board.tscn" id="1_t5yy7"]
+[ext_resource type="PackedScene" uid="uid://f0pkuexkm1cj" path="res://card/chucker/chucker.tscn" id="3_n3rnk"]
+[ext_resource type="PackedScene" uid="uid://q8nalskll5gi" path="res://card/spinner/spinner.tscn" id="4_ouh6h"]
+[ext_resource type="PackedScene" uid="uid://cu4fwstq5yv0w" path="res://card/sucker/sucker.tscn" id="5_6x4p6"]
+[ext_resource type="PackedScene" uid="uid://bfi0yq0hhslqt" path="res://card/exploder/exploder.tscn" id="5_c0r8l"]
+[ext_resource type="PackedScene" uid="uid://rnknawrnvutu" path="res://card/slider/slider.tscn" id="6_n3rnk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dkril"]
+font_size = 60
+
+[node name="GameBoard" unique_id=469077912 instance=ExtResource("1_t5yy7")]
+level_number = 5
+
+[node name="GridVisual" parent="." index="4" unique_id=1154572937]
+position = Vector2(556, 146)
+
+[node name="PlayerCards" parent="." index="5" unique_id=592926577]
+position = Vector2(259, 265)
+
+[node name="Chucker" parent="PlayerCards" index="1" unique_id=695809789 instance=ExtResource("3_n3rnk")]
+move_vector = Vector2i(-1, 0)
+
+[node name="Spinner" parent="PlayerCards" index="2" unique_id=1579454329 instance=ExtResource("4_ouh6h")]
+card_number = 2
+effect_triggers = Array[int]([2])
+
+[node name="Sucker" parent="PlayerCards" index="3" unique_id=1733592583 instance=ExtResource("5_6x4p6")]
+card_number = 1
+effect_triggers = Array[int]([2])
+
+[node name="Exploder" parent="PlayerCards" index="4" unique_id=1458688528 instance=ExtResource("5_c0r8l")]
+
+[node name="Slider" parent="PlayerCards" index="5" unique_id=106139125 instance=ExtResource("6_n3rnk")]
+move_vector = Vector2i(0, 1)
+card_number = 4
+effect_triggers = Array[int]([1])
+
+[node name="Label" parent="UI/HBoxContainer" parent_id_path=PackedInt32Array(243899643) index="1" unique_id=1609054292]
+label_settings = SubResource("LabelSettings_dkril")

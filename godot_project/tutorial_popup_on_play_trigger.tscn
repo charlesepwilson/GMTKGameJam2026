@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://uixidamtauow"]
+
+[ext_resource type="PackedScene" uid="uid://b85gdlck0tisj" path="res://game_board/tutorial_popup.tscn" id="1_xgcnu"]
+
+[node name="TutorialPopup" unique_id=606867016 instance=ExtResource("1_xgcnu")]
+
+[node name="Label" parent="MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(210664389) index="0" unique_id=65063977]
+text = "Some dancers move whenever someone is added to the dance floor instead of when the DJ is clicked"

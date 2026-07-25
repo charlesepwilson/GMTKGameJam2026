@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cuwabxjqg68rp"]
+
+[ext_resource type="Theme" uid="uid://bcg08v88fsprf" path="res://ui_themes/menu_theme.tres" id="1_lhl1n"]
+[ext_resource type="Script" uid="uid://cfgrjlb0tawpt" path="res://level_select/level_select.gd" id="2_mtmfa"]
+[ext_resource type="Texture2D" uid="uid://bnxgixkndqmlw" path="res://card/Background.png" id="3_kp0lh"]
+[ext_resource type="Theme" uid="uid://dsb8c8f6k62cq" path="res://title_theme.tres" id="5_mqeaa"]
+
+[node name="LevelSelect" type="Control" unique_id=1569080553]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_lhl1n")
+script = ExtResource("2_mtmfa")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1962574804]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_kp0lh")
+stretch_mode = 5
+
+[node name="MenuContainer" type="MarginContainer" parent="." unique_id=2120853395]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer" unique_id=1424495741]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/VBoxContainer" unique_id=1689806054]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MenuContainer/VBoxContainer/VBoxContainer" unique_id=1722981569]
+layout_mode = 2
+theme = ExtResource("5_mqeaa")
+text = "Level Select"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonBox" type="GridContainer" parent="MenuContainer/VBoxContainer" unique_id=490166425]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 38
+columns = 3

@@ -1,13 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkdw11d4rpi23"]
+[gd_scene format=3 uid="uid://dkdw11d4rpi23"]
 
 [ext_resource type="Theme" uid="uid://bcg08v88fsprf" path="res://ui_themes/menu_theme.tres" id="1_7lpgg"]
-[ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_bqyte"]
+[ext_resource type="Script" uid="uid://ci4m71r03jpam" path="res://main_menu/main_menu.gd" id="1_bqyte"]
 [ext_resource type="Texture2D" uid="uid://d0b6yg4h5iq5m" path="res://main_menu/starry-night-sky-wallpaper-1.jpg" id="3_tse5c"]
-[ext_resource type="AudioStream" uid="uid://dc1nsn17hv55s" path="res://main_menu/46-ri9 (Night).mp3" id="4_sm32f"]
 [ext_resource type="PackedScene" uid="uid://cks8af20ujok7" path="res://settings/settings_page.tscn" id="5_cjnax"]
 [ext_resource type="Theme" uid="uid://dsb8c8f6k62cq" path="res://title_theme.tres" id="5_hb8ih"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=1569080553]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +16,7 @@ grow_vertical = 2
 theme = ExtResource("1_7lpgg")
 script = ExtResource("1_bqyte")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=1962574804]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,12 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_tse5c")
 
-[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_sm32f")
-autoplay = true
-bus = &"Music"
-
-[node name="MenuContainer" type="MarginContainer" parent="."]
+[node name="MenuContainer" type="MarginContainer" parent="." unique_id=2120853395]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,41 +37,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer" unique_id=1424495741]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/VBoxContainer" unique_id=1689806054]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="MenuContainer/VBoxContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="MenuContainer/VBoxContainer/VBoxContainer" unique_id=1722981569]
 layout_mode = 2
 theme = ExtResource("5_hb8ih")
-text = "Game Name Here"
+text = "Get Down with the Count"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuContainer/VBoxContainer" unique_id=703970640]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/VBoxContainer/HBoxContainer" unique_id=2131661661]
 layout_mode = 2
 
-[node name="StartButton" type="Button" parent="MenuContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="MenuContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1825748366]
 layout_mode = 2
 text = "Start"
 
-[node name="SettingsButton" type="Button" parent="MenuContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="MenuContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=324214482]
 layout_mode = 2
 text = "Settings"
 
-[node name="Exit" type="Button" parent="MenuContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="MenuContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=326257001]
 layout_mode = 2
 text = "Exit"
 
-[node name="SettingsPage" parent="." instance=ExtResource("5_cjnax")]
+[node name="SettingsPage" parent="." unique_id=912184418 instance=ExtResource("5_cjnax")]
 visible = false
 layout_mode = 1
 

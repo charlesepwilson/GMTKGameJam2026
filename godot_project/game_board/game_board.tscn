@@ -1,0 +1,351 @@
+[gd_scene format=3 uid="uid://bbp243w8h3qxt"]
+
+[ext_resource type="Script" uid="uid://e5xtcj151x6a" path="res://game_board/game_board.gd" id="1_qlpbi"]
+[ext_resource type="Script" uid="uid://b2d2ofq0dtu0n" path="res://game_board/grid_visual.gd" id="2_rkty7"]
+[ext_resource type="Texture2D" uid="uid://dp2r72bcmx8ir" path="res://card/Background(1).png" id="3_ht67x"]
+[ext_resource type="Texture2D" uid="uid://c37jomot53s3f" path="res://card/Speaker.png" id="4_5p067"]
+[ext_resource type="Texture2D" uid="uid://cicx7bpqf84ep" path="res://card/Door_Closed.png" id="4_38jxm"]
+[ext_resource type="Script" uid="uid://cgx7qf1xmwvtu" path="res://game_board/player_cards.gd" id="4_c8wg2"]
+[ext_resource type="Texture2D" uid="uid://c1a33jltu45o0" path="res://card/DJ_01.png" id="5_cme4s"]
+[ext_resource type="Texture2D" uid="uid://c4tht8hnca15f" path="res://card/Door_Open.png" id="5_dilif"]
+[ext_resource type="AudioStream" uid="uid://ba4paeqef5o8k" path="res://audio/1.mp3" id="5_ht67x"]
+[ext_resource type="AudioStream" uid="uid://c3vvul5i1dqj1" path="res://audio/638391__ulrich_wehner__horror-stinger-12_vampire-nest.wav" id="6_dilif"]
+[ext_resource type="Texture2D" uid="uid://dsu8hamv5dsx0" path="res://card/DJ_02.png" id="6_ht67x"]
+[ext_resource type="AudioStream" uid="uid://cw87xqbkog7ve" path="res://audio/720273__1love__80s-synth-hit-01-1lovewav.wav" id="6_td7mx"]
+[ext_resource type="PackedScene" uid="uid://cekths2ejptic" path="res://victory_popup/victory_popup.tscn" id="6_wpyk7"]
+[ext_resource type="Texture2D" uid="uid://mt8er1e8cq55" path="res://card/Jump.png" id="11_nr2s7"]
+[ext_resource type="Script" uid="uid://bsw004ianpbs0" path="res://game_board/ceiling_lamp.gd" id="13_2ii8d"]
+[ext_resource type="Theme" uid="uid://bcg08v88fsprf" path="res://ui_themes/menu_theme.tres" id="14_jpgb4"]
+[ext_resource type="PackedScene" uid="uid://b5jte4tswygit" path="res://victory_popup/failure_popup.tscn" id="15_jpgb4"]
+[ext_resource type="Texture2D" uid="uid://qvxju0r63bn" path="res://card/Slowdown.png" id="17_td7mx"]
+[ext_resource type="Script" uid="uid://djyg5dfvfxck3" path="res://game_board/speed_down.gd" id="18_5iwnp"]
+[ext_resource type="Script" uid="uid://deie1cnx4gqbu" path="res://game_board/speed_label.gd" id="19_td7mx"]
+[ext_resource type="Texture2D" uid="uid://c43lih4akkxr2" path="res://card/Speed up.png" id="20_cw6cq"]
+[ext_resource type="Script" uid="uid://dnme0hl587rro" path="res://game_board/speed_up.gd" id="20_jpgb4"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_57qmd"]
+polygon = PackedVector2Array(81, 169, 94, 249, 73, 240, 61, 183, 6, 167, -14, 149, 48, 121, 43, -111, -4, -157, 73, -180, 91, -229, 52, -246, 3, -281, 110, -242, 97, -166, 20, -150, 62, -126, 63, 132, 2, 152)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cme4s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ht67x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ii8d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r0m34"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oagrr"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_gqfrg"]
+frames = 2
+frame_0/texture = ExtResource("5_cme4s")
+frame_1/texture = ExtResource("6_ht67x")
+frame_1/duration = 1.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jpgb4"]
+
+[sub_resource type="Gradient" id="Gradient_ht67x"]
+offsets = PackedFloat32Array(0, 0.4159292, 0.58849555, 1)
+colors = PackedColorArray(1, 0.42000002, 0.42000002, 1, 0.59, 0.3304, 0.3304, 1, 0.37, 0.2257, 0.2257, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dkril"]
+gradient = SubResource("Gradient_ht67x")
+width = 1000
+height = 1000
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.76495725, 0.2735043)
+
+[sub_resource type="Gradient" id="Gradient_2ii8d"]
+offsets = PackedFloat32Array(0, 0.27654868, 0.7699115, 1)
+colors = PackedColorArray(1, 0.42000002, 0.42000002, 1, 0.59, 0.3304, 0.3304, 1, 0.37, 0.2257, 0.2257, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r0m34"]
+gradient = SubResource("Gradient_2ii8d")
+width = 150
+height = 150
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.76495725, 0.2735043)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_g4v7s"]
+polygon = PackedVector2Array(5, -27, -4, -5, 86, -16, 83, -36)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2ii8d"]
+polygon = PackedVector2Array(-5, 110, 10, 128, 68, 133, 70, 113)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_r0m34"]
+polygon = PackedVector2Array(32, 106, 50, 117, 109, 95, 110, 74)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_oagrr"]
+polygon = PackedVector2Array(37, -55, 25, -44, 100, -8, 103, -28)
+
+[sub_resource type="Gradient" id="Gradient_oagrr"]
+offsets = PackedFloat32Array(0, 0.45132744, 0.6924779)
+colors = PackedColorArray(1, 1, 1, 1, 0.19911504, 0.19911504, 0.19911504, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
+gradient = SubResource("Gradient_oagrr")
+width = 2000
+height = 170
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o6dup"]
+font_size = 60
+
+[node name="GameBoard" type="Node2D" unique_id=469077912]
+script = ExtResource("1_qlpbi")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=235818796]
+position = Vector2(960, 540)
+texture = ExtResource("3_ht67x")
+
+[node name="DJDeck" type="Sprite2D" parent="." unique_id=2000376572]
+position = Vector2(1593, 539)
+texture = ExtResource("4_5p067")
+
+[node name="DJCountDownSFX" type="AudioStreamPlayer" parent="DJDeck" unique_id=2000752674]
+stream = ExtResource("5_ht67x")
+volume_db = 2.0
+bus = &"Distort"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="DJDeck" unique_id=1179237612]
+occluder = SubResource("OccluderPolygon2D_57qmd")
+
+[node name="OrchestraHitSFX" type="AudioStreamPlayer" parent="DJDeck" unique_id=933399050]
+stream = ExtResource("6_td7mx")
+volume_db = -10.0
+bus = &"PitchShift"
+
+[node name="MoveButton" type="Button" parent="." unique_id=1109891816]
+offset_left = 1864.0
+offset_top = 391.0
+offset_right = 2164.0
+offset_bottom = 691.0
+rotation = 1.5707964
+theme_override_colors/icon_normal_color = Color(0.82, 0.82, 0.82, 1)
+theme_override_colors/icon_pressed_color = Color(1, 0.40784314, 0.40392157, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cme4s")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ht67x")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2ii8d")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_r0m34")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oagrr")
+icon = SubResource("AnimatedTexture_gqfrg")
+icon_alignment = 1
+
+[node name="Door" type="Node2D" parent="." unique_id=820867552]
+position = Vector2(62, 213)
+
+[node name="Closed" type="Sprite2D" parent="Door" unique_id=1950921698]
+texture = ExtResource("4_38jxm")
+
+[node name="Open" type="Sprite2D" parent="Door" unique_id=2112387181]
+visible = false
+position = Vector2(67, 1)
+texture = ExtResource("5_dilif")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Door" unique_id=1245343759]
+stream = ExtResource("6_dilif")
+
+[node name="GridVisual" type="Node2D" parent="." unique_id=1154572937]
+position = Vector2(556, 142)
+script = ExtResource("2_rkty7")
+
+[node name="GridPlaceholder" type="Sprite2D" parent="GridVisual" unique_id=820312581]
+visible = false
+scale = Vector2(800, 800)
+texture = SubResource("PlaceholderTexture2D_jpgb4")
+centered = false
+
+[node name="GridSquares" type="Node2D" parent="GridVisual" unique_id=198607214]
+
+[node name="FieldEffects" type="Node2D" parent="GridVisual" unique_id=52155281]
+
+[node name="GridOccupiers" type="Node2D" parent="GridVisual" unique_id=1695326612]
+
+[node name="PlayerCards" type="Node2D" parent="." unique_id=592926577]
+position = Vector2(98, 518)
+script = ExtResource("4_c8wg2")
+
+[node name="Timer" type="Timer" parent="PlayerCards" unique_id=1707955779]
+autostart = true
+
+[node name="Lights" type="Node2D" parent="." unique_id=1840181145]
+
+[node name="Darkness" type="CanvasModulate" parent="Lights" unique_id=985478149]
+color = Color(0.5, 0.43, 0.43, 1)
+
+[node name="CelingLamp" type="PointLight2D" parent="Lights" unique_id=1598098664]
+position = Vector2(329, 531)
+energy = 1.3
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.45882353)
+shadow_filter = 1
+shadow_filter_smooth = 19.9
+texture = SubResource("GradientTexture2D_dkril")
+height = 197.0
+script = ExtResource("13_2ii8d")
+
+[node name="CelingLamp2" type="PointLight2D" parent="Lights" unique_id=984135777]
+position = Vector2(896, 546)
+energy = 1.3
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.47843137)
+shadow_filter = 1
+shadow_filter_smooth = 23.0
+texture = SubResource("GradientTexture2D_dkril")
+height = 197.0
+script = ExtResource("13_2ii8d")
+
+[node name="CelingLamp3" type="PointLight2D" parent="Lights" unique_id=1089810026]
+position = Vector2(1547, 545)
+energy = 1.3
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_filter = 1
+shadow_filter_smooth = 41.8
+texture = SubResource("GradientTexture2D_dkril")
+height = 197.0
+script = ExtResource("13_2ii8d")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lights" unique_id=47760169]
+position = Vector2(1568, 69)
+energy = 1.3
+texture = SubResource("GradientTexture2D_r0m34")
+
+[node name="WindowFrame1" type="LightOccluder2D" parent="Lights" unique_id=719001767]
+position = Vector2(1851, 350)
+occluder = SubResource("OccluderPolygon2D_g4v7s")
+
+[node name="WindowFrame2" type="LightOccluder2D" parent="Lights" unique_id=77110567]
+position = Vector2(1840, 486)
+occluder = SubResource("OccluderPolygon2D_g4v7s")
+
+[node name="WindowFrame3" type="LightOccluder2D" parent="Lights" unique_id=1213629919]
+position = Vector2(1845, 635)
+occluder = SubResource("OccluderPolygon2D_g4v7s")
+
+[node name="WindowFrame4" type="LightOccluder2D" parent="Lights" unique_id=1989315039]
+position = Vector2(1853, 637)
+occluder = SubResource("OccluderPolygon2D_2ii8d")
+
+[node name="WindowFrame5" type="LightOccluder2D" parent="Lights" unique_id=1487469497]
+position = Vector2(1811, 58)
+occluder = SubResource("OccluderPolygon2D_r0m34")
+
+[node name="WindowFrame6" type="LightOccluder2D" parent="Lights" unique_id=267110294]
+position = Vector2(1823, 963)
+occluder = SubResource("OccluderPolygon2D_oagrr")
+
+[node name="Moonlight" type="PointLight2D" parent="Lights" unique_id=80204073]
+position = Vector2(1953, 234)
+color = Color(0.84000003, 0.88266665, 1, 1)
+energy = 1.96
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="Moonlight2" type="PointLight2D" parent="Lights" unique_id=1515090512]
+position = Vector2(1944, 541)
+color = Color(0.84000003, 0.88266665, 1, 1)
+energy = 1.96
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="Moonlight3" type="PointLight2D" parent="Lights" unique_id=452550440]
+position = Vector2(1945, 843)
+color = Color(0.84000003, 0.88266665, 1, 1)
+energy = 1.96
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=875924731]
+
+[node name="Control" type="Control" parent="UI" unique_id=1079595306]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = ExtResource("14_jpgb4")
+
+[node name="FailurePopup" parent="UI/Control" unique_id=842108949 instance=ExtResource("15_jpgb4")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.5
+offset_top = -121.0
+offset_right = 83.5
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VictoryPopup" parent="UI/Control" unique_id=124024417 instance=ExtResource("6_wpyk7")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -203.5
+offset_top = -161.0
+offset_right = 203.5
+offset_bottom = 161.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UndoButton" type="Button" parent="UI" unique_id=282272217]
+light_mask = 0
+z_index = 10
+offset_left = 1641.0
+offset_top = 3.0
+offset_right = 1784.6
+offset_bottom = 111.02
+scale = Vector2(-1, 1)
+icon = ExtResource("11_nr2s7")
+icon_alignment = 1
+expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI" unique_id=243899643]
+offset_left = 101.0
+offset_top = 972.0
+offset_right = 403.0
+offset_bottom = 1075.0
+
+[node name="SpeedDown" type="Button" parent="UI/HBoxContainer" unique_id=1840799784]
+layout_mode = 2
+icon = ExtResource("17_td7mx")
+icon_alignment = 1
+script = ExtResource("18_5iwnp")
+
+[node name="Label" type="Label" parent="UI/HBoxContainer" unique_id=1609054292]
+layout_mode = 2
+text = "1.0x"
+label_settings = SubResource("LabelSettings_o6dup")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("19_td7mx")
+
+[node name="SpeedUp" type="Button" parent="UI/HBoxContainer" unique_id=850384512]
+layout_mode = 2
+icon = ExtResource("20_cw6cq")
+script = ExtResource("20_jpgb4")
+
+[connection signal="pressed" from="MoveButton" to="." method="_on_move_button_pressed"]
+[connection signal="pressed" from="UI/UndoButton" to="." method="undo"]
+[connection signal="speed_changed" from="UI/HBoxContainer/SpeedDown" to="UI/HBoxContainer/Label" method="update_text"]
+[connection signal="speed_changed" from="UI/HBoxContainer/SpeedUp" to="UI/HBoxContainer/Label" method="update_text"]

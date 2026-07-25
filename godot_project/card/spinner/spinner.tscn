@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://q8nalskll5gi"]
+
+[ext_resource type="PackedScene" uid="uid://bvafqyefyi0ys" path="res://card/card.tscn" id="1_8g4s4"]
+[ext_resource type="Script" uid="uid://d3j1u0jf26wvi" path="res://card/spinner/spinner.gd" id="2_5p6o3"]
+[ext_resource type="Texture2D" uid="uid://cvb81m1dvhj73" path="res://card/Twisted_Ghost.png" id="3_5p6o3"]
+[ext_resource type="Texture2D" uid="uid://d30gn6cieycg8" path="res://card/Spin.png" id="3_6rb8o"]
+[ext_resource type="AudioStream" uid="uid://1w8bs1aglngt" path="res://audio/636726__ulrich_wehner__horror-stinger-5_harbingers-of-doom.wav" id="4_6rb8o"]
+
+[node name="Spinner" unique_id=1733592583 instance=ExtResource("1_8g4s4")]
+script = ExtResource("2_5p6o3")
+spin_targets = Array[Vector2i]([Vector2i(0, -1), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(1, 0)])
+num_quarter_turns = 1
+card_number = 4
+card_name = "Crazy Casper"
+sfx_start = 0.04
+effect_triggers = Array[int]([1])
+
+[node name="EffectIcon" parent="Border" parent_id_path=PackedInt32Array(476875609) index="0" unique_id=2012726704]
+texture = ExtResource("3_6rb8o")
+
+[node name="Artwork" parent="Border" parent_id_path=PackedInt32Array(476875609) index="3" unique_id=1143494246]
+texture = ExtResource("3_5p6o3")
+
+[node name="AudioStreamPlayer2D" parent="." index="2" unique_id=126853625]
+stream = ExtResource("4_6rb8o")

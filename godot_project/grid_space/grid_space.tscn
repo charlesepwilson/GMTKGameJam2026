@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bf8evvs0qggoe"]
+
+[ext_resource type="Script" uid="uid://b1smb86kjqwp0" path="res://grid_space/grid_space.gd" id="1_eyujm"]
+[ext_resource type="Shader" uid="uid://dym7ue35nqvy8" path="res://grid_space/grid_space.gdshader" id="2_y6epf"]
+[ext_resource type="Texture2D" uid="uid://c8r76gv46dcgf" path="res://card/White_Square.png" id="3_bm6s6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i6okx"]
+shader = ExtResource("2_y6epf")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(172, 172)
+
+[node name="GridSpace" type="Node2D" unique_id=214966970]
+script = ExtResource("1_eyujm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=688950028]
+material = SubResource("ShaderMaterial_i6okx")
+texture = ExtResource("3_bm6s6")
+centered = false
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1872916196]
+collision_mask = 0
+priority = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=739333018]
+position = Vector2(93, 95)
+shape = SubResource("RectangleShape2D_g4v7s")

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bn7ubbu2yxvot"]
+
+[ext_resource type="Script" uid="uid://dwrvqxuakpknx" path="res://tooltip/tooltip.gd" id="1_15sfh"]
+[ext_resource type="Theme" uid="uid://bcg08v88fsprf" path="res://ui_themes/menu_theme.tres" id="1_w1q1r"]
+
+[node name="Tooltip" type="PanelContainer" unique_id=2053161721]
+offset_right = 387.0
+offset_bottom = 108.0
+theme = ExtResource("1_w1q1r")
+script = ExtResource("1_15sfh")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1039206069]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=2095297196]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=2136718658]
+custom_minimum_size = Vector2(76.785, 0)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TooltipText" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1033169775]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Rotates everything adjacent 90 degrees clockwise"
+vertical_alignment = 1
+autowrap_mode = 2

@@ -8,23 +8,40 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Gmtk Game Jam 2026"
 run/main_scene="res://main_menu/main_menu.tscn"
-config/features=PackedStringArray("4.2", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [audio]
 
-buses/default_bus_layout="res://audio/default_bus_layout.tres"
+buses/default_bus_layout="uid://cnbgv8wsh5vw7"
 
 [autoload]
 
 Settings="*res://settings/settings.tscn"
+BackgroundMusic="*uid://dtejvvn163jud"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+
+[shader_globals]
+
+mouse_screen_pos={
+"type": "vec2",
+"value": Vector2(0, 0)
+}

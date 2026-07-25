@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dy1e3sbi31khe"]
+
+[ext_resource type="PackedScene" uid="uid://bbp243w8h3qxt" path="res://game_board/game_board.tscn" id="1_vf7bx"]
+[ext_resource type="PackedScene" uid="uid://f0pkuexkm1cj" path="res://card/chucker/chucker.tscn" id="3_a84uq"]
+[ext_resource type="PackedScene" uid="uid://csvssq1pgaoma" path="res://card/goomba/goomba.tscn" id="5_yisop"]
+[ext_resource type="PackedScene" uid="uid://q8nalskll5gi" path="res://card/spinner/spinner.tscn" id="7_nurn8"]
+[ext_resource type="PackedScene" uid="uid://cu4fwstq5yv0w" path="res://card/sucker/sucker.tscn" id="8_mcv5s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dkril"]
+font_size = 60
+
+[node name="GameBoard" unique_id=469077912 instance=ExtResource("1_vf7bx")]
+level_number = 4
+
+[node name="GridVisual" parent="." index="4" unique_id=1154572937]
+position = Vector2(556, 146)
+
+[node name="PlayerCards" parent="." index="5" unique_id=592926577]
+position = Vector2(259, 265)
+
+[node name="Goomba" parent="PlayerCards" index="0" unique_id=986120360 instance=ExtResource("5_yisop")]
+card_number = 4
+effect_triggers = Array[int]([1])
+
+[node name="Chucker" parent="PlayerCards" index="2" unique_id=695809789 instance=ExtResource("3_a84uq")]
+move_vector = Vector2i(0, 1)
+effect_triggers = Array[int]([1])
+
+[node name="Spinner" parent="PlayerCards" index="3" unique_id=1579454329 instance=ExtResource("7_nurn8")]
+card_number = 2
+
+[node name="Sucker" parent="PlayerCards" index="4" unique_id=1733592583 instance=ExtResource("8_mcv5s")]
+card_number = 1
+
+[node name="Label" parent="UI/HBoxContainer" parent_id_path=PackedInt32Array(243899643) index="1" unique_id=1609054292]
+label_settings = SubResource("LabelSettings_dkril")

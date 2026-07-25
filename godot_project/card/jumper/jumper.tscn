@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dqceyp8knjyls"]
+
+[ext_resource type="PackedScene" uid="uid://bvafqyefyi0ys" path="res://card/card.tscn" id="1_52ib6"]
+[ext_resource type="Script" uid="uid://qk8oorf7nemu" path="res://card/jumper/jumper.gd" id="2_3eikw"]
+[ext_resource type="Texture2D" uid="uid://c4r3pxnhh1f4s" path="res://card/Horse.png" id="3_lyyan"]
+[ext_resource type="Texture2D" uid="uid://bnhoxxx43dr5c" path="res://card/On_DJ.png" id="4_djr20"]
+[ext_resource type="Texture2D" uid="uid://bhksigst61yyo" path="res://card/Prancing_Horse.png" id="5_dubvj"]
+[ext_resource type="AudioStream" uid="uid://ttkubusg7dw5" path="res://audio/636722__ulrich_wehner__horror-stinger-1_sliced.wav" id="6_q5hto"]
+
+[node name="Jumper" unique_id=1733592583 instance=ExtResource("1_52ib6")]
+script = ExtResource("2_3eikw")
+jump_options = Array[Vector2i]([Vector2i(1, -2), Vector2i(2, -1), Vector2i(2, 1), Vector2i(1, 2), Vector2i(-1, 2), Vector2i(-2, 1), Vector2i(-2, -1), Vector2i(-1, -2)])
+card_number = 6
+card_name = "Sir Jumpsalot"
+sfx_start = 0.85
+
+[node name="EffectIcon" parent="Border" parent_id_path=PackedInt32Array(476875609) index="0" unique_id=2012726704]
+position = Vector2(59.000004, -54)
+texture = ExtResource("3_lyyan")
+
+[node name="TriggerIcon" parent="Border" parent_id_path=PackedInt32Array(476875609) index="1" unique_id=868693276]
+texture = ExtResource("4_djr20")
+
+[node name="Artwork" parent="Border" parent_id_path=PackedInt32Array(476875609) index="3" unique_id=1143494246]
+position = Vector2(-8.000001, -2.0000002)
+scale = Vector2(0.81, 0.81)
+texture = ExtResource("5_dubvj")
+
+[node name="AudioStreamPlayer2D" parent="." index="2" unique_id=126853625]
+stream = ExtResource("6_q5hto")

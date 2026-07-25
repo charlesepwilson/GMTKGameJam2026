@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cu4fwstq5yv0w"]
+
+[ext_resource type="PackedScene" uid="uid://bvafqyefyi0ys" path="res://card/card.tscn" id="1_qx1va"]
+[ext_resource type="Script" uid="uid://cbdkew3gysxxe" path="res://card/sucker/sucker.gd" id="2_s3otb"]
+[ext_resource type="Texture2D" uid="uid://bija6r4o6mv5h" path="res://card/Pull.png" id="3_ij6x3"]
+[ext_resource type="Texture2D" uid="uid://dfcaunxetq8sg" path="res://card/Flapper_Vampire.png" id="4_j4g0g"]
+
+[node name="Sucker" unique_id=1733592583 instance=ExtResource("1_qx1va")]
+script = ExtResource("2_s3otb")
+suck_strength = 1
+suck_range = 2
+card_number = 7
+card_name = "Lilith"
+sfx_start = 0.85
+effect_triggers = Array[int]([1])
+
+[node name="EffectIcon" parent="Border" parent_id_path=PackedInt32Array(476875609) index="0" unique_id=2012726704]
+position = Vector2(52, -54)
+rotation = 0.782589
+texture = ExtResource("3_ij6x3")
+
+[node name="Artwork" parent="Border" parent_id_path=PackedInt32Array(476875609) index="3" unique_id=1143494246]
+position = Vector2(-27, -4)
+texture = ExtResource("4_j4g0g")
