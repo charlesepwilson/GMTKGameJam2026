@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://cltrrywbmv2vg"]
+
+[ext_resource type="FontFile" uid="uid://btcx11ibxxabr" path="res://CAKE N TRUFFLES.TTF" id="1_im53g"]
+
+[resource]
+font = ExtResource("1_im53g")
+font_size = 60

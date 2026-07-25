@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://ber778ydj15qd"]
+
+[ext_resource type="Texture2D" uid="uid://jif4hwdxpyrl" path="res://_numbers/Number_SpriteSheet.png" id="1_wtin1"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_88noe"]
+light_mode = 1
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[node name="CPUParticles2D" type="CPUParticles2D" unique_id=356909706]
+material = SubResource("CanvasItemMaterial_88noe")
+emitting = false
+amount = 50
+texture = ExtResource("1_wtin1")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.8
+direction = Vector2(0, -1)
+initial_velocity_min = 307.49
+initial_velocity_max = 530.79
+angle_min = -82.6
+angle_max = 88.5
+scale_amount_max = 2.0
+anim_offset_max = 1.0

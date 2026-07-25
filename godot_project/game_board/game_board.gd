@@ -92,6 +92,7 @@ func end_turn():
 func _ready() -> void:
 	victory_popup.level_number = level_number
 	failure_popup.level_number = level_number
+	$UI/LevelNumber.text = "Level " + str(level_number)
 	player_interaction_start.connect(_on_player_interaction_start)
 	player_interaction_stop.connect(_on_player_interaction_stop)
 
@@ -286,6 +287,8 @@ func perform_victory_check():
 	if victory:
 		await _animate_victory(victory)
 		_play_oh_yeah()
+		for emitter in $UI/Confetti.get_children():
+			emitter.emitting = true
 	else:
 		var darkness: CanvasModulate = $Lights/Darkness
 		get_tree().create_tween().tween_property(darkness, "color", Color(0.5, 0, 0), 1)

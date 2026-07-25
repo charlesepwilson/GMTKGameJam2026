@@ -10,7 +10,6 @@ func _ready() -> void:
 		0
 	) as AudioEffectPitchShift
 	pitch_effect.pitch_scale = 1 / speed_up
-	print(pitch_effect.pitch_scale)
 
 
 func _on_pressed():

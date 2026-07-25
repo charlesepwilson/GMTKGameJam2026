@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://mc2bl6klf60j"
+path="res://.godot/imported/The Crypts! - The Monster Mash_Ya Look Fantastic.mp3-038668a2ca06dd85573c57c686c9bc9f.mp3str"
+
+[deps]
+
+source_file="res://audio/The Crypts! - The Monster Mash_Ya Look Fantastic.mp3"
+dest_files=["res://.godot/imported/The Crypts! - The Monster Mash_Ya Look Fantastic.mp3-038668a2ca06dd85573c57c686c9bc9f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
