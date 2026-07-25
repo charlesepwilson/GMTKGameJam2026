@@ -11,6 +11,10 @@ enum CARD_MODE {DECK, HAND, CONTROL, BOARD, DISCARD}
 var game_board: GameBoard
 var player_cards: PlayerCards
 
+@export var movable: bool = true
+@export var starts_on_board: bool = false
+@export var should_be_visible: bool = true
+
 var max_move_speed: float = 800
 @onready var sprite: Sprite2D = $Border/Artwork
 
@@ -38,7 +42,8 @@ var number_textures: Dictionary[int, Texture] = {
 
 func _ready() -> void:
 	_randomise_sfx()
-	number_label.texture = number_textures[card_number]
+	if card_number in number_textures:
+		number_label.texture = number_textures[card_number]
 	trigger_icon.texture = trigger_icons[effect_triggers[0]]
 	game_board = find_parent("GameBoard")
 	player_cards = game_board.find_child("PlayerCards")
@@ -47,6 +52,14 @@ func _ready() -> void:
 	build_tooltips()
 	clickable_area.mouse_entered.connect(show_tooltip)
 	clickable_area.mouse_exited.connect(hide_tooltip)
+
+	await game_board.ready
+	if starts_on_board:
+		player_cards.draw_pile.erase(self)
+		play_card(current_grid_position, true)
+		position = get_target_position()
+		if should_be_visible:
+			visible = true
 
 
 func _randomise_sfx():
@@ -108,9 +121,9 @@ func send_to_discard():
 	player_cards.discard_pile.append(self)
 	visible = false
 
-func play_card(grid_position: Vector2i):
+func play_card(grid_position: Vector2i, ignore_hand: bool = false):
 	if game_board.can_place_here(grid_position):
-		if player_cards.play_card(self):
+		if ignore_hand or player_cards.play_card(self):
 			card_mode = CARD_MODE.BOARD
 			reparent(game_board.grid_occupiers)
 			set_grid_position(grid_position)
@@ -160,6 +173,8 @@ func _process(delta: float) -> void:
 	)
 
 func set_grid_position(grid_position: Vector2i):
+	if not movable and not starts_on_board:
+		printerr("WARNING: Tried to move immovable object")
 	if game_board.can_place_here(grid_position):
 		if game_board.card_grid_spaces.get(current_grid_position) == self:
 			game_board.card_grid_spaces.erase(current_grid_position)
@@ -169,6 +184,8 @@ func set_grid_position(grid_position: Vector2i):
 		printerr("WARNING: Attempted to set card position to invalid place ", grid_position)
 
 func push(direction: Vector2i):
+	if not movable:
+		return
 	var final_position = current_grid_position + direction
 	assert(direction.x == 0 or direction.y == 0)  # for now this keeps things simple
 	for step in int(direction.length()):

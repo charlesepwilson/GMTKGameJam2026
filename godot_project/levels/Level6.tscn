@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://qd8kx58g12bw"]
+
+[ext_resource type="PackedScene" uid="uid://bbp243w8h3qxt" path="res://game_board/game_board.tscn" id="1_effju"]
+[ext_resource type="PackedScene" uid="uid://rnknawrnvutu" path="res://card/slider/slider.tscn" id="2_oqgxf"]
+[ext_resource type="PackedScene" uid="uid://csvssq1pgaoma" path="res://card/goomba/goomba.tscn" id="3_1tl0f"]
+[ext_resource type="PackedScene" uid="uid://bi1r4tgoxe7c3" path="res://card/rock/rock.tscn" id="4_oqgxf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dkril"]
+font_size = 60
+
+[node name="GameBoard" unique_id=469077912 instance=ExtResource("1_effju")]
+level_number = 6
+
+[node name="GridVisual" parent="." index="4" unique_id=1154572937]
+position = Vector2(556, 146)
+
+[node name="PlayerCards" parent="." index="5" unique_id=592926577]
+position = Vector2(259, 265)
+
+[node name="Slider" parent="PlayerCards" index="0" unique_id=1733592583 instance=ExtResource("2_oqgxf")]
+
+[node name="Slider2" parent="PlayerCards" index="1" unique_id=41921096 instance=ExtResource("2_oqgxf")]
+move_vector = Vector2i(0, -1)
+card_number = 3
+
+[node name="Goomba" parent="PlayerCards" index="2" unique_id=986120360 instance=ExtResource("3_1tl0f")]
+
+[node name="Rock" parent="PlayerCards" index="4" unique_id=463261930 instance=ExtResource("4_oqgxf")]
+
+[node name="Rock2" parent="PlayerCards" index="5" unique_id=320874248 instance=ExtResource("4_oqgxf")]
+current_grid_position = Vector2i(1, 2)
+should_be_visible = false
+
+[node name="Label" parent="UI/HBoxContainer" parent_id_path=PackedInt32Array(243899643) index="1" unique_id=1609054292]
+label_settings = SubResource("LabelSettings_dkril")

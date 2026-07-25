@@ -135,6 +135,9 @@ func physical_position_to_grid_position(physical_position: Vector2) -> Vector2i:
 
 
 func move_multiple_simultaneously(move_requests: Dictionary[Card, Vector2i]):
+	for card in move_requests.keys():
+		if not card.movable():
+			move_requests.erase(card)
 	var all_targets = move_requests.values()
 	var target_set = {}
 	for t in all_targets:

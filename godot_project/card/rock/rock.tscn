@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bi1r4tgoxe7c3"]
+
+[ext_resource type="PackedScene" uid="uid://bvafqyefyi0ys" path="res://card/card.tscn" id="1_ki4xq"]
+[ext_resource type="Texture2D" uid="uid://cosfl7jrhlmr" path="res://card/rock/Table.png" id="2_ye8f2"]
+
+[node name="Rock" unique_id=1733592583 instance=ExtResource("1_ki4xq")]
+card_number = -1
+card_name = "Obstacle"
+movable = false
+starts_on_board = true
+
+[node name="Border" parent="." index="0" unique_id=476875609]
+visible = false
+
+[node name="Area2D" parent="." index="1" unique_id=306240035]
+visible = false
+
+[node name="AudioStreamPlayer2D" parent="." index="2" unique_id=126853625]
+stream = null
+
+[node name="TooltipHolder" parent="." index="3" unique_id=2083691430]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="4" unique_id=1323825362]
+position = Vector2(2, -95)
+texture = ExtResource("2_ye8f2")
