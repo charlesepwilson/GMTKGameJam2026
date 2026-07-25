@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://b85gdlck0tisj"]
+
+[node name="TutorialPopup" type="PanelContainer" unique_id=606867016]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -520.0
+offset_top = -231.0
+offset_right = 520.0
+offset_bottom = 231.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1955343979]
+layout_mode = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=210664389]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=65063977]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+text = "Welcome to Count Conga's Disco!
+
+Your job is to direct each guest to their starting position on the Dance Floor
+There's a strict social ettiquette at Vampire dances though:
+Everyone can only move when their number is called!
+
+When you're ready, click the DJ to start the dancing.
+
+Your goal is to make sure there's a connected line of descending numbered dancers at the end."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=850097466]
+layout_mode = 2
+text = "Let's get started!"

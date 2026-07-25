@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dtejvvn163jud"]
+
+[ext_resource type="Script" uid="uid://b2jiaqa3cgwdj" path="res://audio/background_music.gd" id="1_eoykt"]
+[ext_resource type="AudioStream" uid="uid://bc1d8sm7lu8r" path="res://audio/642311__victor_natas__raising-heartbeats-mild-version.wav" id="2_s7iba"]
+[ext_resource type="AudioStream" uid="uid://bnvdpq8uo1ilc" path="res://audio/383285__musicfishaudio__disco_beat_100_musicfishaudio.mp3" id="3_5gelg"]
+
+[node name="BackgroundMusic" type="Node" unique_id=285939903]
+script = ExtResource("1_eoykt")
+playlist = Array[AudioStream]([ExtResource("2_s7iba"), ExtResource("3_5gelg")])
+
+[node name="Track1" type="AudioStreamPlayer" parent="." unique_id=533971232]
+stream = ExtResource("2_s7iba")
+volume_db = -11.0
+autoplay = true
+bus = &"Music"
+
+[node name="Track2" type="AudioStreamPlayer" parent="." unique_id=2013963943]
+stream = ExtResource("2_s7iba")
+volume_db = -11.0
+bus = &"Music"

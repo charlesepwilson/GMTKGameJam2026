@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://e5xtcj151x6a" path="res://game_board/game_board.gd" id="1_qlpbi"]
 [ext_resource type="Script" uid="uid://b2d2ofq0dtu0n" path="res://game_board/grid_visual.gd" id="2_rkty7"]
-[ext_resource type="AudioStream" uid="uid://bc1d8sm7lu8r" path="res://audio/642311__victor_natas__raising-heartbeats-mild-version.wav" id="2_wpyk7"]
 [ext_resource type="Texture2D" uid="uid://dp2r72bcmx8ir" path="res://card/Background(1).png" id="3_ht67x"]
 [ext_resource type="Texture2D" uid="uid://c37jomot53s3f" path="res://card/Speaker.png" id="4_5p067"]
 [ext_resource type="Texture2D" uid="uid://cicx7bpqf84ep" path="res://card/Door_Closed.png" id="4_38jxm"]
@@ -16,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cekths2ejptic" path="res://victory_popup/victory_popup.tscn" id="6_wpyk7"]
 [ext_resource type="Texture2D" uid="uid://mt8er1e8cq55" path="res://card/Jump.png" id="11_nr2s7"]
 [ext_resource type="Script" uid="uid://bsw004ianpbs0" path="res://game_board/ceiling_lamp.gd" id="13_2ii8d"]
+[ext_resource type="Theme" uid="uid://bcg08v88fsprf" path="res://ui_themes/menu_theme.tres" id="14_jpgb4"]
 [ext_resource type="PackedScene" uid="uid://b5jte4tswygit" path="res://victory_popup/failure_popup.tscn" id="15_jpgb4"]
 [ext_resource type="Texture2D" uid="uid://qvxju0r63bn" path="res://card/Slowdown.png" id="17_td7mx"]
 [ext_resource type="Script" uid="uid://djyg5dfvfxck3" path="res://game_board/speed_down.gd" id="18_5iwnp"]
@@ -41,6 +41,8 @@ frames = 2
 frame_0/texture = ExtResource("5_cme4s")
 frame_1/texture = ExtResource("6_ht67x")
 frame_1/duration = 1.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jpgb4"]
 
 [sub_resource type="Gradient" id="Gradient_ht67x"]
 offsets = PackedFloat32Array(0, 0.4159292, 0.58849555, 1)
@@ -95,12 +97,6 @@ font_size = 60
 [node name="GameBoard" type="Node2D" unique_id=469077912]
 script = ExtResource("1_qlpbi")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1797533170]
-stream = ExtResource("2_wpyk7")
-volume_db = -9.0
-autoplay = true
-bus = &"Music"
-
 [node name="Background" type="Sprite2D" parent="." unique_id=235818796]
 position = Vector2(960, 540)
 texture = ExtResource("3_ht67x")
@@ -154,8 +150,14 @@ texture = ExtResource("5_dilif")
 stream = ExtResource("6_dilif")
 
 [node name="GridVisual" type="Node2D" parent="." unique_id=1154572937]
-position = Vector2(630, 212)
+position = Vector2(556, 142)
 script = ExtResource("2_rkty7")
+
+[node name="GridPlaceholder" type="Sprite2D" parent="GridVisual" unique_id=820312581]
+visible = false
+scale = Vector2(800, 800)
+texture = SubResource("PlaceholderTexture2D_jpgb4")
+centered = false
 
 [node name="GridSquares" type="Node2D" parent="GridVisual" unique_id=198607214]
 
@@ -171,7 +173,7 @@ autostart = true
 [node name="Lights" type="Node2D" parent="." unique_id=1840181145]
 
 [node name="Darkness" type="CanvasModulate" parent="Lights" unique_id=985478149]
-color = Color(0.5, 0.5, 0.5, 1)
+color = Color(0.5, 0.43, 0.43, 1)
 
 [node name="CelingLamp" type="PointLight2D" parent="Lights" unique_id=1598098664]
 position = Vector2(329, 531)
@@ -270,6 +272,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+theme = ExtResource("14_jpgb4")
 
 [node name="FailurePopup" parent="UI/Control" unique_id=842108949 instance=ExtResource("15_jpgb4")]
 unique_name_in_owner = true
@@ -308,8 +311,8 @@ light_mask = 0
 z_index = 10
 offset_left = 1641.0
 offset_top = 3.0
-offset_right = 1777.0
-offset_bottom = 139.00024
+offset_right = 1784.6
+offset_bottom = 111.02
 scale = Vector2(-1, 1)
 icon = ExtResource("11_nr2s7")
 icon_alignment = 1

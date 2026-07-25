@@ -3,7 +3,6 @@
 [ext_resource type="Theme" uid="uid://bcg08v88fsprf" path="res://ui_themes/menu_theme.tres" id="1_lhl1n"]
 [ext_resource type="Script" uid="uid://cfgrjlb0tawpt" path="res://level_select/level_select.gd" id="2_mtmfa"]
 [ext_resource type="Texture2D" uid="uid://d0b6yg4h5iq5m" path="res://main_menu/starry-night-sky-wallpaper-1.jpg" id="3_h56dn"]
-[ext_resource type="AudioStream" uid="uid://dc1nsn17hv55s" path="res://main_menu/46-ri9 (Night).mp3" id="4_ujs24"]
 [ext_resource type="Theme" uid="uid://dsb8c8f6k62cq" path="res://title_theme.tres" id="5_mqeaa"]
 
 [node name="LevelSelect" type="Control" unique_id=1569080553]
@@ -28,11 +27,6 @@ offset_bottom = 396.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_h56dn")
-
-[node name="MenuMusic" type="AudioStreamPlayer" parent="." unique_id=2135369535]
-stream = ExtResource("4_ujs24")
-autoplay = true
-bus = &"Music"
 
 [node name="MenuContainer" type="MarginContainer" parent="." unique_id=2120853395]
 layout_mode = 1

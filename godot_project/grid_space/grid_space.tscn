@@ -6,15 +6,9 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i6okx"]
 shader = ExtResource("2_y6epf")
-shader_parameter/bloom_spread = 1.0
-shader_parameter/bloom_intensity = 2.0
-shader_parameter/glow_color = Color(1, 0.9, 0.5, 1)
-shader_parameter/intensity = 1.5
-shader_parameter/spread = 1.0
-shader_parameter/pulse_speed = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
-size = Vector2(171, 174)
+size = Vector2(172, 172)
 
 [node name="GridSpace" type="Node2D" unique_id=214966970]
 script = ExtResource("1_eyujm")
@@ -22,11 +16,12 @@ script = ExtResource("1_eyujm")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=688950028]
 material = SubResource("ShaderMaterial_i6okx")
 texture = ExtResource("3_bm6s6")
+centered = false
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1872916196]
 collision_mask = 0
 priority = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=739333018]
-position = Vector2(0.5, -1)
+position = Vector2(93, 95)
 shape = SubResource("RectangleShape2D_g4v7s")

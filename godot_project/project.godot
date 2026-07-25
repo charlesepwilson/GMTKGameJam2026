@@ -26,6 +26,7 @@ buses/default_bus_layout="uid://cnbgv8wsh5vw7"
 [autoload]
 
 Settings="*res://settings/settings.tscn"
+BackgroundMusic="*uid://dtejvvn163jud"
 
 [display]
 

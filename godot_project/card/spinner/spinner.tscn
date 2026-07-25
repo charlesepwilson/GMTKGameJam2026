@@ -12,6 +12,7 @@ spin_targets = Array[Vector2i]([Vector2i(0, -1), Vector2i(0, 1), Vector2i(-1, 0)
 num_quarter_turns = 1
 card_number = 4
 card_name = "Crazy Casper"
+sfx_start = 0.04
 effect_triggers = Array[int]([1])
 
 [node name="EffectIcon" parent="Border" parent_id_path=PackedInt32Array(476875609) index="0" unique_id=2012726704]

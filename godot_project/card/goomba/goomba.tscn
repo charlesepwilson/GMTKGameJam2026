@@ -11,6 +11,7 @@ script = ExtResource("2_ckyl8")
 move_vector = Vector2i(1, 0)
 card_number = 2
 card_name = "Dave"
+sfx_start = 0.17
 
 [node name="TriggerIcon" parent="Border" parent_id_path=PackedInt32Array(476875609) index="1" unique_id=868693276]
 texture = ExtResource("3_ewaa5")

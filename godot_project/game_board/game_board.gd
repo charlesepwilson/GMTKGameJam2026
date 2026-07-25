@@ -118,6 +118,7 @@ func _ready() -> void:
 	for card in player_cards.draw_pile:
 		all_numbers.append(card.card_number)
 	level_max_number = all_numbers.max()
+	_connect_tutorial()
 
 
 func get_physical_position(grid_position: Vector2i) -> Vector2:
@@ -235,6 +236,9 @@ func perform_victory_check():
 	var victory = _check_victory()
 	if victory:
 		await _animate_victory(victory)
+	else:
+		var darkness: CanvasModulate = $Lights/Darkness
+		get_tree().create_tween().tween_property(darkness, "color", Color(0.5, 0, 0), 1)
 	_activate_popups(victory)
 
 @onready var open_door: Sprite2D = $Door/Open
@@ -271,3 +275,14 @@ func undo():
 			restore_game_state(last_state)
 			save_game_state()
 			return
+
+@onready var tutorial = %TutorialPopup
+
+func _connect_tutorial():
+	if tutorial:
+		var button = tutorial.find_child("Button")
+		button.pressed.connect(_dismiss_tutorial)
+
+func _dismiss_tutorial():
+	tutorial.visible = false
+	$UI/Control.visible = false

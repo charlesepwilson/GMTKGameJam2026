@@ -6,6 +6,7 @@ enum CARD_MODE {DECK, HAND, CONTROL, BOARD, DISCARD}
 @export var card_number: int = 1
 @export var card_name: String = "Card Name"
 @onready var number_label: Sprite2D = $Border/Number
+@onready var trigger_icon: Sprite2D = $Border/TriggerIcon
 @export var current_grid_position: Vector2i = Vector2i.DOWN * 3 + Vector2i.RIGHT
 var game_board: GameBoard
 var player_cards: PlayerCards
@@ -38,6 +39,7 @@ var number_textures: Dictionary[int, Texture] = {
 func _ready() -> void:
 	_randomise_sfx()
 	number_label.texture = number_textures[card_number]
+	trigger_icon.texture = trigger_icons[effect_triggers[0]]
 	game_board = find_parent("GameBoard")
 	player_cards = game_board.find_child("PlayerCards")
 	visible = false
@@ -46,9 +48,10 @@ func _ready() -> void:
 	clickable_area.mouse_entered.connect(show_tooltip)
 	clickable_area.mouse_exited.connect(hide_tooltip)
 
+
 func _randomise_sfx():
-	sfx.pitch_scale = rng.randfn(1.0, 0.15)
-	sfx.volume_linear = rng.randfn(0.5, 0.15)
+	sfx.pitch_scale = rng.randf_range(0.85, 1.15)
+	sfx.volume_linear = rng.randf_range(0.85, 1.15)
 
 func _clickable_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if not game_board.player_can_interact:
@@ -105,7 +108,6 @@ func send_to_discard():
 	player_cards.discard_pile.append(self)
 	visible = false
 
-
 func play_card(grid_position: Vector2i):
 	if game_board.can_place_here(grid_position):
 		if player_cards.play_card(self):
@@ -123,10 +125,15 @@ func play_card(grid_position: Vector2i):
 	else:
 		printerr("WARNING: Attempted to play card in invalid position ", grid_position)
 
+@onready var border_sprite_size: Vector2 = $Border.texture.get_size()
+
+func _get_position_offset() -> Vector2:
+	return (border_sprite_size * scale / 2) + (Vector2.ONE * 5)
+
 func get_target_position() -> Vector2:
 	match card_mode:
 		CARD_MODE.BOARD:
-			return game_board.get_physical_position(current_grid_position)
+			return game_board.get_physical_position(current_grid_position) + _get_position_offset()
 		CARD_MODE.HAND:
 			return player_cards.get_card_physical_position(self)
 		CARD_MODE.CONTROL:
@@ -294,3 +301,8 @@ func _set_icon_direction(m_dir: Vector2i):
 		Vector2i.DOWN: effect_icon.rotation_degrees = 90
 		Vector2i.LEFT: effect_icon.rotation_degrees = 180
 		Vector2i.UP: effect_icon.rotation_degrees = 270
+
+var trigger_icons: Dictionary[EFFECT_TRIGGER, Texture] = {
+	EFFECT_TRIGGER.ON_CARD_PLAYED: preload("res://card/When played.png"),
+	EFFECT_TRIGGER.ON_TURN_END: preload("res://card/On_DJ.png"),
+}

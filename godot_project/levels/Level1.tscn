@@ -1,36 +1,42 @@
 [gd_scene format=3 uid="uid://b6xepbauhso6y"]
 
 [ext_resource type="PackedScene" uid="uid://bbp243w8h3qxt" path="res://game_board/game_board.tscn" id="1_b84ys"]
+[ext_resource type="PackedScene" uid="uid://f0pkuexkm1cj" path="res://card/chucker/chucker.tscn" id="2_2j4y6"]
 [ext_resource type="PackedScene" uid="uid://rnknawrnvutu" path="res://card/slider/slider.tscn" id="2_32mhh"]
 [ext_resource type="PackedScene" uid="uid://csvssq1pgaoma" path="res://card/goomba/goomba.tscn" id="5_vi6ws"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_g4v7s"]
+[ext_resource type="PackedScene" uid="uid://b85gdlck0tisj" path="res://game_board/tutorial_popup.tscn" id="6_cr8f5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dkril"]
 font_size = 60
 
 [node name="GameBoard" unique_id=469077912 instance=ExtResource("1_b84ys")]
 level_number = 1
+total_grid_x_spaces = 3
+total_grid_y_spaces = 3
 
-[node name="GridPlaceholder" type="Sprite2D" parent="GridVisual" parent_id_path=PackedInt32Array(1154572937) index="2" unique_id=117335112]
-visible = false
-position = Vector2(242, 249)
-scale = Vector2(739.7935, 739.7935)
-texture = SubResource("PlaceholderTexture2D_g4v7s")
-
-[node name="PlayerCards" parent="." index="6" unique_id=592926577]
+[node name="PlayerCards" parent="." index="5" unique_id=592926577]
 position = Vector2(259, 265)
 
-[node name="Slider" parent="PlayerCards" index="0" unique_id=1733592583 instance=ExtResource("2_32mhh")]
+[node name="Chucker" parent="PlayerCards" index="0" unique_id=1733592583 instance=ExtResource("2_2j4y6")]
 
-[node name="Slider2" parent="PlayerCards" index="1" unique_id=41921096 instance=ExtResource("2_32mhh")]
-move_vector = Vector2i(0, -1)
-card_number = 3
+[node name="Goomba" parent="PlayerCards" index="1" unique_id=986120360 instance=ExtResource("5_vi6ws")]
 
-[node name="Goomba" parent="PlayerCards" index="2" unique_id=986120360 instance=ExtResource("5_vi6ws")]
+[node name="Slider" parent="PlayerCards" index="2" unique_id=298161281 instance=ExtResource("2_32mhh")]
 
 [node name="Control" parent="UI" parent_id_path=PackedInt32Array(875924731) index="0" unique_id=1079595306]
-visible = false
+visible = true
+offset_top = -2.0
+offset_bottom = 1078.0
+
+[node name="TutorialPopup" parent="UI/Control" index="2" unique_id=606867016 instance=ExtResource("6_cr8f5")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_top = -266.0
+offset_bottom = 266.0
+
+[node name="UndoButton" parent="UI" parent_id_path=PackedInt32Array(875924731) index="1" unique_id=282272217]
+offset_right = 1792.26
+offset_bottom = 110.7
 
 [node name="Label" parent="UI/HBoxContainer" parent_id_path=PackedInt32Array(243899643) index="1" unique_id=1609054292]
 label_settings = SubResource("LabelSettings_dkril")
