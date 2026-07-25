@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://nvh4fnuxug1y" path="res://card/card.gd" id="1_fjcud"]
 [ext_resource type="Shader" uid="uid://e8u375b48cpb" path="res://card/card.gdshader" id="2_1n6wr"]
+[ext_resource type="Material" uid="uid://bi6uxqp3x8uab" path="res://card/card_float_material.tres" id="2_7dy67"]
 [ext_resource type="Texture2D" uid="uid://d2qd0eq0kwg1b" path="res://card/Card_Front.png" id="2_346uv"]
 [ext_resource type="Texture2D" uid="uid://dcxjlrrc0gcgy" path="res://card/Formal_Werewolf.png" id="2_ply2h"]
 [ext_resource type="Texture2D" uid="uid://bbxn13pgwkxpg" path="res://card/Move.png" id="3_i6okx"]
@@ -9,27 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://diefmu5bhhrch" path="res://card/When played.png" id="5_ags6k"]
 [ext_resource type="Texture2D" uid="uid://lxceb5lpkpm" path="res://_numbers/1.png" id="6_ags6k"]
 [ext_resource type="PackedScene" uid="uid://4jjqa10fjvqo" path="res://tooltip/multi_tooltip.tscn" id="7_1n6wr"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
-shader = ExtResource("2_1n6wr")
-shader_parameter/debug = false
-shader_parameter/border_scale = 2.0
-shader_parameter/shadow_offset = Vector2(5, -10)
-shader_parameter/color = Color(0, 0, 0.08627451, 0.49803922)
-shader_parameter/blur_amount = 0.8550000406125
-shader_parameter/shadow_scale = 1.5
-shader_parameter/disable_rotating = false
-shader_parameter/fov = 90.0
-shader_parameter/cull_back = true
-shader_parameter/y_rot = 0.0
-shader_parameter/x_rot = 0.0
-shader_parameter/inset = 0.0
-shader_parameter/hovering = 0.0
-shader_parameter/rand_trans_power = 1.0
-shader_parameter/rand_seed = 0.0
-shader_parameter/vortex_amt = 0.0
-shader_parameter/rotation = 1.4901199918426755e-07
-shader_parameter/mouse_screen_pos_test = Vector2(0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q5ffc"]
 shader = ExtResource("2_1n6wr")
@@ -59,7 +39,7 @@ size = Vector2(187, 186)
 script = ExtResource("1_fjcud")
 
 [node name="Border" type="Sprite2D" parent="." unique_id=476875609]
-material = SubResource("ShaderMaterial_g4v7s")
+material = ExtResource("2_7dy67")
 texture = ExtResource("2_346uv")
 
 [node name="EffectIcon" type="Sprite2D" parent="Border" unique_id=2012726704]

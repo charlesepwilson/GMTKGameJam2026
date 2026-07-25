@@ -161,6 +161,8 @@ centered = false
 
 [node name="GridSquares" type="Node2D" parent="GridVisual" unique_id=198607214]
 
+[node name="FieldEffects" type="Node2D" parent="GridVisual" unique_id=52155281]
+
 [node name="GridOccupiers" type="Node2D" parent="GridVisual" unique_id=1695326612]
 
 [node name="PlayerCards" type="Node2D" parent="." unique_id=592926577]

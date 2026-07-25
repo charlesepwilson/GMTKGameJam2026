@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cgtenoaxywiwe"]
+
+[ext_resource type="Script" uid="uid://w6dngcga7lu3" path="res://field_effect/sticky_blood/sticky_blood.gd" id="1_n0rk4"]
+[ext_resource type="Texture2D" uid="uid://dhuve55cd5uor" path="res://field_effect/sticky_blood/Blood.png" id="3_hp0mg"]
+
+[node name="StickyBlood" type="Node2D" unique_id=543619106]
+script = ExtResource("1_n0rk4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=877346454]
+texture = ExtResource("3_hp0mg")

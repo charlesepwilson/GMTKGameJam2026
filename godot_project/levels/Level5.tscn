@@ -11,7 +11,7 @@
 font_size = 60
 
 [node name="GameBoard" unique_id=469077912 instance=ExtResource("1_t5yy7")]
-level_number = 3
+level_number = 5
 
 [node name="GridVisual" parent="." index="4" unique_id=1154572937]
 position = Vector2(556, 146)

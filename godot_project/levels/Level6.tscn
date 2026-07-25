@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://rnknawrnvutu" path="res://card/slider/slider.tscn" id="2_oqgxf"]
 [ext_resource type="PackedScene" uid="uid://csvssq1pgaoma" path="res://card/goomba/goomba.tscn" id="3_1tl0f"]
 [ext_resource type="PackedScene" uid="uid://bi1r4tgoxe7c3" path="res://card/rock/rock.tscn" id="4_oqgxf"]
+[ext_resource type="PackedScene" uid="uid://q8nalskll5gi" path="res://card/spinner/spinner.tscn" id="5_cr8b7"]
+[ext_resource type="PackedScene" uid="uid://bfi0yq0hhslqt" path="res://card/exploder/exploder.tscn" id="6_iyiek"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dkril"]
 font_size = 60
@@ -30,6 +32,10 @@ card_number = 3
 [node name="Rock2" parent="PlayerCards" index="5" unique_id=320874248 instance=ExtResource("4_oqgxf")]
 current_grid_position = Vector2i(1, 2)
 should_be_visible = false
+
+[node name="Spinner" parent="PlayerCards" index="6" unique_id=444217434 instance=ExtResource("5_cr8b7")]
+
+[node name="Exploder" parent="PlayerCards" index="7" unique_id=139866442 instance=ExtResource("6_iyiek")]
 
 [node name="Label" parent="UI/HBoxContainer" parent_id_path=PackedInt32Array(243899643) index="1" unique_id=1609054292]
 label_settings = SubResource("LabelSettings_dkril")

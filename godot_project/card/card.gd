@@ -11,6 +11,7 @@ enum CARD_MODE {DECK, HAND, CONTROL, BOARD, DISCARD}
 var game_board: GameBoard
 var player_cards: PlayerCards
 
+var effect_suppressed: bool = false
 @export var movable: bool = true
 @export var starts_on_board: bool = false
 @export var should_be_visible: bool = true
@@ -39,6 +40,7 @@ var number_textures: Dictionary[int, Texture] = {
 	9: preload("res://_numbers/9.png"),
 	10: preload("res://_numbers/10.png"),
 }
+
 
 func _ready() -> void:
 	_randomise_sfx()
@@ -128,7 +130,7 @@ func play_card(grid_position: Vector2i, ignore_hand: bool = false):
 			reparent(game_board.grid_occupiers)
 			set_grid_position(grid_position)
 			var grid_space_size: Vector2 = game_board.grid_visual.get_grid_space_size()
-			var texture_size: Vector2 = sprite.texture.get_size()
+			var texture_size: Vector2 = border_sprite.texture.get_size()
 			scale = min(grid_space_size.x, grid_space_size.y) / max(texture_size.x, texture_size.y) * Vector2.ONE
 			on_play_effect()
 			await get_tree().create_timer(0.5/Settings.game_speed).timeout
@@ -180,6 +182,8 @@ func set_grid_position(grid_position: Vector2i):
 			game_board.card_grid_spaces.erase(current_grid_position)
 		current_grid_position = grid_position
 		game_board.card_grid_spaces[current_grid_position] = self
+		if current_grid_position in game_board.field_effects:
+			game_board.field_effects[current_grid_position].apply_effect(self)
 	else:
 		printerr("WARNING: Attempted to set card position to invalid place ", grid_position)
 
@@ -230,6 +234,8 @@ func animate():
 		Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 func _do_card_effect(_card_number_trigger: int):
+	if effect_suppressed:
+		return
 	if _effect_should_play(_card_number_trigger):
 		_play_sfx()
 		animate()
@@ -252,6 +258,10 @@ func on_moved_effect(_card_number_trigger: int):
 	if EFFECT_TRIGGER.ON_MOVED in effect_triggers:
 		_do_card_effect(_card_number_trigger)
 
+@onready var border_sprite: Sprite2D = $Border
+
+# const standard_material: ShaderMaterial = preload("res://card/card_float_material.tres")
+
 func save_state() -> Dictionary:
 	return {
 		"grid_position": current_grid_position,
@@ -260,6 +270,9 @@ func save_state() -> Dictionary:
 		"position": position,
 		"scale": scale,
 		"card_mode": card_mode,
+		"movable": movable,
+		"effect_suppressed": effect_suppressed,
+		"material": border_sprite.material,
 	}
 
 func load_state(state_dict: Dictionary):
@@ -269,6 +282,9 @@ func load_state(state_dict: Dictionary):
 	position = state_dict["position"]
 	scale = state_dict["scale"]
 	card_mode = state_dict["card_mode"]
+	movable = state_dict["movable"]
+	effect_suppressed = state_dict["effect_suppressed"]
+	border_sprite.material = state_dict["material"]
 
 @onready var multitooltip: MultiTooltip = $TooltipHolder/MultiTooltip
 

@@ -121,8 +121,12 @@ func _ready() -> void:
 	_connect_tutorial()
 
 
-func get_physical_position(grid_position: Vector2i) -> Vector2:
-	return grid_visual.get_physical_position(grid_position)
+	for field_effect in grid_visual.find_child("FieldEffects", false).find_children("*", "FieldEffect"):
+		field_effects[field_effect.starting_position] = field_effect
+		field_effect.position = get_physical_position(field_effect.starting_position, true)
+
+func get_physical_position(grid_position: Vector2i, with_offset: bool = false) -> Vector2:
+	return grid_visual.get_physical_position(grid_position, with_offset)
 
 func is_inside_grid(grid_position: Vector2i) -> bool:
 	return grid_position.x >= 0 and grid_position.y >= 0 and grid_position.x < total_grid_x_spaces and grid_position.y < total_grid_y_spaces
@@ -136,7 +140,7 @@ func physical_position_to_grid_position(physical_position: Vector2) -> Vector2i:
 
 func move_multiple_simultaneously(move_requests: Dictionary[Card, Vector2i]):
 	for card in move_requests.keys():
-		if not card.movable():
+		if not card.movable:
 			move_requests.erase(card)
 	var all_targets = move_requests.values()
 	var target_set = {}
@@ -289,3 +293,6 @@ func _connect_tutorial():
 func _dismiss_tutorial():
 	tutorial.visible = false
 	$UI/Control.visible = false
+
+
+var field_effects: Dictionary[Vector2i, FieldEffect] = {}

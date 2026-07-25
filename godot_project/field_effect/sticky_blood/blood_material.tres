@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bji0dd0po21ob"]
+
+[ext_resource type="Shader" uid="uid://bw1pjnexeiiw7" path="res://field_effect/sticky_blood/StickyBlood.gdshader" id="1_nlpls"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_e1145"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ohcks"]
+noise = SubResource("FastNoiseLite_e1145")
+
+[resource]
+shader = ExtResource("1_nlpls")
+shader_parameter/noise = SubResource("NoiseTexture2D_ohcks")
+shader_parameter/blood_coef = 0.410000019475
+shader_parameter/color = Color(0.55, 0.11549999, 0.11549999, 1)

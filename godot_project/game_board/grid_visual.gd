@@ -11,11 +11,15 @@ var grid_line_thickness: float = 5
 
 var grid_space_scene: PackedScene = preload("res://grid_space/grid_space.tscn")
 
-func get_physical_position(grid_position: Vector2i) -> Vector2:
+func get_physical_position(grid_position: Vector2i, with_offset: bool = false) -> Vector2:
 	var spacing = get_grid_spacing()
 	var physical_x = grid_position.x * spacing.x
 	var physical_y = grid_position.y * spacing.y
-	return Vector2(physical_x, physical_y)
+
+	var physical_position = Vector2(physical_x, physical_y)
+	if with_offset:
+		physical_position += spacing / 2
+	return physical_position
 
 func physical_position_to_grid_position(physical_position: Vector2) -> Vector2i:
 	var spacing = get_grid_spacing()
