@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://cjbip36jldo0k"]
+
+[ext_resource type="FontFile" uid="uid://btcx11ibxxabr" path="res://CAKE N TRUFFLES.TTF" id="1_1nvk1"]
+
+[resource]
+font = ExtResource("1_1nvk1")
+font_size = 116
+outline_size = 17
+outline_color = Color(0, 0, 0, 1)

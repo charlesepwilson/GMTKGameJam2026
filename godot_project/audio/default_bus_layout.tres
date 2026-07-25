@@ -16,6 +16,10 @@ resource_name = "LowPassFilter"
 [sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_73ea7"]
 resource_name = "PitchShift"
 
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_sj8iw"]
+resource_name = "PitchShift"
+pitch_scale = 0.2
+
 [resource]
 bus/1/name = &"Music"
 bus/1/solo = false
@@ -51,3 +55,11 @@ bus/4/volume_db = 0.0
 bus/4/send = &"SFX"
 bus/4/effect/0/effect = SubResource("AudioEffectPitchShift_73ea7")
 bus/4/effect/0/enabled = true
+bus/5/name = &"SpeedUpPitch"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = 0.0
+bus/5/send = &"SFX"
+bus/5/effect/0/effect = SubResource("AudioEffectPitchShift_sj8iw")
+bus/5/effect/0/enabled = true

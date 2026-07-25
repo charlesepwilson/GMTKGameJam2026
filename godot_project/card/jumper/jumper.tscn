@@ -5,14 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://c4r3pxnhh1f4s" path="res://card/Horse.png" id="3_lyyan"]
 [ext_resource type="Texture2D" uid="uid://bnhoxxx43dr5c" path="res://card/On_DJ.png" id="4_djr20"]
 [ext_resource type="Texture2D" uid="uid://bhksigst61yyo" path="res://card/Prancing_Horse.png" id="5_dubvj"]
-[ext_resource type="AudioStream" uid="uid://ttkubusg7dw5" path="res://audio/636722__ulrich_wehner__horror-stinger-1_sliced.wav" id="6_q5hto"]
+[ext_resource type="AudioStream" uid="uid://bjtklm0lva28q" path="res://audio/gallop_01.ogg" id="6_q5hto"]
 
 [node name="Jumper" unique_id=1733592583 instance=ExtResource("1_52ib6")]
 script = ExtResource("2_3eikw")
 jump_options = Array[Vector2i]([Vector2i(1, -2), Vector2i(2, -1), Vector2i(2, 1), Vector2i(1, 2), Vector2i(-1, 2), Vector2i(-2, 1), Vector2i(-2, -1), Vector2i(-1, -2)])
 card_number = 6
 card_name = "Sir Jumpsalot"
-sfx_start = 0.85
+sfx_start = 4.85
 
 [node name="EffectIcon" parent="Border" parent_id_path=PackedInt32Array(476875609) index="0" unique_id=2012726704]
 position = Vector2(59.000004, -54)

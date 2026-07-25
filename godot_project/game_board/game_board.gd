@@ -92,6 +92,7 @@ func end_turn():
 func _ready() -> void:
 	victory_popup.level_number = level_number
 	failure_popup.level_number = level_number
+	$UI/LevelNumber.text = "Level " + str(level_number)
 	player_interaction_start.connect(_on_player_interaction_start)
 	player_interaction_stop.connect(_on_player_interaction_stop)
 
@@ -239,13 +240,59 @@ func _activate_popups(victory):
 	else:
 		failure_popup.visible = true
 
+var oh_yeah: AudioStream = preload("res://audio/120591__snaginneb__oh_yeah_wav.wav")
+var oh_no: AudioStream = preload("res://audio/173845__junuxx__oh-noes.wav")
+
+var _oh_yeah_gaps = [
+	[0.51, 1.86],
+	[2.15, 3.88],
+	[4.32, 5.97],
+	[6.35, 7.8],
+]
+
+var _oh_no_gaps = [
+	[0, 2.34],
+	[2.35, 4.36],
+	[4.60, 6.37],
+	[6.99, 8.81],
+	[9.35, 11.39],
+	[11.97, 13.94],
+	[14.40, 16.49],
+	[16.92, 18.96],
+	[19.5, 21.4],
+]
+
+func _play_oh_yeah():
+	_oh_yeah_gaps.shuffle()
+	var clip = _oh_yeah_gaps[0]
+	dj_countdown_sfx.stream = oh_yeah
+	var start = clip[0]
+	var time = clip[1] - clip[0]
+	dj_countdown_sfx.play(start)
+	await get_tree().create_timer(time).timeout
+	dj_countdown_sfx.stop()
+
+func _play_oh_no():
+	_oh_no_gaps.shuffle()
+	var clip = _oh_no_gaps[0]
+	dj_countdown_sfx.stream = oh_no
+	var start = clip[0]
+	var time = clip[1] - clip[0]
+	dj_countdown_sfx.play(start)
+	await get_tree().create_timer(time).timeout
+	dj_countdown_sfx.stop()
+
 func perform_victory_check():
 	var victory = _check_victory()
 	if victory:
 		await _animate_victory(victory)
+		_play_oh_yeah()
+		for emitter in $UI/Confetti.get_children():
+			emitter.emitting = true
 	else:
 		var darkness: CanvasModulate = $Lights/Darkness
 		get_tree().create_tween().tween_property(darkness, "color", Color(0.5, 0, 0), 1)
+		_play_oh_no()
 	_activate_popups(victory)
 
 @onready var open_door: Sprite2D = $Door/Open

@@ -25,6 +25,13 @@ func _ready():
 	draw_timer.wait_time = 0.1 / Settings.game_speed
 	draw_timer.timeout.connect(draw_card)
 
+func _process(delta: float) -> void:
+	if draw_pile:
+		$DoorUI/WaitingLineLabel.text = str(len(draw_pile))
+		$DoorUI.show()
+	else:
+		$DoorUI.hide()
+
 func _timer_draw():
 	if initial_hand_filled:
 		draw_timer.stop()

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://3aty0qhnqmim"]
+
+[ext_resource type="PackedScene" uid="uid://bbp243w8h3qxt" path="res://game_board/game_board.tscn" id="1_w3xfr"]
+[ext_resource type="PackedScene" uid="uid://cgtenoaxywiwe" path="res://field_effect/sticky_blood/StickyBlood.tscn" id="2_bkw2m"]
+[ext_resource type="PackedScene" uid="uid://q8nalskll5gi" path="res://card/spinner/spinner.tscn" id="3_uyuj3"]
+
+[node name="GameBoard" unique_id=469077912 instance=ExtResource("1_w3xfr")]
+level_number = 8
+total_grid_x_spaces = 7
+total_grid_y_spaces = 7
+
+[node name="GridVisual" parent="." index="4" unique_id=1154572937]
+position = Vector2(556, 146)
+
+[node name="StickyBlood" parent="GridVisual/FieldEffects" parent_id_path=PackedInt32Array(52155281) index="0" unique_id=543619106 instance=ExtResource("2_bkw2m")]
+starting_position = Vector2i(3, 2)
+
+[node name="Spinner" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="2" unique_id=1733592583 instance=ExtResource("3_uyuj3")]
+card_number = 1
+effect_triggers = Array[int]([2])

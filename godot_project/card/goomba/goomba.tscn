@@ -17,6 +17,7 @@ sfx_start = 0.17
 texture = ExtResource("3_ewaa5")
 
 [node name="Artwork" parent="Border" parent_id_path=PackedInt32Array(476875609) index="3" unique_id=1143494246]
+position = Vector2(-2, -21)
 texture = ExtResource("3_n6ytf")
 
 [node name="AudioStreamPlayer2D" parent="." index="2" unique_id=126853625]
