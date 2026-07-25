@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://b5jte4tswygit" path="res://victory_popup/failure_popup.tscn" id="15_jpgb4"]
 [ext_resource type="Texture2D" uid="uid://qvxju0r63bn" path="res://card/Slowdown.png" id="17_td7mx"]
 [ext_resource type="Script" uid="uid://djyg5dfvfxck3" path="res://game_board/speed_down.gd" id="18_5iwnp"]
+[ext_resource type="Script" uid="uid://ep6v1flonsov" path="res://game_board/undo_button.gd" id="18_o6dup"]
+[ext_resource type="AudioStream" uid="uid://caudl4hcu0s6x" path="res://audio/record_scratch.wav" id="19_ix640"]
 [ext_resource type="Script" uid="uid://deie1cnx4gqbu" path="res://game_board/speed_label.gd" id="19_td7mx"]
 [ext_resource type="Texture2D" uid="uid://c43lih4akkxr2" path="res://card/Speed up.png" id="20_cw6cq"]
 [ext_resource type="Script" uid="uid://dnme0hl587rro" path="res://game_board/speed_up.gd" id="20_jpgb4"]
@@ -319,6 +321,12 @@ scale = Vector2(-1, 1)
 icon = ExtResource("11_nr2s7")
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("18_o6dup")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI/UndoButton" unique_id=1714522656]
+stream = ExtResource("19_ix640")
+volume_db = -16.0
+bus = &"SpeedUpPitch"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI" unique_id=243899643]
 offset_left = 101.0
@@ -347,5 +355,6 @@ script = ExtResource("20_jpgb4")
 
 [connection signal="pressed" from="MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="UI/UndoButton" to="." method="undo"]
+[connection signal="pressed" from="UI/UndoButton" to="UI/UndoButton" method="_on_pressed"]
 [connection signal="speed_changed" from="UI/HBoxContainer/SpeedDown" to="UI/HBoxContainer/Label" method="update_text"]
 [connection signal="speed_changed" from="UI/HBoxContainer/SpeedUp" to="UI/HBoxContainer/Label" method="update_text"]
