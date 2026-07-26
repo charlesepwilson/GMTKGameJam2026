@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://ckhpk1uvwcpqd"]
+
+[ext_resource type="PackedScene" uid="uid://bbp243w8h3qxt" path="res://game_board/game_board.tscn" id="1_6l8nm"]
+[ext_resource type="PackedScene" uid="uid://rnknawrnvutu" path="res://card/slider/slider.tscn" id="4_mdl56"]
+[ext_resource type="PackedScene" uid="uid://b85gdlck0tisj" path="res://game_board/tutorial_popup.tscn" id="5_bday5"]
+
+[node name="GameBoard" unique_id=469077912 instance=ExtResource("1_6l8nm")]
+total_grid_x_spaces = 3
+total_grid_y_spaces = 3
+
+[node name="Slider" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="0" unique_id=298161281 instance=ExtResource("4_mdl56")]
+
+[node name="Slider2" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="1" unique_id=1733592583 instance=ExtResource("4_mdl56")]
+move_vector = Vector2i(-1, 0)
+card_number = 2
+current_grid_position = Vector2i(2, 1)
+starts_on_board = true
+
+[node name="Slider3" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="2" unique_id=2002865844 instance=ExtResource("4_mdl56")]
+card_number = 3
+
+[node name="Control" parent="UI" parent_id_path=PackedInt32Array(875924731) index="1" unique_id=1079595306]
+visible = true
+offset_top = -2.0
+offset_bottom = 1078.0
+
+[node name="TutorialPopup" parent="UI/Control" index="2" unique_id=606867016 instance=ExtResource("5_bday5")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_top = -266.0
+offset_bottom = 266.0
+
+[node name="UndoButton" parent="UI" parent_id_path=PackedInt32Array(875924731) index="2" unique_id=282272217]
+offset_right = 1792.26
+offset_bottom = 110.7
