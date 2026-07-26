@@ -1,5 +1,6 @@
 extends Node
 
+var current_packed_scene: PackedScene
 
 var numberwang_index: int = 0
 var ray_tracing: bool = false

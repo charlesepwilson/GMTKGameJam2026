@@ -17,3 +17,6 @@ starting_position = Vector2i(3, 2)
 [node name="Spinner" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="2" unique_id=1733592583 instance=ExtResource("3_uyuj3")]
 card_number = 1
 effect_triggers = Array[int]([2])
+
+[node name="Spinner2" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="3" unique_id=1958663673 instance=ExtResource("3_uyuj3")]
+starts_on_board = true
