@@ -6,13 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://c37jomot53s3f" path="res://card/Speaker.png" id="4_5p067"]
 [ext_resource type="Texture2D" uid="uid://cicx7bpqf84ep" path="res://card/Door_Closed.png" id="4_38jxm"]
 [ext_resource type="Script" uid="uid://cgx7qf1xmwvtu" path="res://game_board/player_cards.gd" id="4_c8wg2"]
-[ext_resource type="Texture2D" uid="uid://c1a33jltu45o0" path="res://card/DJ_01.png" id="5_cme4s"]
 [ext_resource type="Texture2D" uid="uid://c4tht8hnca15f" path="res://card/Door_Open.png" id="5_dilif"]
 [ext_resource type="AudioStream" uid="uid://ba4paeqef5o8k" path="res://audio/1.mp3" id="5_ht67x"]
+[ext_resource type="Material" uid="uid://4uxokurm4825" path="res://non_glow_material.tres" id="6_7jxdh"]
 [ext_resource type="AudioStream" uid="uid://c3vvul5i1dqj1" path="res://audio/638391__ulrich_wehner__horror-stinger-12_vampire-nest.wav" id="6_dilif"]
-[ext_resource type="Texture2D" uid="uid://dsu8hamv5dsx0" path="res://card/DJ_02.png" id="6_ht67x"]
 [ext_resource type="AudioStream" uid="uid://cw87xqbkog7ve" path="res://audio/720273__1love__80s-synth-hit-01-1lovewav.wav" id="6_td7mx"]
 [ext_resource type="PackedScene" uid="uid://cekths2ejptic" path="res://victory_popup/victory_popup.tscn" id="6_wpyk7"]
+[ext_resource type="Texture2D" uid="uid://eciyu2d72fuo" path="res://dj_animated_texture.tres" id="7_s65bw"]
+[ext_resource type="Script" uid="uid://cwve603cw1jyq" path="res://game_board/move_button.gd" id="9_x156a"]
 [ext_resource type="Texture2D" uid="uid://mt8er1e8cq55" path="res://card/Jump.png" id="11_nr2s7"]
 [ext_resource type="Script" uid="uid://bsw004ianpbs0" path="res://game_board/ceiling_lamp.gd" id="13_2ii8d"]
 [ext_resource type="FontFile" uid="uid://btcx11ibxxabr" path="res://CAKE N TRUFFLES.TTF" id="13_8tjsf"]
@@ -41,12 +42,6 @@ polygon = PackedVector2Array(81, 169, 94, 249, 73, 240, 61, 183, 6, 167, -14, 14
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r0m34"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oagrr"]
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_gqfrg"]
-frames = 2
-frame_0/texture = ExtResource("5_cme4s")
-frame_1/texture = ExtResource("6_ht67x")
-frame_1/duration = 1.0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jpgb4"]
 
@@ -129,12 +124,23 @@ volume_db = -10.0
 bus = &"PitchShift"
 playback_type = 1
 
-[node name="MoveButton" type="Button" parent="." unique_id=1109891816]
-offset_left = 1864.0
-offset_top = 391.0
-offset_right = 2164.0
-offset_bottom = 691.0
+[node name="DJ" type="Sprite2D" parent="." unique_id=934869152]
+material = ExtResource("6_7jxdh")
+position = Vector2(1714, 538)
 rotation = 1.5707964
+texture = ExtResource("7_s65bw")
+script = ExtResource("9_x156a")
+
+[node name="MoveButton" type="Button" parent="DJ" unique_id=1109891816]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -225.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/icon_normal_color = Color(0.82, 0.82, 0.82, 1)
 theme_override_colors/icon_pressed_color = Color(1, 0.40784314, 0.40392157, 1)
 theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0.4)
@@ -143,7 +149,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_ht67x")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_2ii8d")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_r0m34")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_oagrr")
-icon = SubResource("AnimatedTexture_gqfrg")
+icon = ExtResource("7_s65bw")
 icon_alignment = 1
 
 [node name="Door" type="Node2D" parent="." unique_id=820867552]
@@ -405,7 +411,7 @@ label_settings = SubResource("LabelSettings_88noe")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="MoveButton" to="." method="_on_move_button_pressed"]
+[connection signal="pressed" from="DJ/MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="UI/UndoButton" to="." method="undo"]
 [connection signal="pressed" from="UI/UndoButton" to="UI/UndoButton" method="_on_pressed"]
 [connection signal="speed_changed" from="UI/HBoxContainer/SpeedDown" to="UI/HBoxContainer/Label" method="update_text"]
