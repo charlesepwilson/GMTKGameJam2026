@@ -17,7 +17,6 @@ const card_scenes: Array[PackedScene] = [
 static func generate_card(number: int) -> Card:
 	var card: Card = card_scenes.pick_random().instantiate()
 	card.card_number = number
-	print(card.card_number)
 	if card.get("move_vector"):
 		card.move_vector = [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT].pick_random()
 	var trigger = [Card.EFFECT_TRIGGER.ON_CARD_PLAYED, Card.EFFECT_TRIGGER.ON_TURN_END].pick_random()
@@ -31,7 +30,6 @@ static func generate_cards() -> Array[Card]:
 	var num_cards: int = randi_range(4, 8)
 	var grid_positions_taken = []
 	for i in num_cards:
-		print(i, " Setting card number ", i+1)
 		var card: Card = generate_card(i + 1)
 		if card.starts_on_board:
 			var grid_position = Vector2i(randi_range(0, grid_size), randi_range(0, grid_size))

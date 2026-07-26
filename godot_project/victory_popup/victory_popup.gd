@@ -13,7 +13,6 @@ func _on_next_level_button_pressed():
 
 func _on_retry_button_pressed():
 	if is_random_level:
-		print("LOADING PACKED SCENE")
 		get_tree().change_scene_to_packed(Settings.current_packed_scene)
 	else:
 		get_tree().reload_current_scene()
