@@ -117,6 +117,7 @@ func _ready() -> void:
 		all_numbers.append(card.card_number)
 	level_max_number = all_numbers.max()
 	_connect_tutorial()
+	$DJ.player_cards = player_cards
 
 
 	for field_effect in grid_visual.find_child("FieldEffects", false).find_children("*", "FieldEffect"):

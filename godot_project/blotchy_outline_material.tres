@@ -1,0 +1,32 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dpsgqa83mqkpp"]
+
+[ext_resource type="Shader" uid="uid://b724sej7kyemr" path="res://game_board/dj_outline.gdshader" id="1_oe884"]
+
+[sub_resource type="Gradient" id="Gradient_lkh6y"]
+colors = PackedColorArray(1, 0, 0, 1, 0.4, 0.33333334, 0.6039216, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kg7ku"]
+gradient = SubResource("Gradient_lkh6y")
+
+[sub_resource type="Gradient" id="Gradient_mt6lw"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bii7o"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m65ut"]
+noise = SubResource("FastNoiseLite_bii7o")
+color_ramp = SubResource("Gradient_mt6lw")
+
+[resource]
+shader = ExtResource("1_oe884")
+shader_parameter/scrollingTexture = SubResource("NoiseTexture2D_m65ut")
+shader_parameter/textureScale = Vector2(1.18, 1)
+shader_parameter/angle = 90.000004275
+shader_parameter/textureSpeed = 0.2000004845000003
+shader_parameter/textureStrength = 0.2050000097375
+shader_parameter/maxLineWidth = 25.38400120574
+shader_parameter/minLineWidth = 2.9910001420725
+shader_parameter/speed = 3.1370001490075
+shader_parameter/blockSize = 20.0
+shader_parameter/color = SubResource("GradientTexture1D_kg7ku")
+shader_parameter/gradientResolution = 10
+shader_parameter/tolerance = 0.0
