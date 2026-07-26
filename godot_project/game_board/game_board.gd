@@ -7,6 +7,8 @@ var gap_between_movements: float = 1.0
 @onready var victory_popup: VictoryPopup = %VictoryPopup
 @onready var failure_popup: VictoryPopup = %FailurePopup
 
+@export var is_random_level: bool = false
+
 @export var total_grid_x_spaces: int = 5
 @export var total_grid_y_spaces: int = 5
 var level_max_number: int
@@ -89,6 +91,8 @@ func end_turn():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	victory_popup.is_random_level = is_random_level
+	failure_popup.is_random_level = is_random_level
 	$UI/LevelNumber.text = "Level " + str(Settings.current_level_number)
 	player_interaction_start.connect(_on_player_interaction_start)
 	player_interaction_stop.connect(_on_player_interaction_stop)

@@ -1,0 +1,525 @@
+[gd_scene format=3 uid="uid://0gajfe4n56tp"]
+
+[ext_resource type="Script" uid="uid://e5xtcj151x6a" path="res://game_board/game_board.gd" id="1_2wg06"]
+[ext_resource type="Texture2D" uid="uid://dp2r72bcmx8ir" path="res://card/Background(1).png" id="2_0y2o8"]
+[ext_resource type="Texture2D" uid="uid://c37jomot53s3f" path="res://card/Speaker.png" id="3_fka2i"]
+[ext_resource type="AudioStream" uid="uid://ba4paeqef5o8k" path="res://audio/1.mp3" id="4_ghki6"]
+[ext_resource type="AudioStream" uid="uid://cw87xqbkog7ve" path="res://audio/720273__1love__80s-synth-hit-01-1lovewav.wav" id="5_mbltv"]
+[ext_resource type="Material" uid="uid://4uxokurm4825" path="res://non_glow_material.tres" id="6_6h5we"]
+[ext_resource type="Texture2D" uid="uid://eciyu2d72fuo" path="res://dj_animated_texture.tres" id="7_vehd4"]
+[ext_resource type="Script" uid="uid://cwve603cw1jyq" path="res://game_board/move_button.gd" id="8_2nwa5"]
+[ext_resource type="Texture2D" uid="uid://cicx7bpqf84ep" path="res://card/Door_Closed.png" id="9_m585s"]
+[ext_resource type="Texture2D" uid="uid://c4tht8hnca15f" path="res://card/Door_Open.png" id="10_45sau"]
+[ext_resource type="AudioStream" uid="uid://c3vvul5i1dqj1" path="res://audio/638391__ulrich_wehner__horror-stinger-12_vampire-nest.wav" id="11_8vdvk"]
+[ext_resource type="Script" uid="uid://b2d2ofq0dtu0n" path="res://game_board/grid_visual.gd" id="12_osadf"]
+[ext_resource type="Script" uid="uid://cgx7qf1xmwvtu" path="res://game_board/player_cards.gd" id="13_s2gfa"]
+[ext_resource type="LabelSettings" uid="uid://cjbip36jldo0k" path="res://new_label_settings.tres" id="14_6xbjg"]
+[ext_resource type="PackedScene" uid="uid://dqceyp8knjyls" path="res://card/jumper/jumper.tscn" id="15_gaeoo"]
+[ext_resource type="Script" uid="uid://qk8oorf7nemu" path="res://card/jumper/jumper.gd" id="16_cxyau"]
+[ext_resource type="PackedScene" uid="uid://cu4fwstq5yv0w" path="res://card/sucker/sucker.tscn" id="17_dy48l"]
+[ext_resource type="Script" uid="uid://cbdkew3gysxxe" path="res://card/sucker/sucker.gd" id="18_acgi1"]
+[ext_resource type="PackedScene" uid="uid://csvssq1pgaoma" path="res://card/goomba/goomba.tscn" id="19_3sgxt"]
+[ext_resource type="Script" uid="uid://cn6nmshcyqxif" path="res://card/goomba/goomba.gd" id="20_vfx57"]
+[ext_resource type="Script" uid="uid://bsw004ianpbs0" path="res://game_board/ceiling_lamp.gd" id="21_i3grf"]
+[ext_resource type="PackedScene" uid="uid://ber778ydj15qd" path="res://game_board/number_confetti.tscn" id="22_yvcsa"]
+[ext_resource type="Texture2D" uid="uid://jif4hwdxpyrl" path="res://_numbers/Number_SpriteSheet.png" id="23_n38ev"]
+[ext_resource type="Theme" uid="uid://bcg08v88fsprf" path="res://ui_themes/menu_theme.tres" id="24_i6ba7"]
+[ext_resource type="PackedScene" uid="uid://b5jte4tswygit" path="res://victory_popup/failure_popup.tscn" id="25_h7mp6"]
+[ext_resource type="Script" uid="uid://b1ab1o8mvrixd" path="res://victory_popup/victory_popup.gd" id="26_s6ok3"]
+[ext_resource type="PackedScene" uid="uid://cekths2ejptic" path="res://victory_popup/victory_popup.tscn" id="27_goqe1"]
+[ext_resource type="FontFile" uid="uid://btcx11ibxxabr" path="res://CAKE N TRUFFLES.TTF" id="28_jatws"]
+[ext_resource type="Texture2D" uid="uid://mt8er1e8cq55" path="res://card/Jump.png" id="29_bag5v"]
+[ext_resource type="Script" uid="uid://ep6v1flonsov" path="res://game_board/undo_button.gd" id="30_0hk32"]
+[ext_resource type="AudioStream" uid="uid://caudl4hcu0s6x" path="res://audio/record_scratch.wav" id="31_fhv1l"]
+[ext_resource type="Texture2D" uid="uid://qvxju0r63bn" path="res://card/Slowdown.png" id="32_66mvi"]
+[ext_resource type="Script" uid="uid://djyg5dfvfxck3" path="res://game_board/speed_down.gd" id="33_23eta"]
+[ext_resource type="LabelSettings" uid="uid://cltrrywbmv2vg" path="res://speed_label_settings.tres" id="34_6ldat"]
+[ext_resource type="Script" uid="uid://deie1cnx4gqbu" path="res://game_board/speed_label.gd" id="35_hwsyy"]
+[ext_resource type="Texture2D" uid="uid://c43lih4akkxr2" path="res://card/Speed up.png" id="36_tht6j"]
+[ext_resource type="Script" uid="uid://dnme0hl587rro" path="res://game_board/speed_up.gd" id="37_e4icy"]
+[ext_resource type="PackedScene" uid="uid://cks8af20ujok7" path="res://settings/settings_page.tscn" id="38_hoofl"]
+[ext_resource type="Script" uid="uid://bve8s7xeghb61" path="res://settings/settings_page.gd" id="39_5pmoc"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_57qmd"]
+polygon = PackedVector2Array(81, 169, 94, 249, 73, 240, 61, 183, 6, 167, -14, 149, 48, 121, 43, -111, -4, -157, 73, -180, 91, -229, 52, -246, 3, -281, 110, -242, 97, -166, 20, -150, 62, -126, 63, 132, 2, 152)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cme4s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ht67x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ii8d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r0m34"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oagrr"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jpgb4"]
+
+[sub_resource type="Gradient" id="Gradient_2ii8d"]
+offsets = PackedFloat32Array(0, 0.27654868, 0.7699115, 1)
+colors = PackedColorArray(1, 0.42000002, 0.42000002, 1, 0.59, 0.3304, 0.3304, 1, 0.37, 0.2257, 0.2257, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r0m34"]
+gradient = SubResource("Gradient_2ii8d")
+width = 150
+height = 150
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.76495725, 0.2735043)
+
+[sub_resource type="Gradient" id="Gradient_ht67x"]
+offsets = PackedFloat32Array(0, 0.4159292, 0.58849555, 1)
+colors = PackedColorArray(1, 0.42000002, 0.42000002, 1, 0.59, 0.3304, 0.3304, 1, 0.37, 0.2257, 0.2257, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dkril"]
+gradient = SubResource("Gradient_ht67x")
+width = 1000
+height = 1000
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.76495725, 0.2735043)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_g4v7s"]
+polygon = PackedVector2Array(5, -27, -4, -5, 86, -16, 83, -36)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2ii8d"]
+polygon = PackedVector2Array(-5, 110, 10, 128, 68, 133, 70, 113)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_r0m34"]
+polygon = PackedVector2Array(32, 106, 50, 117, 109, 95, 110, 74)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_oagrr"]
+polygon = PackedVector2Array(37, -55, 25, -44, 100, -8, 103, -28)
+
+[sub_resource type="Gradient" id="Gradient_oagrr"]
+offsets = PackedFloat32Array(0, 0.45132744, 0.6924779)
+colors = PackedColorArray(1, 1, 1, 1, 0.19911504, 0.19911504, 0.19911504, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
+gradient = SubResource("Gradient_oagrr")
+width = 2000
+height = 170
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_88noe"]
+light_mode = 1
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_88noe"]
+font = ExtResource("28_jatws")
+font_size = 80
+outline_size = 17
+outline_color = Color(0, 0, 0, 1)
+
+[node name="GameBoard" type="Node2D" unique_id=469077912]
+script = ExtResource("1_2wg06")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=235818796]
+position = Vector2(960, 540)
+texture = ExtResource("2_0y2o8")
+
+[node name="DJDeck" type="Sprite2D" parent="." unique_id=2000376572]
+position = Vector2(1593, 539)
+texture = ExtResource("3_fka2i")
+
+[node name="DJCountDownSFX" type="AudioStreamPlayer" parent="DJDeck" unique_id=2000752674]
+stream = ExtResource("4_ghki6")
+volume_db = 2.0
+bus = &"Distort"
+playback_type = 1
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="DJDeck" unique_id=1179237612]
+occluder = SubResource("OccluderPolygon2D_57qmd")
+
+[node name="OrchestraHitSFX" type="AudioStreamPlayer" parent="DJDeck" unique_id=933399050]
+stream = ExtResource("5_mbltv")
+volume_db = -10.0
+bus = &"PitchShift"
+playback_type = 1
+
+[node name="DJ" type="Sprite2D" parent="." unique_id=934869152]
+material = ExtResource("6_6h5we")
+position = Vector2(1714, 538)
+rotation = 1.5707964
+texture = ExtResource("7_vehd4")
+script = ExtResource("8_2nwa5")
+
+[node name="MoveButton" type="Button" parent="DJ" unique_id=1109891816]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -225.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/icon_normal_color = Color(0.82, 0.82, 0.82, 1)
+theme_override_colors/icon_pressed_color = Color(1, 0.40784314, 0.40392157, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cme4s")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ht67x")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2ii8d")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_r0m34")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oagrr")
+icon = ExtResource("7_vehd4")
+icon_alignment = 1
+
+[node name="Door" type="Node2D" parent="." unique_id=820867552]
+position = Vector2(62, 213)
+
+[node name="Closed" type="Sprite2D" parent="Door" unique_id=1950921698]
+texture = ExtResource("9_m585s")
+
+[node name="Open" type="Sprite2D" parent="Door" unique_id=2112387181]
+visible = false
+position = Vector2(67, 1)
+texture = ExtResource("10_45sau")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Door" unique_id=1245343759]
+stream = ExtResource("11_8vdvk")
+
+[node name="GridVisual" type="Node2D" parent="." unique_id=1154572937]
+position = Vector2(556, 142)
+script = ExtResource("12_osadf")
+
+[node name="GridPlaceholder" type="Sprite2D" parent="GridVisual" unique_id=820312581]
+visible = false
+scale = Vector2(800, 800)
+texture = SubResource("PlaceholderTexture2D_jpgb4")
+centered = false
+
+[node name="GridSquares" type="Node2D" parent="GridVisual" unique_id=198607214]
+
+[node name="FieldEffects" type="Node2D" parent="GridVisual" unique_id=52155281]
+
+[node name="GridOccupiers" type="Node2D" parent="GridVisual" unique_id=1695326612]
+
+[node name="PlayerCards" type="Node2D" parent="." unique_id=592926577]
+position = Vector2(259, 265)
+script = ExtResource("13_s2gfa")
+
+[node name="DoorUI" type="Node2D" parent="PlayerCards" unique_id=1870860289]
+position = Vector2(-197, -51)
+
+[node name="WaitingLineLabel" type="Label" parent="PlayerCards/DoorUI" unique_id=1649215206]
+offset_left = -31.0
+offset_top = -54.0
+offset_right = 44.0
+offset_bottom = 68.0
+text = "2"
+label_settings = ExtResource("14_6xbjg")
+horizontal_alignment = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="PlayerCards/DoorUI" unique_id=418741101]
+energy = 1.3
+texture = SubResource("GradientTexture2D_r0m34")
+texture_scale = 2.0
+
+[node name="Timer" type="Timer" parent="PlayerCards" unique_id=1707955779]
+autostart = true
+
+[node name="Jumper" type="Node2D" parent="PlayerCards" unique_id=1733592583 instance=ExtResource("15_gaeoo")]
+script = ExtResource("16_cxyau")
+card_number = 1
+card_name = "Sir Jumpsalot"
+sfx_start = 4.85
+effect_triggers = Array[int]([1])
+
+[node name="@Node2D@135387" type="Node2D" parent="PlayerCards" unique_id=866024674 instance=ExtResource("15_gaeoo")]
+script = ExtResource("16_cxyau")
+card_number = 2
+card_name = "Sir Jumpsalot"
+current_grid_position = Vector2i(0, 1)
+starts_on_board = true
+sfx_start = 4.85
+effect_triggers = Array[int]([1])
+
+[node name="Sucker" type="Node2D" parent="PlayerCards" unique_id=394106100 instance=ExtResource("17_dy48l")]
+script = ExtResource("18_acgi1")
+card_number = 3
+card_name = "Lilith"
+sfx_start = 0.85
+effect_triggers = Array[int]([1])
+
+[node name="Goomba" type="Node2D" parent="PlayerCards" unique_id=1780352928 instance=ExtResource("19_3sgxt")]
+script = ExtResource("20_vfx57")
+move_vector = Vector2i(0, 1)
+card_number = 4
+card_name = "Dave"
+sfx_start = 0.17
+
+[node name="Lights" type="Node2D" parent="." unique_id=1840181145]
+
+[node name="Darkness" type="CanvasModulate" parent="Lights" unique_id=985478149]
+color = Color(0.5, 0.43, 0.43, 1)
+
+[node name="CelingLamp" type="PointLight2D" parent="Lights" unique_id=1598098664]
+position = Vector2(329, 531)
+energy = 1.3
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.45882353)
+shadow_filter = 1
+shadow_filter_smooth = 19.9
+texture = SubResource("GradientTexture2D_dkril")
+height = 197.0
+script = ExtResource("21_i3grf")
+
+[node name="CelingLamp2" type="PointLight2D" parent="Lights" unique_id=984135777]
+position = Vector2(896, 546)
+energy = 1.3
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.47843137)
+shadow_filter = 1
+shadow_filter_smooth = 23.0
+texture = SubResource("GradientTexture2D_dkril")
+height = 197.0
+script = ExtResource("21_i3grf")
+
+[node name="CelingLamp3" type="PointLight2D" parent="Lights" unique_id=1089810026]
+position = Vector2(1547, 545)
+energy = 1.3
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_filter = 1
+shadow_filter_smooth = 41.8
+texture = SubResource("GradientTexture2D_dkril")
+height = 197.0
+script = ExtResource("21_i3grf")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lights" unique_id=47760169]
+position = Vector2(1568, 69)
+energy = 1.3
+texture = SubResource("GradientTexture2D_r0m34")
+
+[node name="WindowFrame1" type="LightOccluder2D" parent="Lights" unique_id=719001767]
+position = Vector2(1851, 350)
+occluder = SubResource("OccluderPolygon2D_g4v7s")
+
+[node name="WindowFrame2" type="LightOccluder2D" parent="Lights" unique_id=77110567]
+position = Vector2(1840, 486)
+occluder = SubResource("OccluderPolygon2D_g4v7s")
+
+[node name="WindowFrame3" type="LightOccluder2D" parent="Lights" unique_id=1213629919]
+position = Vector2(1845, 635)
+occluder = SubResource("OccluderPolygon2D_g4v7s")
+
+[node name="WindowFrame4" type="LightOccluder2D" parent="Lights" unique_id=1989315039]
+position = Vector2(1853, 637)
+occluder = SubResource("OccluderPolygon2D_2ii8d")
+
+[node name="WindowFrame5" type="LightOccluder2D" parent="Lights" unique_id=1487469497]
+position = Vector2(1811, 58)
+occluder = SubResource("OccluderPolygon2D_r0m34")
+
+[node name="WindowFrame6" type="LightOccluder2D" parent="Lights" unique_id=267110294]
+position = Vector2(1823, 963)
+occluder = SubResource("OccluderPolygon2D_oagrr")
+
+[node name="Moonlight" type="PointLight2D" parent="Lights" unique_id=80204073]
+position = Vector2(1953, 234)
+color = Color(0.84000003, 0.88266665, 1, 1)
+energy = 1.96
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="Moonlight2" type="PointLight2D" parent="Lights" unique_id=1515090512]
+position = Vector2(1944, 541)
+color = Color(0.84000003, 0.88266665, 1, 1)
+energy = 1.96
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="Moonlight3" type="PointLight2D" parent="Lights" unique_id=452550440]
+position = Vector2(1945, 843)
+color = Color(0.84000003, 0.88266665, 1, 1)
+energy = 1.96
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=875924731]
+
+[node name="Confetti" type="Node2D" parent="UI" unique_id=7496516]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/Confetti" unique_id=356909706 instance=ExtResource("22_yvcsa")]
+material = SubResource("CanvasItemMaterial_88noe")
+position = Vector2(478, 268)
+emitting = false
+amount = 50
+texture = ExtResource("23_n38ev")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.8
+direction = Vector2(0, -1)
+initial_velocity_min = 307.49
+initial_velocity_max = 530.79
+angle_min = -82.6
+angle_max = 88.5
+scale_amount_max = 2.0
+anim_offset_max = 1.0
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="UI/Confetti" unique_id=691399931 instance=ExtResource("22_yvcsa")]
+material = SubResource("CanvasItemMaterial_88noe")
+position = Vector2(1334, 271)
+emitting = false
+amount = 50
+texture = ExtResource("23_n38ev")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.8
+direction = Vector2(0, -1)
+initial_velocity_min = 307.49
+initial_velocity_max = 530.79
+angle_min = -82.6
+angle_max = 88.5
+scale_amount_max = 2.0
+anim_offset_max = 1.0
+
+[node name="Control" type="Control" parent="UI" unique_id=1079595306]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = ExtResource("24_i6ba7")
+
+[node name="FailurePopup" type="PanelContainer" parent="UI/Control" unique_id=842108949 instance=ExtResource("25_h7mp6")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.5
+offset_top = -121.0
+offset_right = 83.5
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_i6ba7")
+script = ExtResource("26_s6ok3")
+
+[node name="VictoryPopup" type="PanelContainer" parent="UI/Control" unique_id=124024417 instance=ExtResource("27_goqe1")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -203.5
+offset_top = -161.0
+offset_right = 203.5
+offset_bottom = 161.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_i6ba7")
+script = ExtResource("26_s6ok3")
+
+[node name="SettingsButton" type="Button" parent="UI" unique_id=775683023]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -276.0
+offset_top = -76.0
+offset_right = -74.0
+offset_bottom = -28.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("28_jatws")
+theme_override_font_sizes/font_size = 38
+text = "Settings"
+
+[node name="UndoButton" type="Button" parent="UI" unique_id=282272217]
+light_mask = 0
+z_index = 10
+offset_left = 1641.0
+offset_top = 3.0
+offset_right = 1784.6
+offset_bottom = 111.02
+scale = Vector2(-1, 1)
+icon = ExtResource("29_bag5v")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("30_0hk32")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI/UndoButton" unique_id=1714522656]
+stream = ExtResource("31_fhv1l")
+volume_db = -16.0
+bus = &"SpeedUpPitch"
+playback_type = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI" unique_id=243899643]
+offset_left = 101.0
+offset_top = 972.0
+offset_right = 403.0
+offset_bottom = 1075.0
+
+[node name="SpeedDown" type="Button" parent="UI/HBoxContainer" unique_id=1840799784]
+layout_mode = 2
+icon = ExtResource("32_66mvi")
+icon_alignment = 1
+script = ExtResource("33_23eta")
+
+[node name="Label" type="Label" parent="UI/HBoxContainer" unique_id=1609054292]
+layout_mode = 2
+text = "1.0x"
+label_settings = ExtResource("34_6ldat")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("35_hwsyy")
+
+[node name="SpeedUp" type="Button" parent="UI/HBoxContainer" unique_id=850384512]
+layout_mode = 2
+icon = ExtResource("36_tht6j")
+script = ExtResource("37_e4icy")
+
+[node name="LevelNumber" type="Label" parent="UI" unique_id=274524666]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -237.0
+offset_top = -115.0
+offset_right = 240.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Level 1"
+label_settings = SubResource("LabelSettings_88noe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsPage" type="Control" parent="UI" unique_id=1242241935 instance=ExtResource("38_hoofl")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_i6ba7")
+script = ExtResource("39_5pmoc")
+
+[connection signal="pressed" from="DJ/MoveButton" to="." method="_on_move_button_pressed"]
+[connection signal="pressed" from="UI/SettingsButton" to="UI/SettingsPage" method="show_settings"]
+[connection signal="pressed" from="UI/UndoButton" to="." method="undo"]
+[connection signal="pressed" from="UI/UndoButton" to="UI/UndoButton" method="_on_pressed"]
+[connection signal="speed_changed" from="UI/HBoxContainer/SpeedDown" to="UI/HBoxContainer/Label" method="update_text"]
+[connection signal="speed_changed" from="UI/HBoxContainer/SpeedUp" to="UI/HBoxContainer/Label" method="update_text"]

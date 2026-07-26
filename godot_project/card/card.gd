@@ -3,7 +3,7 @@ extends Node2D
 
 enum CARD_MODE {DECK, HAND, CONTROL, BOARD, DISCARD}
 
-@export var card_number: int = 1
+@export var card_number: int = 0
 @export var card_name: String = "Card Name"
 @onready var number_label: Sprite2D = $Border/Number
 @onready var trigger_icon: Sprite2D = $Border/TriggerIcon
