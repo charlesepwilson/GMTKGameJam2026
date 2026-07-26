@@ -13,18 +13,17 @@ const maximum_game_speed: float = 3 * base_speed
 const speed_increment: float = 0.2 * base_speed
 
 func load_level(level_number: int):
-    current_level_number = level_number
-    get_tree().change_scene_to_file(levels[level_number - 1])
+	current_level_number = level_number
+	get_tree().change_scene_to_file(levels[level_number - 1])
 
 var current_level_number: int = 0
 
 const levels: Array[String] = [
-    "res://levels/TutorialLevel.tscn",
-    "res://levels/EasyLevel.tscn",
-    "res://levels/OnPlayTutorialLevel.tscn",
-    "res://levels/AllOnPlayLevel.tscn",
-    "res://levels/ExploderIntroLevel.tscn",
-    "res://levels/TableIntroLevel.tscn",
-    "res://levels/BloodIntroLevel.tscn",
-    "res://levels/ExampleLevel.tscn",
+	"res://levels/Tutorial_1.tscn",
+	"res://levels/Tutorial_2.tscn",
+	"res://levels/Tutorial_3.tscn",
+	"res://levels/Tutorial_4.tscn",
+	"res://levels/Tut_OnPlay.tscn",
+	"res://levels/Tut_AllOnPlay.tscn",
+	"res://levels/Tut_BiggerDance.tscn",
 ]
