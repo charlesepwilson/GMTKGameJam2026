@@ -26,4 +26,7 @@ const levels: Array[String] = [
 	"res://levels/Tut_OnPlay.tscn",
 	"res://levels/Tut_AllOnPlay.tscn",
 	"res://levels/Tut_BiggerDance.tscn",
+	"res://levels/Goomba_Slide.tscn",
+	"res://levels/Tut_BloodStop.tscn",
+	"res://levels/Tut_Pull.tscn"
 ]
