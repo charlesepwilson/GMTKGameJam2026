@@ -20,12 +20,11 @@ func load_level(level_number: int):
 var current_level_number: int = 0
 
 const levels: Array[String] = [
-	"res://levels/TutorialLevel.tscn",
-	"res://levels/EasyLevel.tscn",
-	"res://levels/OnPlayTutorialLevel.tscn",
-	"res://levels/AllOnPlayLevel.tscn",
-	"res://levels/ExploderIntroLevel.tscn",
-	"res://levels/TableIntroLevel.tscn",
-	"res://levels/BloodIntroLevel.tscn",
-	"res://levels/ExampleLevel.tscn",
+	"res://levels/Tutorial_1.tscn",
+	"res://levels/Tutorial_2.tscn",
+	"res://levels/Tutorial_3.tscn",
+	"res://levels/Tutorial_4.tscn",
+	"res://levels/Tut_OnPlay.tscn",
+	"res://levels/Tut_AllOnPlay.tscn",
+	"res://levels/Tut_BiggerDance.tscn",
 ]
