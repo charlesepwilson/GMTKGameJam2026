@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://c43lih4akkxr2" path="res://card/Speed up.png" id="20_cw6cq"]
 [ext_resource type="Script" uid="uid://dnme0hl587rro" path="res://game_board/speed_up.gd" id="20_jpgb4"]
 [ext_resource type="LabelSettings" uid="uid://cltrrywbmv2vg" path="res://speed_label_settings.tres" id="24_88noe"]
+[ext_resource type="PackedScene" uid="uid://cks8af20ujok7" path="res://settings/settings_page.tscn" id="30_7jxdh"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_57qmd"]
 polygon = PackedVector2Array(81, 169, 94, 249, 73, 240, 61, 183, 6, 167, -14, 149, 48, 121, 43, -111, -4, -157, 73, -180, 91, -229, 52, -246, 3, -281, 110, -242, 97, -166, 20, -150, 62, -126, 63, 132, 2, 152)
@@ -350,6 +351,22 @@ offset_bottom = 161.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="SettingsButton" type="Button" parent="UI" unique_id=775683023]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -276.0
+offset_top = -76.0
+offset_right = -74.0
+offset_bottom = -28.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("13_8tjsf")
+theme_override_font_sizes/font_size = 38
+text = "Settings"
+
 [node name="UndoButton" type="Button" parent="UI" unique_id=282272217]
 light_mask = 0
 z_index = 10
@@ -411,7 +428,11 @@ label_settings = SubResource("LabelSettings_88noe")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SettingsPage" parent="UI" unique_id=1242241935 instance=ExtResource("30_7jxdh")]
+visible = false
+
 [connection signal="pressed" from="DJ/MoveButton" to="." method="_on_move_button_pressed"]
+[connection signal="pressed" from="UI/SettingsButton" to="UI/SettingsPage" method="show_settings"]
 [connection signal="pressed" from="UI/UndoButton" to="." method="undo"]
 [connection signal="pressed" from="UI/UndoButton" to="UI/UndoButton" method="_on_pressed"]
 [connection signal="speed_changed" from="UI/HBoxContainer/SpeedDown" to="UI/HBoxContainer/Label" method="update_text"]
