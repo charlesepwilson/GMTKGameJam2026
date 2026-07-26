@@ -15,6 +15,7 @@ var effect_suppressed: bool = false
 @export var movable: bool = true
 @export var starts_on_board: bool = false
 @export var should_be_visible: bool = true
+var _initial_play_done: bool = false
 
 var max_move_speed: float = 800
 @onready var sprite: Sprite2D = $Border/Artwork
@@ -132,6 +133,9 @@ func play_card(grid_position: Vector2i, ignore_hand: bool = false):
 			var grid_space_size: Vector2 = game_board.grid_visual.get_grid_space_size()
 			var texture_size: Vector2 = border_sprite.texture.get_size()
 			scale = min(grid_space_size.x, grid_space_size.y) / max(texture_size.x, texture_size.y) * Vector2.ONE
+			if starts_on_board and not _initial_play_done:
+				_initial_play_done = true
+				return
 			on_play_effect()
 			await get_tree().create_timer(0.5/Settings.game_speed).timeout
 			player_cards.card_played.emit()
