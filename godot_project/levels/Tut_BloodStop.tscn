@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://rnknawrnvutu" path="res://card/slider/slider.tscn" id="3_4n855"]
 [ext_resource type="PackedScene" uid="uid://csvssq1pgaoma" path="res://card/goomba/goomba.tscn" id="4_1jwwq"]
 [ext_resource type="PackedScene" uid="uid://q8nalskll5gi" path="res://card/spinner/spinner.tscn" id="5_thxd1"]
-[ext_resource type="PackedScene" uid="uid://b85gdlck0tisj" path="res://game_board/tutorial_popup.tscn" id="7_4n855"]
 
 [node name="GameBoard" unique_id=469077912 instance=ExtResource("1_4qa6i")]
 total_grid_x_spaces = 4
@@ -48,15 +47,49 @@ starts_on_board = true
 effect_triggers = Array[int]([2])
 
 [node name="Control" parent="UI" parent_id_path=PackedInt32Array(875924731) index="1" unique_id=1079595306]
+visible = true
 offset_top = -2.0
 offset_bottom = 1078.0
 
-[node name="TutorialPopup" parent="UI/Control" index="2" unique_id=606867016 instance=ExtResource("7_4n855")]
+[node name="TutorialPopup" type="PanelContainer" parent="UI/Control" index="2" unique_id=606867016]
 unique_name_in_owner = true
 layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -520.0
 offset_top = -266.0
+offset_right = 520.0
 offset_bottom = 266.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="UndoButton" parent="UI" parent_id_path=PackedInt32Array(875924731) index="2" unique_id=282272217]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control/TutorialPopup" index="0" unique_id=1955343979]
+layout_mode = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/TutorialPopup/MarginContainer" index="0" unique_id=210664389]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Control/TutorialPopup/MarginContainer/VBoxContainer" index="0" unique_id=65063977]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+text = "Uh oh! There's blood on the floor!
+
+A card that moves onto a blood covered tile will be immobilised."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="UI/Control/TutorialPopup/MarginContainer/VBoxContainer" index="1" unique_id=850097466]
+layout_mode = 2
+text = "Let's get started!"
+
+[node name="UndoButton" parent="UI" parent_id_path=PackedInt32Array(875924731) index="3" unique_id=282272217]
 offset_right = 1792.26
 offset_bottom = 110.7

@@ -26,10 +26,9 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=65063977]
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
-text = "Uh oh!
-There's blood on the dance floor!
+text = "Uh oh! There's blood on the floor!
 
-Card will stick to blood covered tiles and become immobile."
+A card that moves onto a blood covered tile will be immobilised."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
