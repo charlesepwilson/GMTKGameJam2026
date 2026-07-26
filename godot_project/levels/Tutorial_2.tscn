@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://d2iycjww6sgl1"]
+
+[ext_resource type="PackedScene" uid="uid://bbp243w8h3qxt" path="res://game_board/game_board.tscn" id="1_4kvka"]
+[ext_resource type="PackedScene" uid="uid://rnknawrnvutu" path="res://card/slider/slider.tscn" id="2_rw7ko"]
+[ext_resource type="PackedScene" uid="uid://csvssq1pgaoma" path="res://card/goomba/goomba.tscn" id="3_4kvka"]
+
+[node name="GameBoard" unique_id=469077912 instance=ExtResource("1_4kvka")]
+total_grid_x_spaces = 3
+total_grid_y_spaces = 3
+
+[node name="Slider" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="0" unique_id=298161281 instance=ExtResource("2_rw7ko")]
+move_vector = Vector2i(0, 1)
+
+[node name="Goomba" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="1" unique_id=1733592583 instance=ExtResource("3_4kvka")]
+move_vector = Vector2i(0, 1)
+current_grid_position = Vector2i(1, 2)
+starts_on_board = true
+
+[node name="Slider3" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="2" unique_id=2002865844 instance=ExtResource("2_rw7ko")]
+move_vector = Vector2i(0, 1)
+card_number = 3
+
+[node name="Control" parent="UI" parent_id_path=PackedInt32Array(875924731) index="1" unique_id=1079595306]
+offset_top = -2.0
+offset_bottom = 1078.0
+
+[node name="UndoButton" parent="UI" parent_id_path=PackedInt32Array(875924731) index="2" unique_id=282272217]
+offset_right = 1792.26
+offset_bottom = 110.7
