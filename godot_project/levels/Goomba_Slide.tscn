@@ -11,33 +11,35 @@ total_grid_x_spaces = 4
 total_grid_y_spaces = 4
 
 [node name="Chucker2" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="0" unique_id=293965841 instance=ExtResource("2_e1x6d")]
-card_number = 4
+move_vector = Vector2i(-1, 0)
+card_number = 2
 current_grid_position = Vector2i(0, 0)
 
 [node name="Slider" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="1" unique_id=298161281 instance=ExtResource("3_8v8xa")]
-move_vector = Vector2i(0, -1)
+move_vector = Vector2i(0, 1)
+card_number = 3
 current_grid_position = Vector2i(3, 2)
 
 [node name="Slider2" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="2" unique_id=1733592583 instance=ExtResource("3_8v8xa")]
-move_vector = Vector2i(0, 1)
-card_number = 6
+card_number = 5
 current_grid_position = Vector2i(0, 1)
 
 [node name="Goomba" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="3" unique_id=1640088549 instance=ExtResource("4_ac3q2")]
-card_number = 6
-current_grid_position = Vector2i(3, 3)
+move_vector = Vector2i(-1, 0)
+card_number = 1
+current_grid_position = Vector2i(2, 3)
 starts_on_board = true
 effect_triggers = Array[int]([1])
 
 [node name="Goomba2" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="4" unique_id=47067502 instance=ExtResource("4_ac3q2")]
-card_number = 1
-current_grid_position = Vector2i(0, 0)
+card_number = 6
+current_grid_position = Vector2i(1, 0)
 starts_on_board = true
 effect_triggers = Array[int]([1])
 
 [node name="Spinner" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="5" unique_id=2097725344 instance=ExtResource("5_u5cdg")]
-card_number = 3
 current_grid_position = Vector2i(2, 2)
+starts_on_board = true
 effect_triggers = Array[int]([2])
 
 [node name="Control" parent="UI" parent_id_path=PackedInt32Array(875924731) index="1" unique_id=1079595306]

@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cauedibqjes71"]
+
+[ext_resource type="PackedScene" uid="uid://bbp243w8h3qxt" path="res://game_board/game_board.tscn" id="1_68lp2"]
+[ext_resource type="PackedScene" uid="uid://cu4fwstq5yv0w" path="res://card/sucker/sucker.tscn" id="2_bm47n"]
+[ext_resource type="PackedScene" uid="uid://bfi0yq0hhslqt" path="res://card/exploder/exploder.tscn" id="2_ymfgp"]
+[ext_resource type="PackedScene" uid="uid://f0pkuexkm1cj" path="res://card/chucker/chucker.tscn" id="3_ymfgp"]
+[ext_resource type="PackedScene" uid="uid://rnknawrnvutu" path="res://card/slider/slider.tscn" id="4_56a5r"]
+[ext_resource type="PackedScene" uid="uid://csvssq1pgaoma" path="res://card/goomba/goomba.tscn" id="5_rqysx"]
+[ext_resource type="PackedScene" uid="uid://q8nalskll5gi" path="res://card/spinner/spinner.tscn" id="6_s7yy6"]
+
+[node name="GameBoard" unique_id=469077912 instance=ExtResource("1_68lp2")]
+total_grid_x_spaces = 4
+total_grid_y_spaces = 4
+
+[node name="Exploder" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="0" unique_id=1733592583 instance=ExtResource("2_ymfgp")]
+current_grid_position = Vector2i(1, 1)
+starts_on_board = true
+
+[node name="Sucker" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="1" unique_id=435940081 instance=ExtResource("2_bm47n")]
+card_number = 1
+current_grid_position = Vector2i(3, 3)
+starts_on_board = true
+
+[node name="Chucker2" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="2" unique_id=293965841 instance=ExtResource("3_ymfgp")]
+move_vector = Vector2i(0, -1)
+current_grid_position = Vector2i(0, 0)
+
+[node name="Slider" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="3" unique_id=298161281 instance=ExtResource("4_56a5r")]
+card_number = 4
+current_grid_position = Vector2i(2, 1)
+starts_on_board = true
+
+[node name="Slider2" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="4" unique_id=1702203801 instance=ExtResource("4_56a5r")]
+move_vector = Vector2i(0, -1)
+card_number = 6
+current_grid_position = Vector2i(0, 1)
+
+[node name="Goomba" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="5" unique_id=1640088549 instance=ExtResource("5_rqysx")]
+move_vector = Vector2i(0, 1)
+current_grid_position = Vector2i(1, 1)
+
+[node name="Spinner" parent="PlayerCards" parent_id_path=PackedInt32Array(592926577) index="6" unique_id=2097725344 instance=ExtResource("6_s7yy6")]
+card_number = 7
+current_grid_position = Vector2i(2, 3)
+effect_triggers = Array[int]([2])
+
+[node name="Control" parent="UI" parent_id_path=PackedInt32Array(875924731) index="1" unique_id=1079595306]
+offset_top = -2.0
+offset_bottom = 1078.0
+
+[node name="UndoButton" parent="UI" parent_id_path=PackedInt32Array(875924731) index="3" unique_id=282272217]
+offset_right = 1792.26
+offset_bottom = 110.7
