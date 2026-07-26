@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://q8nalskll5gi" path="res://card/spinner/spinner.tscn" id="7_m7lwk"]
 
 [node name="GameBoard" unique_id=469077912 instance=ExtResource("1_oq8ku")]
-level_number = 3
+
+[node name="DJ" parent="." index="2" unique_id=714778522]
+autoplay = "default"
 
 [node name="GridVisual" parent="." index="4" unique_id=1154572937]
 position = Vector2(556, 146)

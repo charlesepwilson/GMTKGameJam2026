@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://q8nalskll5gi" path="res://card/spinner/spinner.tscn" id="3_uyuj3"]
 
 [node name="GameBoard" unique_id=469077912 instance=ExtResource("1_w3xfr")]
-level_number = 8
 total_grid_x_spaces = 7
 total_grid_y_spaces = 7
 

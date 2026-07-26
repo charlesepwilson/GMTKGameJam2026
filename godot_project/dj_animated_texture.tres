@@ -1,0 +1,10 @@
+[gd_resource type="AnimatedTexture" format=3 uid="uid://eciyu2d72fuo"]
+
+[ext_resource type="Texture2D" uid="uid://c1a33jltu45o0" path="res://card/DJ_01.png" id="1_f1v7o"]
+[ext_resource type="Texture2D" uid="uid://dsu8hamv5dsx0" path="res://card/DJ_02.png" id="2_4v6se"]
+
+[resource]
+frames = 2
+frame_0/texture = ExtResource("1_f1v7o")
+frame_1/texture = ExtResource("2_4v6se")
+frame_1/duration = 1.0
