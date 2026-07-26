@@ -1,5 +1,3 @@
-@tool
-extends EditorScript
 class_name LevelGenerator
 
 const base_level_scene: PackedScene = preload("res://game_board/game_board.tscn")
@@ -66,18 +64,3 @@ static func pack_level(level) -> PackedScene:
 
 static func generate_and_pack_level() -> PackedScene:
 	return pack_level(generate_level())
-
-static func save_level(level: GameBoard):
-	var packed_scene = pack_level(level)
-	var level_name = "res://levels/GeneratedLevel-"
-	level_name += generate_word(25)
-	level_name += ".tscn"
-	print(level_name)
-	ResourceSaver.save(packed_scene, level_name)
-
-static func generate_and_save_level():
-	save_level(generate_level())
-
-
-func _run():
-	generate_and_save_level()

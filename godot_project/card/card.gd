@@ -48,7 +48,7 @@ func _ready() -> void:
 	if card_number in number_textures:
 		number_label.texture = number_textures[card_number]
 	trigger_icon.texture = trigger_icons[effect_triggers[0]]
-	game_board = find_parent("GameBoard")
+	game_board = find_parent("GameBoard*")
 	player_cards = game_board.find_child("PlayerCards")
 	visible = false
 	clickable_area.input_event.connect(_clickable_area_input_event)

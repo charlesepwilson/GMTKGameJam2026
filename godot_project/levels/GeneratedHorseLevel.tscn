@@ -109,7 +109,7 @@ font_size = 80
 outline_size = 17
 outline_color = Color(0, 0, 0, 1)
 
-[node name="GameBoard4" type="Node2D" unique_id=469077912]
+[node name="GameBoard" type="Node2D" unique_id=469077912]
 script = ExtResource("1_2wg06")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=235818796]
