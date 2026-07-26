@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b85gdlck0tisj" path="res://game_board/tutorial_popup.tscn" id="6_cr8f5"]
 
 [node name="GameBoard" unique_id=469077912 instance=ExtResource("1_b84ys")]
-level_number = 1
 total_grid_x_spaces = 3
 total_grid_y_spaces = 3
 
@@ -28,6 +27,6 @@ layout_mode = 1
 offset_top = -266.0
 offset_bottom = 266.0
 
-[node name="UndoButton" parent="UI" parent_id_path=PackedInt32Array(875924731) index="2" unique_id=282272217]
+[node name="UndoButton" parent="UI" parent_id_path=PackedInt32Array(875924731) index="3" unique_id=282272217]
 offset_right = 1792.26
 offset_bottom = 110.7

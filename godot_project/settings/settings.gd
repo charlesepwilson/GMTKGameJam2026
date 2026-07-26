@@ -1,5 +1,6 @@
 extends Node
 
+var current_packed_scene: PackedScene
 
 var numberwang_index: int = 0
 var ray_tracing: bool = false
@@ -13,18 +14,18 @@ const maximum_game_speed: float = 3 * base_speed
 const speed_increment: float = 0.2 * base_speed
 
 func load_level(level_number: int):
-    current_level_number = level_number
-    get_tree().change_scene_to_file(levels[level_number - 1])
+	current_level_number = level_number
+	get_tree().change_scene_to_file(levels[level_number - 1])
 
 var current_level_number: int = 0
 
 const levels: Array[String] = [
-    "res://levels/TutorialLevel.tscn",
-    "res://levels/EasyLevel.tscn",
-    "res://levels/OnPlayTutorialLevel.tscn",
-    "res://levels/AllOnPlayLevel.tscn",
-    "res://levels/ExploderIntroLevel.tscn",
-    "res://levels/TableIntroLevel.tscn",
-    "res://levels/BloodIntroLevel.tscn",
-    "res://levels/ExampleLevel.tscn",
+	"res://levels/TutorialLevel.tscn",
+	"res://levels/EasyLevel.tscn",
+	"res://levels/OnPlayTutorialLevel.tscn",
+	"res://levels/AllOnPlayLevel.tscn",
+	"res://levels/ExploderIntroLevel.tscn",
+	"res://levels/TableIntroLevel.tscn",
+	"res://levels/BloodIntroLevel.tscn",
+	"res://levels/ExampleLevel.tscn",
 ]
