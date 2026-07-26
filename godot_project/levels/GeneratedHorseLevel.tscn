@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://0gajfe4n56tp"]
+[gd_scene format=3 uid="uid://divj7y10tgoc3"]
 
 [ext_resource type="Script" uid="uid://e5xtcj151x6a" path="res://game_board/game_board.gd" id="1_2wg06"]
 [ext_resource type="Texture2D" uid="uid://dp2r72bcmx8ir" path="res://card/Background(1).png" id="2_0y2o8"]
@@ -15,17 +15,12 @@
 [ext_resource type="Script" uid="uid://cgx7qf1xmwvtu" path="res://game_board/player_cards.gd" id="13_s2gfa"]
 [ext_resource type="LabelSettings" uid="uid://cjbip36jldo0k" path="res://new_label_settings.tres" id="14_6xbjg"]
 [ext_resource type="PackedScene" uid="uid://dqceyp8knjyls" path="res://card/jumper/jumper.tscn" id="15_gaeoo"]
-[ext_resource type="Script" uid="uid://qk8oorf7nemu" path="res://card/jumper/jumper.gd" id="16_cxyau"]
 [ext_resource type="PackedScene" uid="uid://cu4fwstq5yv0w" path="res://card/sucker/sucker.tscn" id="17_dy48l"]
-[ext_resource type="Script" uid="uid://cbdkew3gysxxe" path="res://card/sucker/sucker.gd" id="18_acgi1"]
 [ext_resource type="PackedScene" uid="uid://csvssq1pgaoma" path="res://card/goomba/goomba.tscn" id="19_3sgxt"]
-[ext_resource type="Script" uid="uid://cn6nmshcyqxif" path="res://card/goomba/goomba.gd" id="20_vfx57"]
 [ext_resource type="Script" uid="uid://bsw004ianpbs0" path="res://game_board/ceiling_lamp.gd" id="21_i3grf"]
 [ext_resource type="PackedScene" uid="uid://ber778ydj15qd" path="res://game_board/number_confetti.tscn" id="22_yvcsa"]
-[ext_resource type="Texture2D" uid="uid://jif4hwdxpyrl" path="res://_numbers/Number_SpriteSheet.png" id="23_n38ev"]
 [ext_resource type="Theme" uid="uid://bcg08v88fsprf" path="res://ui_themes/menu_theme.tres" id="24_i6ba7"]
 [ext_resource type="PackedScene" uid="uid://b5jte4tswygit" path="res://victory_popup/failure_popup.tscn" id="25_h7mp6"]
-[ext_resource type="Script" uid="uid://b1ab1o8mvrixd" path="res://victory_popup/victory_popup.gd" id="26_s6ok3"]
 [ext_resource type="PackedScene" uid="uid://cekths2ejptic" path="res://victory_popup/victory_popup.tscn" id="27_goqe1"]
 [ext_resource type="FontFile" uid="uid://btcx11ibxxabr" path="res://CAKE N TRUFFLES.TTF" id="28_jatws"]
 [ext_resource type="Texture2D" uid="uid://mt8er1e8cq55" path="res://card/Jump.png" id="29_bag5v"]
@@ -38,7 +33,6 @@
 [ext_resource type="Texture2D" uid="uid://c43lih4akkxr2" path="res://card/Speed up.png" id="36_tht6j"]
 [ext_resource type="Script" uid="uid://dnme0hl587rro" path="res://game_board/speed_up.gd" id="37_e4icy"]
 [ext_resource type="PackedScene" uid="uid://cks8af20ujok7" path="res://settings/settings_page.tscn" id="38_hoofl"]
-[ext_resource type="Script" uid="uid://bve8s7xeghb61" path="res://settings/settings_page.gd" id="39_5pmoc"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_57qmd"]
 polygon = PackedVector2Array(81, 169, 94, 249, 73, 240, 61, 183, 6, 167, -14, 149, 48, 121, 43, -111, -4, -157, 73, -180, 91, -229, 52, -246, 3, -281, 110, -242, 97, -166, 20, -150, 62, -126, 63, 132, 2, 152)
@@ -115,7 +109,7 @@ font_size = 80
 outline_size = 17
 outline_color = Color(0, 0, 0, 1)
 
-[node name="GameBoard" type="Node2D" unique_id=469077912]
+[node name="GameBoard4" type="Node2D" unique_id=469077912]
 script = ExtResource("1_2wg06")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=235818796]
@@ -223,35 +217,22 @@ texture_scale = 2.0
 [node name="Timer" type="Timer" parent="PlayerCards" unique_id=1707955779]
 autostart = true
 
-[node name="Jumper" type="Node2D" parent="PlayerCards" unique_id=1733592583 instance=ExtResource("15_gaeoo")]
-script = ExtResource("16_cxyau")
+[node name="Jumper" parent="PlayerCards" unique_id=1733592583 instance=ExtResource("15_gaeoo")]
 card_number = 1
-card_name = "Sir Jumpsalot"
-sfx_start = 4.85
 effect_triggers = Array[int]([1])
 
-[node name="@Node2D@135387" type="Node2D" parent="PlayerCards" unique_id=866024674 instance=ExtResource("15_gaeoo")]
-script = ExtResource("16_cxyau")
+[node name="@Node2D@135387" parent="PlayerCards" unique_id=866024674 instance=ExtResource("15_gaeoo")]
 card_number = 2
-card_name = "Sir Jumpsalot"
 current_grid_position = Vector2i(0, 1)
 starts_on_board = true
-sfx_start = 4.85
 effect_triggers = Array[int]([1])
 
-[node name="Sucker" type="Node2D" parent="PlayerCards" unique_id=394106100 instance=ExtResource("17_dy48l")]
-script = ExtResource("18_acgi1")
+[node name="Sucker" parent="PlayerCards" unique_id=394106100 instance=ExtResource("17_dy48l")]
 card_number = 3
-card_name = "Lilith"
-sfx_start = 0.85
-effect_triggers = Array[int]([1])
 
-[node name="Goomba" type="Node2D" parent="PlayerCards" unique_id=1780352928 instance=ExtResource("19_3sgxt")]
-script = ExtResource("20_vfx57")
+[node name="Goomba" parent="PlayerCards" unique_id=1780352928 instance=ExtResource("19_3sgxt")]
 move_vector = Vector2i(0, 1)
 card_number = 4
-card_name = "Dave"
-sfx_start = 0.17
 
 [node name="Lights" type="Node2D" parent="." unique_id=1840181145]
 
@@ -351,39 +332,13 @@ texture = SubResource("GradientTexture2D_g4v7s")
 
 [node name="Confetti" type="Node2D" parent="UI" unique_id=7496516]
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="UI/Confetti" unique_id=356909706 instance=ExtResource("22_yvcsa")]
+[node name="CPUParticles2D" parent="UI/Confetti" unique_id=356909706 instance=ExtResource("22_yvcsa")]
 material = SubResource("CanvasItemMaterial_88noe")
 position = Vector2(478, 268)
-emitting = false
-amount = 50
-texture = ExtResource("23_n38ev")
-lifetime = 2.0
-one_shot = true
-explosiveness = 0.8
-direction = Vector2(0, -1)
-initial_velocity_min = 307.49
-initial_velocity_max = 530.79
-angle_min = -82.6
-angle_max = 88.5
-scale_amount_max = 2.0
-anim_offset_max = 1.0
 
-[node name="CPUParticles2D2" type="CPUParticles2D" parent="UI/Confetti" unique_id=691399931 instance=ExtResource("22_yvcsa")]
+[node name="CPUParticles2D2" parent="UI/Confetti" unique_id=691399931 instance=ExtResource("22_yvcsa")]
 material = SubResource("CanvasItemMaterial_88noe")
 position = Vector2(1334, 271)
-emitting = false
-amount = 50
-texture = ExtResource("23_n38ev")
-lifetime = 2.0
-one_shot = true
-explosiveness = 0.8
-direction = Vector2(0, -1)
-initial_velocity_min = 307.49
-initial_velocity_max = 530.79
-angle_min = -82.6
-angle_max = 88.5
-scale_amount_max = 2.0
-anim_offset_max = 1.0
 
 [node name="Control" type="Control" parent="UI" unique_id=1079595306]
 visible = false
@@ -393,7 +348,7 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 theme = ExtResource("24_i6ba7")
 
-[node name="FailurePopup" type="PanelContainer" parent="UI/Control" unique_id=842108949 instance=ExtResource("25_h7mp6")]
+[node name="FailurePopup" parent="UI/Control" unique_id=842108949 instance=ExtResource("25_h7mp6")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -408,10 +363,8 @@ offset_right = 83.5
 offset_bottom = 121.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("24_i6ba7")
-script = ExtResource("26_s6ok3")
 
-[node name="VictoryPopup" type="PanelContainer" parent="UI/Control" unique_id=124024417 instance=ExtResource("27_goqe1")]
+[node name="VictoryPopup" parent="UI/Control" unique_id=124024417 instance=ExtResource("27_goqe1")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -426,8 +379,6 @@ offset_right = 203.5
 offset_bottom = 161.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("24_i6ba7")
-script = ExtResource("26_s6ok3")
 
 [node name="SettingsButton" type="Button" parent="UI" unique_id=775683023]
 anchors_preset = 3
@@ -506,16 +457,8 @@ label_settings = SubResource("LabelSettings_88noe")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SettingsPage" type="Control" parent="UI" unique_id=1242241935 instance=ExtResource("38_hoofl")]
+[node name="SettingsPage" parent="UI" unique_id=1242241935 instance=ExtResource("38_hoofl")]
 visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("24_i6ba7")
-script = ExtResource("39_5pmoc")
 
 [connection signal="pressed" from="DJ/MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="UI/SettingsButton" to="UI/SettingsPage" method="show_settings"]
