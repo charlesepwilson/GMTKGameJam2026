@@ -30,5 +30,9 @@ const levels: Array[String] = [
 	"res://levels/Goomba_Slide.tscn",
 	"res://levels/Tut_BloodStop.tscn",
 	"res://levels/Tut_Pull.tscn",
-	"res://levels/Tut_Push.tscn"
+	"res://levels/Tut_Push.tscn",
+	"res://levels/Tut_Horse.tscn",
+	"res://levels/DoubleHorse.tscn",
+	"res://levels/TableIntroLevel.tscn",
+	"res://levels/GeneratedHorseLevel.tscn",
 ]

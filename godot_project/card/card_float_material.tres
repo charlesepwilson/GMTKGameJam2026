@@ -20,5 +20,5 @@ shader_parameter/hovering = 0.0
 shader_parameter/rand_trans_power = 1.0
 shader_parameter/rand_seed = 0.0
 shader_parameter/vortex_amt = 0.0
-shader_parameter/rotation = 1.4901199918426758e-07
+shader_parameter/rotation = 1.490119991842676e-07
 shader_parameter/mouse_screen_pos_test = Vector2(0, 0)
